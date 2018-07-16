@@ -1,0 +1,144 @@
+/* pages/evaluate/evaluate.wxss */
+.eval{
+	width: 100%;
+	height: auto;
+}
+.order-shoplist{
+	width: 100%;
+	height: auto;
+	padding-top: 20rpx;
+	background: #fff;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 20rpx;
+}
+.order-shoplist-one{
+	width: 96%;
+	height: auto;
+	padding:0 2%;
+	margin-bottom: 20rpx;
+	display:flex;
+	justify-content: space-between;
+}
+.order-shoplist-one>view:first-child{
+	width: 180rpx;
+	height: 180rpx;
+	margin-right: 30rpx;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+.order-shoplist-one>view:first-child>image{
+	width: 100%;
+	height: 100%;
+}
+.order-shoplist-right{
+	flex: 1;
+}
+.order-shoplist-right>view:first-child{
+	width: 100%;
+	height: 80rpx;
+	overflow: hidden;
+	line-height: 40rpx;
+	font-size: 30rpx;
+	color: #333;
+}
+.order-shoplist-right>view:nth-child(2)>text{
+	font-size: 28rpx;
+	color: #666;
+	margin-right: 25rpx;
+}
+.order-shoplist-right>view:last-child{
+	font-size: 30rpx;
+	color: #333;
+}
+.order-shoplist-right>view:last-child>text{
+	font-size: 38rpx;
+	color: #f00;
+}
+.eval-dafen{
+	width: 96%;
+	height: 88rpx;
+	line-height: 88rpx;
+	padding:0 2%;
+	display:flex;
+	background: #fff;
+}
+.eval-dafen>view:first-child{
+	font-size: 32rpx;
+	color: #333;
+	margin-right: 30rpx;
+}
+.eval-dafen>view:last-child{
+	flex: 1;
+	display:flex;
+}
+.eval-dafen>view:last-child>image{
+	width: 30rpx;
+	height: 30rpx;
+	padding: 28rpx 10rpx 28rpx 0;
+}
+.eval-shop{
+	width: 96%;
+	height: auto;
+	padding:20rpx 2%;
+	background: #fff;
+	margin-top: 20rpx;
+}
+.eval-shop>view{
+	font-size: 32rpx;
+	color: #333;
+	margin-bottom: 20rpx;
+}
+.eval-shop>view>text{
+	font-size: 28rpx;
+	color: #666;
+}
+.eval-shop>textarea{
+	width: 96%;
+	height: 200rpx;
+	padding:20rpx 2%;
+	font-size: 30rpx;
+	color: #333;
+	line-height: 46rpx;
+	box-shadow: 0 0 10rpx #eee;
+}
+.eval0-photos{
+	width: 96%;
+	height: auto;
+	padding:20rpx 2%;
+	background: #fff;
+	margin-top: 20rpx;
+}
+.eval0-photos>view:first-child{
+	font-size: 32rpx;
+	color: #333;
+	margin-bottom: 20rpx;
+}
+.eval0-photos>view:last-child{
+	width: 100%;
+	height: auto;
+	display:flex;
+	flex-wrap:wrap;
+}
+.eval0-photos>view:last-child>image{
+	width: 210rpx;
+	height: 210rpx;
+	margin: 15rpx 10rpx;
+	border:1px solid #eee;
+	border-radius: 15rpx;
+}
+.eval-button{
+	width: 94%;
+	height: 88rpx;
+	line-height: 88rpx;
+	text-align: center;
+	margin: 40rpx 3%;
+}
+.eval-button>button{
+	width: 100%;
+	height: 100%;
+	font-size: 34rpx;
+	color: #fff;
+	background: #309EFD;
+	border: 0;
+}

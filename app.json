@@ -1,0 +1,92 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/mycenter/mycenter",
+    "pages/address/address",
+    "pages/mycenter/about/about",
+    "pages/start/start",
+    "pages/admin/statistics/statistics",
+    "pages/mycenter/information/information",
+    "pages/login/login",
+    "pages/mycenter/notice/notice",
+    "pages/submitOrder/submitOrder",
+    "pages/courier/send_where/send_where",
+    "pages/address/addAddress/addAddress",
+    "pages/courier/courier",
+    "pages/orderList/orderDetails/orderDetails",
+    "pages/orderList/orderList",
+    "pages/courier/submit/submit",
+    "pages/evaluate/evaluate",
+    "pages/evaluateList/evaluateList",
+    "pages/catering/catering",
+    "pages/catering/shopDetails/shopDetails",
+    "pages/cart/cart",
+    "pages/mycenter/ritual/ritual",
+    "pages/mycenter/rituall/rituall",
+    "pages/orderList/orderRefund/orderRefund",
+    "pages/mycenter/my_team/my_team",
+    "pages/mycenter/qr_code/qr_code",
+    "pages/mycenter/noticeDetails/noticeDetails",
+    "pages/meal/index/index",
+    "pages/task_hall/task_hall/index",
+    "pages/task_hall/grab_detail/grab_detail",
+    "pages/task_hall/in_task/in_task",
+    "pages/task_hall/task_end/task_end",
+    "pages/meal/shop/shop",
+    "pages/courier/perfect/perfect",
+    "pages/retrieve/retrieve",
+    "pages/reset/reset",
+    "pages/mycenter/feedback/feedback",
+    "pages/mycenter/approve/approve",
+    "pages/mycenter/teacher/teacher",
+    "pages/water/water",
+    "pages/admin/admin",
+    "pages/mycenter/real_name/real_name",
+    "pages/admin/send_man/send_man",
+    "pages/admin/teacher/teacher",
+    "pages/admin/send_order/send_order",
+    "pages/admin/user_order/user_order",
+    "pages/meal/search/search",
+    "pages/meal/test/test",
+    "pages/seek/seek",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#309efd",
+    "navigationBarTitleText": "学校",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar":{
+  	"list": [
+    {
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "image/icon-01.png",
+      "selectedIconPath": "image/icon-hover-01.png"
+    },
+    {
+      "pagePath": "pages/cart/cart",
+      "text": "购物车",
+      "iconPath": "image/icon-03.png",
+      "selectedIconPath": "image/icon-hover-03.png"
+    },
+    {
+      "pagePath": "pages/orderList/orderList",
+      "text": "订单",
+      "iconPath": "image/icon-02.png",
+      "selectedIconPath": "image/icon-hover-02.png"
+    },
+    {
+      "pagePath": "pages/mycenter/mycenter",
+      "text": "我的",
+      "iconPath": "image/icon-04.png",
+      "selectedIconPath": "image/icon-hover-04.png"
+    }],
+  	"color":"#666",
+  	"selectedColor":"#309efd",
+  	"position":"bottom",
+  	"backgroundColor":"#fff",
+  	"borderStyle":"black"
+  }
+}

@@ -1,0 +1,14 @@
+<!--pages/user/qr_code.wxml-->
+<loading wx:if="{{showLoading}}">加载中</loading>
+<image class='bg_wrap' src='/image/code_bg.png'></image>
+<view class='cont'>
+  <view class='cont_t'>
+    <image class='cont_t_img' src='/image/me-14.png'></image>
+    <view class='cont_t_txt'>分享二维码</view>
+  </view>
+  <image class='code' src='/image/code.jpg'></image>
+  <view class='cont_b' bindtap='my_team'>
+    <image class='cont_b_img' src='/image/team.png'></image>
+    <view class='cont_b_txt'>我的团队</view>
+  </view>
+</view>

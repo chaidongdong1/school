@@ -1,0 +1,148 @@
+/* pages/seek/seek.wxss */
+.seek{
+	width: 100%;
+	height: auto;
+}
+.seek-top{
+	width: 96%;
+	height: 100rpx;
+	line-height: 100rpx;
+	padding: 0 2%;
+	background: #309EFD;
+	display: flex;
+	justify-content: space-between;
+}
+.seek-top>view:first-child{
+	flex: 1;
+	height: 60rpx;
+	line-height: 60rpx;
+	border-radius: 25rpx;
+	background: #fff;
+	display:flex;
+	margin-top: 20rpx;
+}
+.seek-top>view:first-child>image{
+	width: 30rpx;
+	height:	30rpx;
+	margin: 15rpx;
+}
+.seek-top>view:first-child>input{
+	width: 88%;
+	height: 100%;
+	font-size: 30rpx;
+	color: #333;
+}
+.seek-top>view:last-child{
+	width: 150rpx;
+	height: 60rpx;
+	text-align: center;
+	margin: 20rpx 0 20rpx 20rpx;
+}
+.seek-top>view:last-child>button{
+	width: 100%;
+	height: 100%;
+	line-height: 60rpx;
+	font-size: 32rpx;
+	color: #fff;
+	background: #fe2f39;
+	border: 0;
+	border-radius: 15rpx;
+}
+/*商品*/
+.catering{
+  width: 96%;
+  height: atuo;
+  margin: 0 2%;
+}
+.cater-shop{
+  width: 100%;
+  height: auto;
+  margin: 20rpx 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.shop-item{
+  width: 46%;
+  height: auto;
+  background-color: #fff;
+  padding:10rpx;
+  margin-bottom: 20rpx;
+}
+.shop-item>view:first-child{
+  width: 330rpx;
+  height: 330rpx;
+  border:1px solid #cdcdcd;
+  box-sizing: border-box;
+}
+.shop-item>view:first-child>image{
+  width: 100%;
+  height: 100%;
+}
+.shop-item>view:nth-child(2){
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  overflow: hidden;
+  font-size: 32rpx;
+  color: #333;
+}
+.shop-item>view:nth-child(3){
+  font-size: 28rpx;
+  color: #999;
+  padding:10rpx 0;
+}
+.shop-item>view:last-child{
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 38rpx;
+  color: #f00;
+  display: flex;
+  justify-content: space-between;
+}
+.shop-item>view:last-child>text{
+  font-size: 28rpx;
+  color: #666;
+}
+.cart-quanbu{
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  margin: 20rpx 0;
+}
+/*空地址*/
+.address-kong{
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	background-color: #fff;
+}
+.address-kong>view:first-child{
+	width: 325rpx;
+	height: 330rpx;
+	margin: 200rpx auto 50rpx auto;
+}
+.address-kong>view:first-child>image{
+	width: 100%;
+	height: 100%;
+}
+.address-kong>view:nth-child(2){
+	text-align: center;
+	font-size: 34rpx;
+	color: #333;
+}
+.address-kong>view:nth-child(3){
+	text-align: center;
+	font-size: 28rpx;
+	color: #999;
+	margin: 20rpx 0 0 0;
+}
+.address-kong>view:nth-child(3)>text{
+	color: #309EFD;
+}
+.address-kong>view:last-child{
+	text-align: center;
+	font-size: 28rpx;
+	color: #999;
+}

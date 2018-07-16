@@ -1,0 +1,53 @@
+<!--pages/meal/shop/shop.wxml-->
+<image class='top_img' src='/image/bg.png'></image>
+<view class='header'>
+  <view class='header_l fl_l'>
+    <image class='shop_img' src='/image/index-shop1.jpg'></image>
+  </view>
+  <view class='header_r fl_l'>
+    <view class='header_r1'>山西刀削面</view>
+    <view class='header_r2'>营业时间：10:00-13:00    15:00-19:00</view>
+    <view class='header_r3 ellipsis'>地址：北大雪城西餐厅15号窗口</view>
+  </view>
+</view>  
+<view class='cont'>
+  <view class='tab'>
+    <view class='tab_item active bo_r'>菜品</view>
+    <view class='tab_item'>评价</view>
+  </view> 
+  <!--菜品  --> 
+  <view class='dishes_wrap clear'>
+    <view class='classify' style='height:{{height}}px'>
+      <view data-index='{{index}}' wx:for="{{goods_list}}" wx:key="name" bindtap='active'  class='classify_item {{show==index ? "active2":""}}'>{{item.name}}</view>
+    </view>
+    <view wx:if="{{show==index}}"  wx:for="{{goods_list}}" wx:key="name2"  class='dishes fl_l' style='height:{{height}}px'>
+      <view wx:for="{{item.arr}}" wx:for-item="goods" wx:key="name3" class='goods clear'>
+        <image class='goods_l fl_l' src='{{goods.img}}'></image>
+        <view class='goods_c fl_l'>
+          <view class='goods_name ellipsis'>{{goods.name}}</view>
+          <view class='goods_sales'>{{goods.detail}}</view>
+          <view class='goods_price'>
+            <view class='price fl_l'>¥{{goods.price}}</view>
+            <view class='unit fl_l'>元</view>
+            <view class='change_num fl_r'>
+              <view bindtap='add' data-index='{{index}}' class='add fl_r'>+</view>
+              <view wx:if="{{goods.num>=1}}" class='show_num fl_r'>{{goods.num}}</view>
+              <view data-index='{{index}}' wx:if="{{goods.num>=1}}" bindtap='sub' class='sub fl_r'>-</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+    </view>
+  </view>
+</view>
+
+<view class='botm'>
+  <image src='/image/shop_car.png' class='shop_car fl_l'>
+    <view wx:if="{{num>0}}" class='num'>{{num}}</view>
+  </image>
+  <view class='fl_l num_txt'>已选 {{num}} 件商品</view>
+  <view class='fl_l txt2'>合计:</view>
+  <view class='fl_l total'>¥{{total_price}}</view>
+  <view bindtap='to_pay' class='botm_r fl_r'>去结算</view>
+</view>

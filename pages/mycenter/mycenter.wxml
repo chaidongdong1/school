@@ -1,0 +1,88 @@
+<!--pages/mycenter/mycenter.wxml-->
+<view class="my">
+  <!-- 个人信息 -->
+  <view class="my-top">
+    <view>
+      <image src="/image/user_img.png"></image>
+    </view>
+    <view>
+      <view>别离开</view>
+      <view>手机号：13298343196</view>
+      <view>我的校区：龙子湖校区</view>
+    </view>
+    <navigator url="../mycenter/information/information">
+      <image src="/image/bi.png"></image>
+    </navigator>
+  </view>
+  <!-- 各种入口 -->
+  <view class="mycenter">
+  	<view bindtap='address'>
+  		<image src="/image/me-05.png"></image>
+  		<text>地址管理</text>
+  		<image src="/image/login8.png"></image>
+  	</view>
+    <view bindtap='information'>
+      <image src="/image/me-16.png"></image>
+      <text>完善信息</text>
+      <image src="/image/login8.png"></image>
+    </view>
+  	<view bindtap='approve'>
+  		<image src="/image/me-07.png"></image>
+  		<text>身份认证</text>
+  		<image src="/image/login8.png"></image>
+  	</view>
+    <view bindtap="code">
+      <image src="/image/me-14.png"></image>
+      <text>分享二维码</text>
+      <image src="/image/login8.png"></image>
+    </view>
+    <view wx:if="{{graber}}" bindtap="grab">
+      <image src="/image/grab_in.png"></image>
+      <text>任务大厅</text>
+      <image src="/image/login8.png"></image>
+    </view>
+  	<view wx:if="{{admin}}" bindtap='admin'>
+  		<image src="/image/me-11.png"></image>
+  		<text>管理入口</text>
+  		<image src="/image/login8.png"></image>
+  	</view>
+    <!-- <view bindtap="recommend">
+      <image src="/image/me-13.png"></image>
+      <text>我的推荐</text>
+      <image src="/image/login8.png"></image>
+    </view> -->
+  </view>
+  <!-- 各种入口 -->
+  <view class="mycenter">
+  	<view bindtap='go_ritual'>
+  		<image src="/image/me-08.png"></image>
+  		<text>礼券中心</text>
+  		<image src="/image/login8.png"></image>
+  	</view>
+  	<view bindtap='go_rituall'>
+  		<image src="/image/me-08.png"></image>
+  		<text>我的礼券</text>
+  		<image src="/image/login8.png"></image>
+  	</view>
+  	<view bindtap="notice">
+  		<image src="/image/me-15.png"></image>
+  		<text>公示公告</text>
+  		<image src="/image/login8.png"></image>
+  	</view>
+    <view bindtap='feedback'>
+      <image src="/image/me-10.png"></image>
+      <text>问题反馈</text>
+      <image src="/image/login8.png"></image>
+    </view>
+    <view bindtap="about">
+      <image src="/image/me-09.png"></image>
+      <text>关于我们</text>
+      <image src="/image/login8.png"></image>
+    </view>
+  	<view>
+  		<image src="/image/me-12.png"></image>
+  		<text>联系我们</text>
+  		<image src="/image/login8.png"></image>
+  	</view>
+  </view>
+</view>

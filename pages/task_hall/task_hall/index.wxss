@@ -1,0 +1,215 @@
+/* pages/task_hall/task_hall/index.wxss */
+.header{
+  padding: 40rpx 0;
+  background: #309efd;
+}
+.header_l{
+  display: block;
+  width: 112rpx;
+  height: 112rpx;
+  border: 4rpx solid #fff;
+  margin: 0 15rpx;
+  border-radius: 50%;
+}
+.header_r{
+  height: 120rpx;
+  width: 580rpx;
+}
+.name{
+  font-size: 30rpx;
+  color: #fff;
+  line-height: 40rpx;
+}
+.names{
+  font-size: 24rpx;
+  color: #f1f1f1;
+  line-height: 26rpx;
+}
+.info{
+  width: 100%;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 60rpx;
+}
+.red{
+  color: red;
+  font-size: 26rpx;
+}
+.info_item{
+  margin-right: 25rpx;
+}
+
+.botm{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1rpx solid #ccc;
+  display: flex;
+  height: 100rpx;
+  background: #fff;
+}
+.botm .item{
+  flex: 1;
+  text-align: center;
+}
+.botm .item image{
+  width: 40rpx;
+  height: 40rpx;
+  margin: 0 auto;
+  margin-top: 15rpx;
+  display: block;
+}
+ .txt{
+  font-size: 24rpx;
+  text-align: center;
+  color: #666;
+  line-height: 45rpx;
+}
+.active .txt{
+  color: #309efd;
+}
+/*主体内容  */
+.list{
+  width: 100%;
+  margin-top: 10rpx;
+  margin-bottom: 120rpx;
+}
+.list_item{
+  margin: 20rpx 15rpx 0;
+  background: #fff;
+  overflow: hidden;
+}
+.yellow{
+  color: #fc9d49
+}
+.list_t{
+  position: relative;
+  width: 100%;
+  height: 80rpx;
+  border-bottom: 1rpx solid #efeff4;
+}
+.decorate_l{
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  background: #efeff4;
+  left: -10rpx;
+  bottom: -10rpx;
+  border-radius: 50%;
+}
+.decorate_r{
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  background: #efeff4;
+  right: -10rpx;
+  bottom: -10rpx;
+  border-radius: 50%;
+}
+.user_img{
+  width: 50rpx;
+  height: 50rpx;
+  margin: 15rpx;
+}
+.user_name{
+  font-size: 24rpx;
+  color: #999;
+  line-height: 80rpx;
+  max-width: 300rpx;
+}
+.order_name{
+  font-size: 26rpx;
+  line-height: 80rpx;
+}
+.date{
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 0 15rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+.arrow{
+  width: 695rpx;
+}
+.list_c{
+  padding: 15rpx;
+  overflow: hidden;
+}
+.tack{
+  padding: 0 15rpx;
+}
+.tack_img{
+  width: 30rpx;
+  height: 30rpx;
+  margin: 15rpx 0;
+}
+.tack_add{
+  font-size: 22rpx;
+  color: #333;
+  line-height: 60rpx;
+  padding-left: 15rpx;
+  max-width: 660rpx;
+}
+
+.list_b{
+  border-top: 1rpx solid #efeff4;
+  padding:0 15rpx;
+  height: 72rpx;
+}
+.light{
+  width: 30rpx;
+  height: 24rpx;
+  margin: 24rpx 0;
+}
+.time{
+  font-size: 24rpx;
+  color: #333;
+  line-height: 72rpx;
+  margin-left: 10rpx;
+}
+.listb_r{
+  width: 240rpx;
+  height: 72rpx;
+}
+.grab_img{
+  width: 28rpx;
+  height:24rpx;
+  padding: 24rpx 10rpx;
+}
+.grab_img2{
+  width: 29rpx;
+  height:24rpx;
+  padding: 24rpx 10rpx;
+}
+.grab{
+  font-size: 24rpx;
+  color: #ff0000;
+  line-height: 72rpx;
+}
+.grab2{
+  font-size: 28rpx;
+  color: #ff0000;
+  line-height: 72rpx;
+  padding-left: 85rpx;
+}
+.grab_btn{
+  text-align: center;
+  width: 690rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 10rpx;
+  margin: 20rpx auto 30rpx;
+  background: #309efd;
+  color: #fff;
+  font-size: 30rpx;
+}
+.grab_btn image{
+  width: 22rpx;
+  height: 32rpx;
+  margin: 19rpx 10rpx;
+}
+.grab_btn1,.grab_btn2{
+  display: inline-block;
+  vertical-align: middle;
+}

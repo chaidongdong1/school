@@ -1,0 +1,276 @@
+/* pages/catering/catering.wxss */
+.top{
+  width: 96%;
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 2%;
+  background: #fff;
+  display:flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+}
+.top>view:first-child{
+  flex: 1;
+  display:flex;
+}
+.top>view:first-child>image{
+  width: 25rpx;
+  height: 30rpx;
+  margin: 10rpx 5rpx;
+}
+.top>view:first-child>view{
+  padding-left: 10rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+.top>view:first-child>view>text{
+  font-size: 26rpx;
+  color: #333;
+}
+.top>navigator{
+  display:flex;
+}
+.top>navigator>image{
+  width: 30rpx;
+  height: 30rpx;
+  margin: 10rpx;
+}
+.top>navigator>view{
+  padding-left: 5rpx;
+  font-size: 26rpx;
+  color: #309EFD;
+}
+
+/*搜索*/
+.caterings{
+  width: 100%;
+  height: atuo;
+}
+.cater{
+  width: 100%;
+  height: auto;
+  display:flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.index-sousuo {
+  width: 80%;
+  height: auto;
+  position: relative;
+}
+
+.index-sousuo>view {
+  width: 96%;
+  height: 56rpx;
+  background-color: #fff;
+  line-height: 56rpx;
+  margin: 25rpx 2%;
+  border-radius: 10rpx;
+  text-align: center;
+  text-indent: 2em;
+  font-size: 26rpx;
+  color: #b2b2b2;
+}
+
+.index-sousuo>image {
+  position: absolute;
+  width: 30rpx;
+  height: 30rpx;
+  top: 37rpx;
+  left: 44%;
+}
+
+.cater>view{
+  width: 100rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  padding:0 15rpx;
+  margin:25rpx 15rpx;
+  background: #309EFD;
+  border-radius: 10rpx;
+  display:flex;
+  justify-content: space-between;
+}
+.cater>view>image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 13rpx;
+}
+.cater>view>view{
+  font-size: 30rpx;
+  color: #fff;
+}
+/*轮播*/
+
+.index-banner {
+  width: 100%;
+  height: 320rpx;
+}
+
+.index-banner-image {
+  width: 100%;
+  height: 100%;
+}
+
+.index-swiper {
+  width: 100%;
+  height: 320rpx;
+}
+
+/*导航条*/
+
+.list-lb {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin: 30rpx 0;
+  white-space: nowrap;
+}
+
+.list-lb-one {
+  width: auto;
+  height: 100%;
+  font-size: 30rpx;
+  text-align: center;
+  padding: 0 40rpx;
+  background: #3aadfd;
+  color: #fff;
+  border-radius: 10rpx;
+  display: inline-block;
+  margin-right: 4%;
+  position: relative;
+}
+
+.list-lb-active {
+  background: #e94820;
+  color: #fff;
+}
+
+/*商品*/
+
+.catering{
+  width: 96%;
+  height: atuo;
+  margin: 0 2%;
+}
+.cater-shop{
+  width: 100%;
+  height: auto;
+  margin: 20rpx 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.shop-item{
+  width: 46%;
+  height: auto;
+  background-color: #fff;
+  padding:10rpx;
+  margin-bottom: 20rpx;
+}
+.shop-item>view:first-child{
+  width: 330rpx;
+  height: 330rpx;
+  border:1px solid #cdcdcd;
+  box-sizing: border-box;
+}
+.shop-item>view:first-child>image{
+  width: 100%;
+  height: 100%;
+}
+.shop-item>view:nth-child(2){
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  overflow: hidden;
+  font-size: 32rpx;
+  color: #333;
+}
+.shop-item>view:nth-child(3){
+  font-size: 28rpx;
+  color: #999;
+  padding:10rpx 0;
+}
+.shop-item>view:last-child{
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 38rpx;
+  color: #f00;
+  display: flex;
+  justify-content: space-between;
+}
+.shop-item>view:last-child>text{
+  font-size: 26rpx;
+  color: #666;
+}
+.cart-quanbu{
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  margin: 20rpx 0;
+}
+.mask{
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.masks{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+.mask-nav{
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 99999;
+  width: 350rpx;
+  height: 100%;
+  overflow:scroll;
+  background: #fff;
+  transition: all 0.5s;
+}
+.mask-nav>view{
+  font-size: 34rpx;
+  color: #333;
+  text-align: center;
+  line-height: 48rpx;
+  padding: 20rpx 0;
+  border-bottom: 1px dashed #eee;
+}
+.cart_wrap{
+  position: fixed;
+  right: 20rpx;
+  bottom: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: #309efd;
+}
+.shop_cart{
+  width: 50rpx;
+  height: 50rpx;
+  margin: 15rpx;
+}
+.num{
+  min-width: 21rpx;
+  line-height: 21rpx;
+  text-align: center;
+  font-size: 18rpx;
+  padding: 6rpx;
+  background: red;
+  position: absolute;
+  right: -3rpx;
+  top: -3rpx;
+  border-radius: 50%;
+  color: #fff;
+}

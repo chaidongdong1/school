@@ -1,0 +1,47 @@
+/**app.wxss**/
+@import 'style/weui.wxss';
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+page{
+	background-color: #efeff4;
+	color: #666;
+}
+
+.clear{
+  overflow: hidden;
+}
+.bg{ 
+  background: #fff;
+}
+/*文字超出省略*/
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+}
+/*浮动*/
+.fl_l{ float: left;}
+.fl_r{ float: right;}
+/*右箭头  */
+.arrow{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.arrow::after{
+  content: "";
+  width: 16rpx;
+  height: 16rpx;
+  border-top: 4rpx solid #ccc;
+  border-right: 4rpx solid #ccc;
+  transform: rotate(45deg);
+  display: block;
+}

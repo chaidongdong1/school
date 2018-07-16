@@ -1,0 +1,106 @@
+<!--pages/mycenter/orderDetails/orderDetails.wxml-->
+<view class="order">
+  <view class="order-stats">当前订单状态：
+    <text>待受理</text>
+  </view>
+  <!-- 地址 -->
+  <view class="order-address">
+    <view>
+      <image src="../../../image/address-02.png"></image>
+    </view>
+    <view>
+      <view>姓名：柴冬冬</view>
+      <view>手机号：135620100</view>
+      <view>收货地址：男生公寓5号楼08室</view>
+    </view>
+  </view>
+  <view class="order-a-bottom">
+    <image src="../../../image/address-bottom.png"></image>
+  </view>
+  <!-- 第一个订单 -->
+  <view class="order-shop-one">
+    <!-- 超市商品 -->
+    <view class="order-s-chao">
+      <view>
+        <image src="../../../image/chaoshi.png"></image>
+        <text>超市商品</text>
+        <image src="../../../image/index-06.png"></image>
+      </view>
+      <view>待付款</view>
+    </view>
+    <!-- 商品 -->
+    <view class="order-shoplist">
+      <!-- 第一件商品 -->
+      <view class="order-shoplist-one">
+        <!-- 左图片 -->
+        <view>
+          <image src="../../../image/shopdetails.jpg"></image>
+        </view>
+        <!-- 右内容 -->
+        <view class="order-shoplist-right">
+          <view>可口可乐</view>
+          <view>
+            <text>规格：500ml</text>
+            <text>口味：原味</text>
+            <text>数量：2</text>
+          </view>
+          <view>
+            <text>￥800.00</text>
+          </view>
+        </view>
+      </view>
+      <!-- 第一件商品 -->
+      <view class="order-shoplist-one">
+        <!-- 左图片 -->
+        <view>
+          <image src="../../../image/shopdetails.jpg"></image>
+        </view>
+        <!-- 右内容 -->
+        <view class="order-shoplist-right">
+          <view>可口可乐可口可乐可口可乐</view>
+          <view>
+            <text>规格：500ml</text>
+            <text>口味：原味</text>
+            <text>数量：2</text>
+          </view>
+          <view>
+            <text>￥800.00</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 合计 -->
+    <view class="order-heji">
+      <view>共计
+        <text>4</text>件产品</view>
+      <view>合计
+        <text>320.00</text>元（含运费2元）</view>
+    </view>
+  </view>
+  <!-- 订单信息 -->
+  <view class="order-xiang">
+    <view>订单编号：
+      <text>15545102114</text>
+    </view>
+    <view>下单时间：
+      <text>2018-07-10 12:38:30</text>
+    </view>
+    <view>送达时间：
+      <text>2018-07-10 13:00-14:00</text>
+    </view>
+    <view>保险费用：
+      <text>已购买</text>
+    </view>
+    <view>完成时间：
+      <text>2018-07-10 13:38:30</text>
+    </view>
+    <view>我的备注：
+      <text>激发考虑到福建省考虑到福建师范激发考虑到福建省考虑到福建师范激发考虑到福建省考虑到福建师范激发考虑到福建省考虑到福建师范</text>
+    </view>
+  </view>
+  <!-- 按钮 -->
+  <view class="order-anniu">
+  	<view>申请退款</view>
+    <view>取消订单</view>
+  </view>
+</view>

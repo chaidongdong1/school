@@ -1,0 +1,49 @@
+登陆注册          login               已写
+找回密码          retrieve           已写
+重置密码          reset                已写 
+商城首页          index               已写
+地址管理         address            已写
+添加地址         addAddress     已写
+教师认证         teacher            已写
+超市主页         catering           已写
+我的               mycenter          已写
+问题反馈         feedback         已写
+商品详情         shopDetails     已写
+提交订单         submitOrder    已写
+商品订单         orderList           已写
+提交评价         evaluate           已写
+评价列表         evaluateList      已写
+完善信息         information      已写
+购物车            cart                    已写
+搜索                seek                  已写
+公告                notice               已写
+公告详情         noticeDetails   已写
+关于我们         about               已写
+订单详情         orderDetail      已写
+订单退款         orderRefund    已写
+
+
+点餐首页         meal/index/index
+餐厅详情         meal/shop/shop
+
+快递业务2        courier/courier
+完善信息         courier/perfect/perfect
+
+管理人员         admin/admin
+统计信息         admin/statistics/statistics
+教师审核         admin/teacher/teacher
+派单员审核       admin/send_man/send_man
+用户订单         admin/user_order/user_order
+派单员订单       admin/send_order/send_order 
+
+抢单服务         grab/grab
+抢单详情         grab/grab_detail/grab_detail
+
+
+
+快递、餐饮、购物车
+
+
+
+
+

@@ -1,0 +1,67 @@
+<!--pages/login/login.wxml-->
+<view class="login">
+  <!-- logo -->
+  <view class="{{indexs == 0 ? 'login-logo' : 'login-logo1'}}">
+    <image src="../../image/logo.png"></image>
+  </view>
+  <!-- 登陆  注册 -->
+  <view class="login-button">
+    <view>
+      <text class="{{indexs == 0 ? 'login-button-active' : ''}}" bindtap="bintapLogin">登陆</text>
+      <text class="{{indexs == 1 ? 'login-button-active' : ''}}" bindtap="bintapRegister">注册</text>
+    </view>
+  </view>
+  <swiper class="{{indexs == 0 ? 'swiper1' : 'swiper'}}" duration="500" bindchange="bindchangeSwiper" current="{{indexs}}">
+    <swiper-item>
+      <!-- 登陆输入内容 -->
+      <view class="login-input">
+        <view class="login-input-text">
+          <image src="../../image/login1.png"></image>
+          <input type="text" name="" placeholder="请输入账号或手机号" placeholder-style="font-size:30rpx; color:#666;" />
+        </view>
+        <view class="login-input-text">
+          <image src="../../image/login2.png"></image>
+          <input type="password" name="" placeholder="请输入密码" placeholder-style="font-size:32rpx; color:#666;" />
+        </view>
+        <navigator class="login-wj" url="../retrieve/retrieve">忘记密码？</navigator>
+        <button>登陆</button>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <!-- 注册输入内容 -->
+      <view class="login-input">
+        <view class="login-input-text">
+          <image src="../../image/login1.png"></image>
+          <input type="text" name="" placeholder="请输入用户名" placeholder-style="font-size:32rpx; color:#666;" />
+        </view>
+        <view class="login-input-text">
+          <image src="../../image/login3.png"></image>
+          <input type="number" name="" placeholder="请输入手机号" placeholder-style="font-size:32rpx; color:#666;" />
+        </view>
+        <view class="login-input-text1">
+          <image src="../../image/login4.png"></image>
+          <input type="number" name="" placeholder="请输入验证码" placeholder-style="font-size:32rpx; color:#666;" />
+          <view>获取验证码</view>
+        </view>
+        <view class="login-input-text">
+          <image src="../../image/login5.png"></image>
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="picker">{{array[arrayIndex]}}</view>
+          </picker>
+          <view>
+            <image src="../../image/login7.png"></image>
+          </view>
+        </view>
+        <view class="login-input-text">
+          <image src="../../image/login6.png"></image>
+          <input type="password" name="" placeholder="请输入密码" placeholder-style="font-size:32rpx; color:#666;" />
+        </view>
+        <view class="login-input-text">
+          <image src="../../image/login6.png"></image>
+          <input type="password" name="" placeholder="请确认密码" placeholder-style="font-size:32rpx; color:#666;" />
+        </view>
+        <button>登陆</button>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

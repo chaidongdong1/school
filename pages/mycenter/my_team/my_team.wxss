@@ -1,0 +1,84 @@
+/* pages/mycenter/my_team/my_team.wxss */
+.bg_wrap{
+  width: 750rpx;
+  height: 1202rpx;
+  display: block;
+  border-top: 1rpx solid #fff;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.cont{
+  width: 480rpx;
+  height: 800rpx;
+  position: absolute;
+  left: 135rpx;
+  top: 180rpx;
+}
+.cont_t{
+  height: 106rpx;
+  margin: 10rpx 42rpx 0;
+  text-align: center;
+  border-bottom: 2rpx solid #ccc;
+  position: relative;
+  left: 0;
+  top:0;
+}
+.cont_t_img{
+  display: inline-block;
+  width: 44rpx;
+  height: 36rpx;
+  margin: 35rpx 15rpx;
+  vertical-align: middle;
+}
+.cont_t_txt{
+  color: #309efd;
+  font-size: 32rpx;
+  line-height: 106rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.title{
+  padding: 0 35rpx 0 40rpx;
+  margin-top: 36rpx;
+}
+.title_l{
+  width: 150rpx;
+  font-size: 24rpx;
+  color: #333;
+  line-height: 60rpx;
+  height: 60rpx;
+}
+.title_r{
+  margin-left: 55rpx;
+  width: 200rpx;
+  font-size: 24rpx;
+  color: #333;
+  line-height: 60rpx;
+  height: 60rpx;
+}
+
+.cont_item{
+  padding: 0 35rpx 0 40rpx;
+}
+.item_l{
+  width: 150rpx;
+  font-size: 24rpx;
+  color: #808080;
+  line-height: 60rpx;
+  height: 60rpx;
+}
+.item_r{
+  margin-left: 55rpx;
+  width: 200rpx;
+  font-size: 24rpx;
+  color: #808080;
+  line-height: 60rpx;
+  height: 60rpx;
+  overflow: hidden;
+}
+.scroll{
+  width: 480rpx;
+  height: 580rpx;
+}

@@ -1,0 +1,30 @@
+<!--pages/retrieve/retrieve.wxml-->
+<view class="retrieve">
+  <!-- 地区 -->
+  <view class="retrieve-china">
+    <view>国家/地区</view>
+    <view>中国</view>
+    <view>
+      <image src="../../image/login8.png"></image>
+    </view>
+  </view>
+  <!-- 手机号 -->
+  <view class="retrieve-phone">
+    <view>+86</view>
+    <view>
+      <input type="number" name="" placeholder="请填写手机号码" placeholder-style="color:#b2b2b2;font-size:30rpx;" />
+    </view>
+  </view>
+  <!-- 验证码 -->
+  <view class="retrieve-phone1">
+    <view>验证码</view>
+    <view>
+      <input type="number" name="" placeholder="请输入验证码" placeholder-style="color:#b2b2b2;font-size:30rpx;" />
+    </view>
+    <view>获取验证码</view>
+  </view>
+</view>
+<!-- 按钮 -->
+<view class="retrieve-button">
+  <button>下一步</button>
+</view>

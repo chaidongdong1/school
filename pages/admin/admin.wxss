@@ -1,0 +1,71 @@
+/* pages/admin/admin.wxss */
+page{
+ background-color:#fff;
+}
+.top_img{
+  width: 750rpx;
+  height: 460rpx;
+}
+.wrap{
+  width: 100%;
+  padding: 130rpx 0 100rpx;
+}
+.wrap .item{
+  width: 325rpx;
+  height: 180rpx;
+  border-top: 20rpx solid #6bb8fb;
+  background: #3ca3fd;
+  margin: 0 10rpx 40rpx 30rpx;
+  box-shadow: 2rpx 4rpx 5rpx 2rpx #c3c2c2;
+}
+.wrap  .item_img{
+  display: block;
+  width: 90rpx;
+  height: 90rpx;
+  margin:20rpx auto 0;
+  border-radius: 50%;
+}
+.item_txt{
+  font-size: 30rpx;
+  line-height: 70rpx;
+  height: 70rpx;
+  text-align: center;
+  color: #fff;
+}
+.wrap_black{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #000;
+  opacity: 0.5;
+  z-index: 9;
+}
+.order_wrap{
+  width: 750rpx;
+  height: 221rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 99;
+  background: #fff;
+}
+.order_wrap .order_item{
+  padding-left: 10rpx;
+  height: 110rpx;
+  line-height: 110rpx;
+}
+.order_wrap .order_img{
+  width: 39rpx;
+  height: 32rpx;
+  margin: 39rpx 20rpx;
+  display: block;
+}
+.order_wrap .order_txt{
+  font-size: 30rpx;
+  color: #666;
+}
+.bo_b{
+  border-bottom: 1rpx solid #ccc;
+}

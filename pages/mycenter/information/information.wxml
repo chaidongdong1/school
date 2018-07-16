@@ -1,0 +1,44 @@
+<!--pages/information/information.wxml-->
+<!-- 授权按钮 -->
+<view class="container" wx:if="{{showModal}}">
+  <view class="content">
+    <view class="title">
+      <view class="h1">温馨提示</view>
+      <view class="h2">{{mallName.mallName}}申请获取以下权限</view>
+      <view class="h3">
+        <text></text>获取你的公开信息（昵称、头像）</view>
+    </view>
+    <button class="btnaa" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">开始授权</button>
+  </view>
+</view>
+<view class="infor">
+  <view class="intor-yong">
+    <view>真实姓名：</view>
+    <input type="text" name="" placeholder="请输入真实姓名" placeholder-style="font-size:30rpx;color:#666;" bindinput="bindtapName" />
+  </view>
+  <view class="intor-yong">
+    <view>手机号码：</view>
+    <input type="number" name="" placeholder="请输入手机号" placeholder-style="font-size:30rpx;color:#666;" bindinput="bindtapNumber" />
+  </view>
+  <view class="intor-yan">
+    <view>验 证 码 ：</view>
+    <input type="number" name="" placeholder="请输入验证码" placeholder-style="font-size:30rpx;color:#666;" bindinput="bindtapCode" />
+    <view>获取验证码</view>
+  </view>
+  <view class="intor-yong">
+    <view>绑定校区：</view>
+    <text>龙子湖校区</text>
+  </view>
+  <!-- <view class="infor-bang">
+    <view>绑定校区：</view>
+    <view>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">{{array[index]}}</view>
+      </picker>
+    </view>
+    <image src="../../../image/login8.png"></image>
+  </view> -->
+</view>
+<view class="infor-button">
+	<button bindtap="bindButton">完善信息</button>
+</view>

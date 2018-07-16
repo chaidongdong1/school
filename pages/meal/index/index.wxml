@@ -1,0 +1,202 @@
+<!--pages/meal/index/index.wxml-->
+<loading wx:if="{{showLoading}}">加载中</loading>
+<!-- top -->
+<view class="top">
+  <view>
+    <image src="../../../image/position.png"></image>
+    <view>我的校区：
+      <text>龙子湖校区</text>
+    </view>
+  </view>
+  <navigator url="../../mycenter/information/information">
+    <image src="../../../image/me-16.png"></image>
+    <view>完善信息</view>
+  </navigator>
+</view>
+<!-- 搜索 -->
+<navigator class="index-sousuo clear" url="../../seek/seek">
+  <image src="/image/index-01.png"></image>
+  <view>搜索</view>
+</navigator>
+<!--轮播  -->
+<swiper class='banner' indicator-dots="true" indicator-active-color="#309efd" autoplay="true" circular="true">
+  <swiper-item>
+    <image class='banner_img' src="/image/banner.jpg" />
+  </swiper-item>
+  <swiper-item>
+    <image class='banner_img' src="/image/banner.jpg" />
+  </swiper-item>
+</swiper>
+<!--为你优选  -->
+<view class='choice_wrap'>
+  <image class='choice_img' src='/image/meal_1.png'></image>
+  <view class='choice_txt'>为/你/优/选</view>
+</view>
+<view class='choice_content clear'>
+  <view bindtap='go_shop' data-id='1' class='choice_item fl_l bg'>
+    <image class='goods_img fl_l' src='/image/index-shop1.jpg'></image>
+    <view class='choice_l fl_l'>
+      <view class='goods_name ellipsis'>山西刀削面-西餐厅</view>
+      <view class='go'>
+        <view class='fl_l'>GO</view>
+        <image class='arrow_r fl_l' src='/image/meal_4.png'></image>
+      </view>
+    </view>
+  </view>
+  <view bindtap='go_shop' data-id='1' class='choice_item fl_l bg'>
+    <image class='goods_img fl_l' src='/image/index-shop1.jpg'></image>
+    <view class='choice_l fl_l'>
+      <view class='goods_name ellipsis'>山西刀削面-西餐厅</view>
+      <view class='go'>
+        <view class='fl_l'>GO</view>
+        <image class='arrow_r fl_l' src='/image/meal_4.png'></image>
+      </view>
+    </view>
+  </view>
+  <view bindtap='go_shop' data-id='1' class='choice_item fl_l bg'>
+    <image class='goods_img fl_l' src='/image/index-shop1.jpg'></image>
+    <view class='choice_l fl_l'>
+      <view class='goods_name ellipsis'>山西刀削面-西餐厅</view>
+      <view class='go'>
+        <view class='fl_l'>GO</view>
+        <image class='arrow_r fl_l' src='/image/meal_4.png'></image>
+      </view>
+    </view>
+  </view>
+  <view bindtap='go_shop' data-id='1' class='choice_item fl_l bg'>
+    <image class='goods_img fl_l' src='/image/index-shop1.jpg'></image>
+    <view class='choice_l fl_l'>
+      <view class='goods_name ellipsis'>山西刀削面-西餐厅</view>
+      <view class='go'>
+        <view class='fl_l'>GO</view>
+        <image class='arrow_r fl_l' src='/image/meal_4.png'></image>
+      </view>
+    </view>
+  </view>
+</view>
+<!--广告  -->
+<view class='ad_wrap'>
+  <image class='ad' mode='aspectFit' src='/image/meal_2.png'></image>
+</view>
+<!--美食美客  -->
+<view class='cate_wrap'>
+  <image class='cate_img' src='/image/meal_3.png'></image>
+  <view class='cate_txt'>美食美客</view>
+</view>
+<view class='tab_wrap'>
+  <view class="tab_item {{currentTab==0 ? 'active' : ''}}" data-current="0" bindtap='swichNav'>综合</view>
+  <view class="tab_item {{currentTab==1 ? 'active' : ''}}" data-current="1" bindtap='swichNav'>销量</view>
+  <view class="tab_item {{currentTab==2 ? 'active' : ''}}" data-current="2" bindtap='swichNav'>距离</view>
+  <view class="tab_item {{currentTab==3||currentTab==4 ? 'active' : ''}}" data-current="3" bindtap='swichNav'>
+    价格
+    <image class='arrow2' src='{{currentTab==3?"/image/arrow_2.png":""}}{{currentTab==4?"/image/arrow_3.png":""}}{{currentTab!=4&&currentTab!=3?"/image/arrow_1.png":""}}'></image>
+  </view>
+</view>
+<!--商品列表  -->
+<view class='list_wrap'>
+  <!--综合  -->
+  <view class='list' wx:if="{{currentTab==0}}">
+    <view class='item_wrap' wx:for="{{orderList0}}" wx:key="active" bindtap='go_shop' data-id='{{item.id}}'>
+      <view class='list_item'>
+        <image class='fl_l list_img' src='{{item.thumbnail}}'></image>
+        <view class='list_l fl_l'>
+          <view class='shop_name ellipsis'>{{item.shopName}}</view>
+          <view class='shop_goods'>推荐菜品：{{item.shopDesc}}</view>
+          <view class='list_r_b'>
+            <view class='fl_l sales'>已售：{{item.sales}}份</view>
+            <view class='fl_r price'>人均：
+              <text class='money'>¥{{item.price}}</text>元</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-loadmore" hidden="{{isHideLoadMore[0]}}">
+      <view wx:if="{{control[0]}}" class="weui-loading"></view>
+      <view class="weui-loadmore__tips">{{loadingval[0]}}</view>
+    </view>
+  </view>
+  <!--销量  -->
+  <view class='list' wx:if="{{currentTab==1}}">
+    <view class='item_wrap' wx:for="{{orderList1}}" wx:key="active" bindtap='go_shop'>
+      <view class='list_item'>
+        <image class='fl_l list_img' src='{{item.thumbnail}}'></image>
+        <view class='list_l fl_l'>
+          <view class='shop_name ellipsis'>{{item.shopName}}</view>
+          <view class='shop_goods'>推荐菜品：{{item.shopDesc}}</view>
+          <view class='list_r_b'>
+            <view class='fl_l sales'>已售：{{item.sales}}份</view>
+            <view class='fl_r price'>人均：
+              <text class='money'>¥{{item.price}}</text>元</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-loadmore" hidden="{{isHideLoadMore[1]}}">
+      <view wx:if="{{control[1]}}" class="weui-loading"></view>
+      <view class="weui-loadmore__tips">{{loadingval[1]}}</view>
+    </view>
+  </view>
+  <!--距离  -->
+  <view class='list' wx:if="{{currentTab==2}}">
+    <view class='item_wrap' wx:for="{{orderList2}}" wx:key="active" bindtap='go_shop'>
+      <view class='list_item'>
+        <image class='fl_l list_img' src='{{item.thumbnail}}'></image>
+        <view class='list_l fl_l'>
+          <view class='shop_name ellipsis'>{{item.shopName}}</view>
+          <view class='shop_goods'>推荐菜品：{{item.shopDesc}}</view>
+          <view class='list_r_b'>
+            <view class='fl_l sales'>已售：{{item.sales}}份</view>
+            <view class='fl_r price'>人均：
+              <text class='money'>¥{{item.price}}</text>元</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-loadmore" hidden="{{isHideLoadMore[2]}}">
+      <view wx:if="{{control[2]}}" class="weui-loading"></view>
+      <view class="weui-loadmore__tips">{{loadingval[2]}}</view>
+    </view>
+  </view>
+  <!--价格从低到高  -->
+  <view class='list' wx:if="{{currentTab==3}}">
+    <view class='item_wrap' wx:for="{{orderList3}}" wx:key="active" bindtap='go_shop'>
+      <view class='list_item'>
+        <image class='fl_l list_img' src='{{item.thumbnail}}'></image>
+        <view class='list_l fl_l'>
+          <view class='shop_name ellipsis'>{{item.shopName}}</view>
+          <view class='shop_goods'>推荐菜品：{{item.shopDesc}}</view>
+          <view class='list_r_b'>
+            <view class='fl_l sales'>已售：{{item.sales}}份</view>
+            <view class='fl_r price'>人均：
+              <text class='money'>¥{{item.price}}</text>元</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-loadmore" hidden="{{isHideLoadMore[3]}}">
+      <view wx:if="{{control[3]}}" class="weui-loading"></view>
+      <view class="weui-loadmore__tips">{{loadingval[3]}}</view>
+    </view>
+  </view>
+  <!--价格从高到低  -->
+  <view class='list' wx:if="{{currentTab==4}}">
+    <view class='item_wrap' wx:for="{{orderList4}}" wx:key="active" bindtap='go_shop'>
+      <view class='list_item'>
+        <image class='fl_l list_img' src='{{item.thumbnail}}'></image>
+        <view class='list_l fl_l'>
+          <view class='shop_name ellipsis'>{{item.shopName}}</view>
+          <view class='shop_goods'>推荐菜品：{{item.shopDesc}}</view>
+          <view class='list_r_b'>
+            <view class='fl_l sales'>已售：{{item.sales}}份</view>
+            <view class='fl_r price'>人均：
+              <text class='money'>¥{{item.price}}</text>元</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-loadmore" hidden="{{isHideLoadMore[4]}}">
+      <view wx:if="{{control[4]}}" class="weui-loading"></view>
+      <view class="weui-loadmore__tips">{{loadingval[4]}}</view>
+    </view>
+  </view>
+</view>

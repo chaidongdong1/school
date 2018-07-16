@@ -1,0 +1,256 @@
+/* pages/information/information.wxss */
+
+.infor {
+  width: 96%;
+  height: auto;
+  background: #fff;
+  padding: 0 2%;
+  margin: 20rpx 0;
+}
+
+.intor-yong {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.intor-yong>view {
+  width: 160rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+
+.intor-yong>input {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  padding: 0 15rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+.intor-yong>text{
+  font-size: 30rpx;
+  color: #333;
+  padding-left: 15rpx;
+}
+
+.intor-yan {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.intor-yan>view:first-child {
+  width: 160rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+.intor-yan>input{
+	flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  padding: 0 15rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+.intor-yan>view:last-child{
+	width: 200rpx;
+	height: 56rpx;
+	border: 1px solid #fc9d49;
+	font-size: 28rpx;
+	color: #fc9d49;
+	text-align: center;
+	line-height: 56rpx;
+	border-radius: 10rpx;
+	margin: 16rpx 0 0 15rpx;
+}
+.infor-bang{
+	width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  display: flex;
+}
+.infor-bang>view:first-child{
+	width: 160rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+.infor-bang>view:nth-child(2){
+	flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  padding: 0 15rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+.infor-bang>image{
+	width: 15rpx;
+	height: 25rpx;
+	margin: 31rpx 0;
+	padding-left: 15rpx;
+}
+.infor-button{
+	width: 96%;
+	height: 88rpx;
+	line-height: 88rpx;
+	text-align: center;
+	margin: 40rpx 2%;
+}
+.infor-button>button{
+	width: 100%;
+	height: 100%;
+	background: #309EFD;
+	color: #fff;
+	border-radius: 15rpx;
+	border: 0;
+}
+/*授权按钮*/
+
+.container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .4);
+  z-index: 99999;
+}
+.shop-banner{
+  width: 100%;
+  height: 350rpx;
+}
+.slide-image{
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  width: 80%;
+  height: 340rpx;
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  transform: translateY(-100rpx);
+  box-sizing: border-box;
+  padding: 20rpx;
+  overflow: hidden;
+  z-index: 999999;
+}
+
+.content .h1 {
+  text-align: center;
+  font-size: 34rpx;
+  padding: 10rpx 0 20rpx;
+  color: #333;
+  line-height: 50rpx;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.h2 {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 70rpx;
+  padding: 10rpx 0 0 30rpx;
+}
+
+.h3 {
+  font-size: 24rpx;
+  color: #999;
+  padding: 0 0 0 30rpx;
+}
+
+.h3 text {
+  display: inline-block;
+  width: 10rpx;
+  height: 10rpx;
+  background-color: #ccc;
+  border-radius: 50%;
+  vertical-align: middle;
+  position: relative;
+  top: -2rpx;
+  margin-right: 10rpx;
+}
+
+.btnaa {
+  display: block;
+  width: 110%;
+  transform: translateX(-5%);
+  border-radius: 0;
+  padding: 0 10rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  font-size: 32rpx;
+  color: #15b516;
+}
+.logins{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.logins-img{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.logins-img>image{
+  width: 100%;
+  height: 100%;
+}
+.logins-wz{
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top:0;
+  left: 0;
+  z-index: 12;
+}
+.logins-wz>view:nth-child(2){
+  font-size: 40rpx;
+  color: #333;
+  text-align: center;
+}
+.logins-wz>view:nth-child(3){
+  width: 90%;
+  height: 400rpx;
+  margin: 0 5%;
+  font-size: 34rpx;
+  color: #666;
+}
+.logins-wz>view:nth-child(4){
+  font-size: 55rpx;
+  text-align: center;
+  color:#0082cc;
+}
+.logins-wz>view:nth-child(5){
+  width: 70%;
+  height: 80rpx;
+  margin: 30rpx 15% 0 15%;
+  background-color: #20a8ff;
+  color: #fff;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border:0;
+  border-radius: 10rpx;
+}
+.logins-wz>view:last-child{
+  font-size: 30rpx;
+  text-align: center;
+  color: #58c2fd;
+  margin-top: 20rpx;
+}

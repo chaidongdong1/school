@@ -1,0 +1,163 @@
+<!--pages/grab/grab_detail/grab_detail.wxml-->
+<view class='section1 clear'>
+  <image src='/image/user_img.png' class='section1_l fl_l'></image>
+  <view class='section1_r fl_l'>
+    <view class='section1_rt clear'>
+      <view class='section1_rtl fl_l'>用户名称名称...发布了</view>
+      <view class='section1_rtr fl_l'>超市订单</view>
+    </view>
+    <view class='section1_rb'>2018.06.18   12.01</view>
+  </view>
+</view>
+
+<view class='section2'>
+  <view class='section2_t clear'>
+    <image class='section2_tl1 fl_l' src='/image/shop_cart.png'></image>
+    <view class='section2_tl2 fl_l'>购物详情</view>
+    <view class='section2_tr2 fl_r'>仔细查看商品，提高送货效率</view>
+    <image class='section2_tr1 fl_r' src='/image/warn.png'></image>
+  </view>
+  <view class='list clear'>
+   <view class='list_item clear'>
+    <image class='item_l fl_l' src='/image/goods.png'></image>
+    <view class='item_c fl_l'>
+      <view class='item_ct'>吖商家孤岛惊魂申达股份会计师对方环能科
+新城V你师父打卡机老虎机等方面大V会</view>
+      <view class='item_cc'>规格：500ml   口味：原味 </view>
+      <view class='item_cb'>数量：<text class='red'>2</text></view>
+    </view>
+   </view>
+   <view class='list_item clear'>
+    <image class='item_l fl_l' src='/image/goods.png'></image>
+    <view class='item_c fl_l'>
+      <view class='item_ct'>吖商家孤岛惊魂申达股份会计师对方环能科
+新城V你师父打卡机老虎机等方面大V会</view>
+      <view class='item_cc'>规格：500ml   口味：原味 </view>
+      <view class='item_cb'>数量：<text class='red'>2</text></view>
+    </view>
+   </view>
+  </view>
+</view>
+
+<view class='section2'>
+  <view class='section2_t clear'>
+    <image class='section2_tl1 fl_l' src='/image/songshui.png'></image>
+    <view class='section2_tl2 fl_l'>饮用水详情</view>
+    <view class='section2_tr2 fl_r'>仔细查看商品，提高送货效率</view>
+    <image class='section2_tr1 fl_r' src='/image/warn.png'></image>
+  </view>
+  <view class='list clear'>
+   <view class='list_item clear'>
+    <image class='item_l fl_l' src='/image/shui.png'></image>
+    <view class='item_c fl_l'>
+      <view class='item_ct'>吖商家孤岛惊魂申达股份会计师对方环能科
+新城V你师父打卡机老虎机等方面大V会</view>
+      <view class='item_cc'>规格：有桶   品牌：纯净水 </view>
+      <view class='item_cb'>数量：<text class='red'>2</text></view>
+    </view>
+   </view>
+   <view class='list_item clear'>
+    <image class='item_l fl_l' src='/image/shui.png'></image>
+    <view class='item_c fl_l'>
+      <view class='item_ct'>吖商家孤岛</view>
+      <view class='item_cc'>规格：无桶   品牌：矿泉水 </view>
+      <view class='item_cb'>数量：<text class='red'>2</text></view>
+    </view>
+   </view>
+  </view>
+</view>
+
+<view class='section2'>
+  <view class='section2_t clear'>
+    <image class='section2_tl1 fl_l' src='/image/canyin.png'></image>
+    <view class='section2_tl2 fl_l'>餐饮详情</view>
+    <view class='section2_tr2 fl_r'>仔细查看商品，提高送货效率</view>
+    <image class='section2_tr1 fl_r' src='/image/warn.png'></image>
+  </view>
+  <view class='list clear'>
+   <view class='list_item clear'>
+    <image class='item_l fl_l' src='/image/index-shop1.jpg'></image>
+    <view class='item_c fl_l'>
+      <view class='item_ct'>刀削面</view>
+      <view class='item_cc'>配料：油、盐，口味清淡 </view>
+      <view class='item_cb'>数量：<text class='red'>2</text></view>
+    </view>
+   </view>
+   <view class='list_item clear'>
+    <image class='item_l fl_l' src='/image/index-shop1.jpg'></image>
+    <view class='item_c fl_l'>
+      <view class='item_ct'>刀削面</view>
+      <view class='item_cc'>配料：油、盐，口味清淡 </view>
+      <view class='item_cb'>数量：<text class='red'>2</text></view>
+    </view>
+   </view>
+  </view>
+</view>
+
+<view class='section2'>
+  <view class='section2_t clear'>
+    <image class='section2_tl1 fl_l' src='/image/kuaidi.png'></image>
+    <view class='section2_tl2 fl_l'>快递详情</view>
+    <view class='section2_tr2 fl_r'>仔细查看商品，提高送货效率</view>
+    <image class='section2_tr1 fl_r' src='/image/warn.png'></image>
+  </view>
+  <view class='list clear'>
+   <view class='list_item clear'>
+    <image class='item_l fl_l' src='/image/kuaidi-01.png'></image>
+    <view class='item_c fl_l'>
+      <view class='item_ct'>申通快递 学校北门西100米</view>
+      <view class='item_cc'>包裹信息：{{type!=0 ? '柴冬冬':'xxx'}} {{type!=0 ? '15215112111':'xxx'}}</view>
+      <view class='item_cb'>包裹取件码：<text class='red'>{{type!=0 ? '545299':'xxx'}}</text></view>
+    </view>
+   </view>
+
+   <view class='list_item clear'>
+    <image class='item_l fl_l' src='/image/kuaidi-01.png'></image>
+    <view class='item_c fl_l'>
+      <view class='item_ct'>申通快递 学校北门西100米</view>
+      <view class='item_cc'>包裹信息：{{type!=0 ? '柴冬冬':'xxx'}} {{type!=0 ? '15215112111':'xxx'}}</view>
+      <view class='item_cb'>包裹取件码：<text class='red'>{{type!=0 ? '545299':'xxx'}}</text></view>
+    </view>
+   </view>
+
+  </view>
+</view>
+
+<view class='section3'>
+  <view class='section3_t'>
+    <image class='section3_tl fl_l' src='/image/info.png'></image>
+    <view class='section3_tl2 fl_l'>订单详情</view>
+  </view>
+  <view class='section3_cont clear'>
+    <view class='cont'>
+      订单编号：<text class='cont_v'>15845454285566465</text>
+    </view>
+    <view class='cont'>
+      取货地址：<text class='cont_v'>华联超市</text>
+    </view>
+    <view class='cont'>
+      要求送达时间：<text class='cont_v'>12：00-14：00</text>
+    </view>
+    <view class='cont'>
+      收货人姓名：<text class='cont_v'>柴冬冬</text>
+    </view>
+    <view class='cont'>
+      收货人手机号：<text class='cont_v'>15112542687</text>
+    </view>
+    <view class='cont'>
+      送货地址：<text class='cont_v'>男生公寓5号楼08室</text>
+    </view>
+  </view>
+</view>
+
+<view class='section4'>
+  <view class='section3_t'>
+    <image class='section3_tl fl_l' src='/image/note.png'></image>
+    <view class='section3_tl2 fl_l'>订单备注</view>
+  </view>
+  <view class='section4_cont clear'>
+    <textarea class='section4_val' disabled value='请按时送达'></textarea>
+  </view>
+</view>
+
+<view wx:if="{{type==0}}" class='btn' bindtap='submit'>确认抢单</view>

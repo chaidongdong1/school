@@ -1,0 +1,70 @@
+<!--pages/catering/catering.wxml-->
+<view class="caterings">
+  <!-- top -->
+  <view class="top">
+    <view>
+      <image src="../../image/position.png"></image>
+      <view>我的校区：
+        <text>龙子湖校区</text>
+      </view>
+    </view>
+    <navigator url="../mycenter/information/information">
+      <image src="../../image/me-16.png"></image>
+      <view>完善信息</view>
+    </navigator>
+  </view>
+  <!-- 轮播 -->
+  <view class="index-banner"> 
+    <swiper class="index-swiper" indicator-dots="true" indicator-active-color="#309EFD" autoplay="true" interval="5000" duration="1000" circular="true">
+      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+        <swiper-item>
+          <image src="{{item}}" class="index-banner-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 搜索 -->
+  <view class="cater">
+    <navigator class="index-sousuo" url="../seek/seek">
+      <image src="../../image/index-01.png"></image>
+      <view>搜索</view>
+    </navigator>
+    <view bindtap="bindtapMasks">
+      <image src="../../image/fenlei.png"></image>
+      <view>分类</view>
+    </view>
+  </view>
+  <!-- 主体内容 -->
+  <view class="catering">
+    <!-- 商品 -->
+    <view class="cater-shop">
+      <!-- 第一条 -->
+      <view class="shop-item" bindtap='go_detail' wx:for="{{datas}}" wx:key="{{index}}" data-goodsid="{{item.goodsid}}">
+        <view>
+          <image src="{{item.goodsimg}}"></image>
+        </view>
+        <view>{{item.goodsname}}</view>
+        <view>{{item.goodsspec}}</view>
+        <view>￥{{item.shopprice}}
+          <text>销量{{item.goodssort}}件</text>
+        </view>
+      </view>
+    </view>
+    <!-- 已加载全部 -->
+    <view class="cart-quanbu">已加载全部</view>
+  </view>
+</view>
+<!-- 右侧栏 -->
+<view class="mask"  style="opacity: {{mask.opacity}}; display: {{mask.display}};">
+  <view class="masks" bindtap="bindtapClose"></view>
+  <!-- 右侧内容 -->
+  <view class="mask-nav" style="transform: {{returnDeposit.translateY}}; opacity: {{returnDeposit.opacity}};">
+    <view wx:for="{{lists}}" wx:key="{{index}}">{{item.listName}}</view>
+  </view>
+</view>
+
+<!--悬浮购物车  -->
+<view bindtap='go_cart' class='cart_wrap'>
+  <image class='shop_cart' src='/image/w_shop_cart.png'></image>
+  <view wx:if="{{num>0}}" class='num'>{{num}}</view>
+</view>

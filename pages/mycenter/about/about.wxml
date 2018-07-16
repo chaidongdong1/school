@@ -1,0 +1,27 @@
+<!--pages/mycenter/about/about.wxml-->
+<view class="about">
+	<view>学校平台</view>
+	<view class="about-bottom">
+		<view>
+			<view>电话：</view>
+			<view>
+				<view>0371-055601</view>
+				<image src="/image/index-06.png"></image>
+			</view>
+		</view>
+		<view>
+			<view>邮箱：</view>
+			<view>
+				<view>1322054110@qq.com</view>
+				<image src="/image/index-06.png"></image>
+			</view>
+		</view>
+		<view>
+			<view>地址：</view>
+			<view>
+				<view>河南省郑州市金水区农业路</view>
+				<image src="/image/index-06.png"></image>
+			</view>
+		</view>
+	</view>
+</view>

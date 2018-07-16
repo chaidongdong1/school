@@ -1,0 +1,27 @@
+<!--pages/mycenter/approve/approve.wxml-->
+<view class='section1'>
+  <view class='info1'>温馨提示！！</view>
+  <view class='info2'>请你选择以下两种身份进行认证，谢谢合作！</view>
+  <navigator url='../teacher/teacher'>
+    <image class='info3' src='/image/approve1.png'></image>
+  </navigator>
+  <navigator url='../real_name/real_name'>
+    <image bindtap='sender' class='info4' src='/image/approve2.png'></image>
+  </navigator>
+</view>
+
+<view class='section2'>
+  <image class='info5' src='/image/approve2.png'></image>
+  <view class='info6'>你好，用户名称</view>
+  <view class='info7'>
+    身份证号：15789656754
+  </view>
+</view>
+
+<view class='section2'>
+  <image class='info5' src='/image/approve1.png'></image>
+  <view class='info6'>你好，用户名称</view>
+  <view class='info7'>
+    手机号码：15789656754
+  </view>
+</view>

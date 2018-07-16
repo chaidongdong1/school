@@ -1,0 +1,149 @@
+/* pages/mycenter/mycenter.wxss */
+
+.my {
+  width: 100%;
+  height: auto;
+}
+
+.my-top {
+  width: 94%;
+  height: 240rpx;
+  background: linear-gradient(#309EFD, #0F65B1);
+  display: flex;
+  padding: 0 3%;
+}
+
+.my-top>view:first-child {
+  width: 150rpx;
+  height: 150rpx;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 5rpx solid #fff;
+  box-sizing: border-box;
+  margin-top: 40rpx;
+}
+
+.my-top>view:first-child>image {
+  width: 100%;
+  height: 100%;
+}
+
+.my-top>view:nth-child(2) {
+  width: 60%;
+  height: 100rpx;
+  font-size: 30rpx;
+  color: #fff;
+  padding: 45rpx 4% 0 4%;
+}
+
+.my-top>view:nth-child(2)>view:first-child {
+  width: 100%;
+  height: 55rpx;
+  line-height: 55rpx;
+  overflow: hidden;
+  font-size: 42rpx;
+  color: #fff;
+  margin-bottom: 5rpx;
+}
+.my-top>view:nth-child(2)>view:last-child{
+  font-size: 24rpx;
+  color: #f1f1f1;
+}
+.my-top>navigator {
+  width: 35rpx;
+  height: 35rpx;
+  margin: 85rpx 20rpx 0 20rpx;
+}
+
+.my-top>navigator>image {
+  width: 100%;
+  height: 100%;
+}
+
+.my-order {
+  width: 94%;
+  height: auto;
+  margin: -110rpx 3% 0 3%;
+  background: #fff;
+  border-radius: 25rpx;
+  box-shadow: 0 0 10rpx #ccc;
+}
+
+.order-all {
+  width: 96%;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 2%;
+}
+
+.order-all>view:first-child {
+  font-size: 32rpx;
+  color: #333;
+}
+
+.order-all>view:last-child>text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.order-all>view:last-child>image {
+  width: 15rpx;
+  height: 25rpx;
+  margin-left: 25rpx;
+}
+
+.order-fen {
+  width: 96%;
+  height: auto;
+  padding: 0 2%;
+  display: flex;
+}
+
+.order-fen>view {
+  width: 25%;
+  height: auto;
+  text-align: center;
+  padding: 30rpx 0;
+}
+
+.order-fen>view>image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.order-fen>view>view {
+  font-size: 28rpx;
+  color: #333;
+}
+.mycenter{
+	width: 96%;
+	height: auto;
+	margin: 30rpx 2% 0 2%;
+}
+.mycenter>view{
+	width: 100%;
+	height: 85rpx;
+	line-height: 85rpx;
+	background: #fff;
+	border-radius: 15rpx;
+	border-bottom: 1px solid #eee;
+	display:flex;
+}
+.mycenter>view>image:first-child{
+	width: 40rpx;
+	height: 40rpx;
+	margin: 23rpx;
+}
+.mycenter>view>text{
+	flex: 1;
+	font-size: 32rpx;
+	color: #333;
+}
+.mycenter>view>image:last-child{
+	width: 16rpx;
+	height: 25rpx;
+	margin:33rpx;
+}

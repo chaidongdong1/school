@@ -1,0 +1,65 @@
+
+<view class='header clear'>
+  <image class='header_l fl_l' src='/image/user_img.png'></image>
+  <view class='header_r fl_l'>
+    <view class='name'>派单员名字</view>
+    <view class='info clear'>
+      <view class='info_item fl_l'>可接单：<text class='red'>10</text>个</view>
+      <view class='info_item fl_l'>已接单：10个</view>
+      <view class='info_item fl_l'>已完成：10个</view>
+    </view>
+    <view class="names">我的校区：龙子湖校区</view> 
+  </view>
+</view>
+<view class='list'>
+  <navigator url='../grab_detail/grab_detail?type=1' class='list_item'>
+    <view class='list_t'>
+      <image class='user_img fl_l' src='/image/user_img.png'></image>
+      <view class='user_name fl_l'>上山若水发布了</view>
+      <view class='order_name yellow fl_l'>超市订单</view>
+      <view class='date fl_r'>
+        <image class='date_img fl_l' src='/image/warn2.png'></image>
+        <view class='date_txt fl_l'  >异常申报</view>
+      </view>
+      <!--装饰  -->
+      <view class='decorate_l'></view>
+      <view class='decorate_r'></view>
+    </view>
+    <view class='arrow'>
+      <view class='list_c'>
+        <view class='tack clear'>
+          <image class='tack_img fl_l' src='/image/tack.png'></image>
+          <view class='tack_add fl_l'>男生一号公寓一楼东100米</view>
+        </view>
+        <view class='tack clear'>
+          <image class='tack_img fl_l' src='/image/send.png'></image>
+          <view class='tack_add fl_l'>男生一号公寓一楼东100米</view>
+        </view>
+      </view>
+    </view>
+    <view class='list_b'>
+      <image class='light fl_l' src='/image/lightning.png'></image>
+      <view class='time fl_l'>送达时间：<text class='yellow'>13:00-14:00</text></view>
+      <view class='listb_r fl_r'>
+        <image class='grab_img fl_l' src='/image/grab_center.png'></image>
+        <view class='grab fl_l'  >订单派送中</view>
+      </view>
+    </view>
+  </navigator>
+</view>
+
+<view class='botm'>
+  <view bindtap='jump_start' class='item'>
+    <image src='/image/grab_start2.png'></image>
+    <view class='txt'>任务大厅</view>
+  </view>
+  <view class='item active'>
+    <image src='/image/grab_center.png'></image>
+    <view class='txt'>接单任务</view>
+  </view>
+  <view bindtap='jump_end' class='item'>
+    <image src='/image/grab_end2.png'></image>
+    <view class='txt'>任务完成</view>
+  </view>
+</view>
+

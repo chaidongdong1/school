@@ -1,0 +1,18 @@
+<!--pages/start/start.wxml-->
+<view class='section1'>
+  开启简单校园生活<text class='yellow'>新</text>模式
+</view>
+<image class='section2' src='/image/start_1.png'></image>
+<view class='section3 arrow'>
+  <view class='wrap clear'>
+    <image class='section3_img fl_l' src='/image/start_2.png'></image>
+    <picker class="school_picker fl_l" bindchange="change" value="{{index}}" range="{{school}}">
+      <view class="picker">{{school[index]}}</view>
+    </picker>
+  </view>
+</view>
+<view class='section4'>
+  <view class='title'>坐享其成</view>
+  <view class='txt'>校园新生活，生活用品，送水服务，代领快递，校园送餐</view>
+  <view class='txt'>无需下楼，无需排队，一步到位，送货上门</view>
+</view>

@@ -1,0 +1,31 @@
+/* pages/mycenter/notice/notice.wxss */
+.notce{
+	width: 100%;
+	height: auto;
+}
+.notice-one{
+	width: 96%;
+	height: auto;
+	padding: 15rpx 2%;
+	margin-top: 20rpx;
+	background: #fff;
+}
+.notice-one>view:first-child{
+	font-size: 30rpx;
+	color: #333;
+}
+.notice-one>view:nth-child(2){
+	font-size: 28rpx;
+	color: #666;
+	line-height: 46rpx;
+	margin: 15rpx 0;
+}
+.notice-one>view:last-child{
+	font-size: 26rpx;
+	color: #999;
+}
+.notice-one>view:last-child>text{
+	font-size: 26rpx;
+	color: #999;
+	padding:0 10rpx;
+}

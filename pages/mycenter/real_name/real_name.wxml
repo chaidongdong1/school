@@ -1,0 +1,31 @@
+<!--pages/mycenter/real_name/real_name.wxml-->
+<view class='cont clear'>
+  <view class='prompt'>
+    请正确填写你的信息
+  </view>
+  <view class='info_item1 clear'>
+    <view class='key fl_l'>真实姓名</view>
+    <input class='val fl_l' type="text" placeholder='请填写您的手机号码' bindinput="bindName"></input>
+  </view>
+  <view class='info_item2 clear'>
+    <view class='key fl_l'>身份证号</view>
+    <input class='val fl_l' type="idcard" placeholder='请填写您的身份证号' bindinput="bindNumber"></input>
+  </view>
+  <view class='prompt'>
+    拍摄您的第二代身份证原件,请确保图片清晰,四角完整
+  </view>
+  <view class='id_card_wrap'>
+    <view class='title'>身份证正面</view>
+    <image bindtap='updata1' class='id_card' src="{{!temp ? '/image/cd_card1.png' : temp}}"></image>
+  </view>
+  <view class='prompt'>
+    拍摄您的第二代身份证原件,请确保图片清晰,四角完整
+  </view>
+  <view class='id_card_wrap'>
+    <view class='title'>身份证反面</view>
+    <image bindtap='updata2' class='id_card' src="{{!untemp ? '/image/cd_card2.png' : untemp}}"></image>
+  </view>
+</view>
+<view class='wrap'>
+  <view class='submit' bindtap="bindtapButton">提交审核</view>
+</view>

@@ -1,0 +1,33 @@
+<!--pages/courier/perfect/perfect.wxml-->
+<view class='wrap'>
+  <view class='item clear arrow'>
+   <view class='item_l'>快 递 类 型：</view>
+   <picker class='item_r' bindchange="change1" value="{{courier_index}}" range="{{courier}}">
+    <view class="picker">
+      {{courier[courier_index]}}
+    </view>
+    </picker>
+  </view>
+  <view class='item clear arrow'>
+   <view class='item_l'>快 递 位 置：</view>
+   <picker class='item_r' bindchange="change2" value="{{address_index}}" range="{{address}}">
+    <view class="picker">
+      {{address[address_index]}}
+    </view>
+    </picker>
+  </view>
+  <view class='item clear'>
+   <view class='item_l'>包裹收货人：</view>
+   <input type='text' bindinput='get_name' class='item_r' placeholder='请输入包裹收货人姓名'></input>
+  </view>
+  <view class='item clear'>
+   <view class='item_l'>包裹手机号：</view>
+   <input type='number' bindinput='get_tel' class='item_r' placeholder='请输入包裹收货人电话'></input>
+  </view>
+  <view class='item clear bb_0'>
+   <view class='item_l'>包裹取件码：</view>
+   <input type='text' bindinput='get_code' class='item_r' placeholder='请输入取件码，无请输入000000'></input>
+  </view>
+</view>
+
+<view class='btn' bindtap='submit'>完善信息</view>

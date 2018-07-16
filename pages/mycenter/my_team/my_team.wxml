@@ -1,0 +1,19 @@
+<!--pages/user/qr_code.wxml-->
+<loading wx:if="{{showLoading}}">加载中</loading>
+<image class='bg_wrap' src='/image/code_bg.png'></image>
+<view class='cont'>
+  <view class='cont_t'>
+    <image class='cont_t_img' src='/image/team2.png'></image>
+    <view class='cont_t_txt'>分享二维码</view>
+  </view>
+  <view class='title clear'>
+    <view class='title_l fl_l e ellipsis'>邀请人</view>
+    <view class='title_r fl_l e ellipsis'>邀请时间</view>
+  </view>
+  <scroll-view class='scroll' scroll-y enable-back-to-top="true">
+    <view class='cont_item clear' wx:for="{{datas}}" wx:key="{{index}}">
+      <view class='item_l fl_l e ellipsis'>{{item.userName}}</view>
+      <view class='item_r fl_l e ellipsis'>{{item.subscribeTime}}</view>
+    </view>
+  </scroll-view>
+</view>

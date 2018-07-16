@@ -1,0 +1,40 @@
+<!--pages/addAddress/addAddress.wxml-->
+<view class="address">
+  <view class="address-item">
+    <view>收 货 人 ：</view>
+    <input type="text" bindinput='get_name' value='{{name}}' name="" placeholder="请输入收货人姓名" placeholder-style="color:#b2b2b2;font-szie:30rpx;" />
+  </view>
+  <view class="address-item">
+    <view>联系电话：</view>
+    <input type="number" bindinput='get_tel' value='{{tel}}' name="" placeholder="请输入收货人电话" placeholder-style="color:#b2b2b2;font-szie:30rpx;" />
+  </view>
+  <view class="address-item1">
+    <view>所在校区：</view>
+    <view class="picker">{{campus}}</view>
+    <view>
+    </view>
+  </view>
+  <view class="address-item1">
+    <view>主 体 楼 ：</view>
+    <picker class="address-picker" bindchange="change" value="{{index}}" range="{{building}}">
+      <view class="picker">{{building[index]}}</view>
+    </picker>
+    <view>
+      <image src="/image/index-06.png"></image>
+    </view>
+  </view>
+  <view class="address-item">
+    <view>所在楼层：</view>
+    <input type="number" bindinput='get_floor' value='{{floor}}' placeholder="请输入所在楼层" placeholder-style="color:#b2b2b2;font-szie:30rpx;" />
+  </view>
+  <view class="address-item">
+    <view>详细地址：</view>
+    <input type="text" bindinput='get_address' value='{{address}}' placeholder="请输入房间门牌等信息" placeholder-style="color:#b2b2b2;font-szie:30rpx;" />
+  </view>
+</view>
+<!-- 默认地址 -->
+<view class="add-mr">
+  <switch class='choose' size="20" bindchange="switchchange" color='#309efd' checked="{{checked}}" /> 是否设置为默认地址
+</view>
+<!-- 确认按钮 -->
+<view class="address-button" bindtap="submit">{{!type ? '确认添加' : '修改地址'}}</view>

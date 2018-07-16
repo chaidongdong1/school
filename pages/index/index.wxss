@@ -1,0 +1,158 @@
+/**index.wxss**/
+.indexss{
+	width: 100%;
+	height: auto;
+}
+.top{
+	width: 96%;
+	height: 50rpx;
+	line-height: 50rpx;
+	padding: 0 2%;
+	background: #fff;
+	display:flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #eee;
+}
+.top>view:first-child{
+	flex: 1;
+	display:flex;
+}
+.top>view:first-child>image{
+	width: 25rpx;
+	height: 30rpx;
+	margin: 10rpx 5rpx;
+}
+.top>view:first-child>view{
+	padding-left: 10rpx;
+	font-size: 26rpx;
+	color: #666;
+}
+.top>view:first-child>view>text{
+	font-size: 26rpx;
+	color: #333;
+}
+.top>navigator{
+	display:flex;
+}
+.top>navigator>image{
+	width: 30rpx;
+	height: 30rpx;
+	margin: 10rpx;
+}
+.top>navigator>view{
+	padding-left: 5rpx;
+	font-size: 26rpx;
+	color: #309EFD;
+}
+/*搜索*/
+.index-sousuo{
+	width: 100%;
+	height: 320rpx;
+	position: relative;
+}
+.index-swiper{
+	width: 100%;
+	height: 320rpx;
+}
+.index-sousuo>view{
+	width: 96%;
+	height: 56rpx;
+	background-color: #fff;
+	line-height: 56rpx;
+	margin: 17rpx 2%;
+	border-radius: 10rpx;
+	text-align: center;
+	text-indent: 2em;
+	font-size: 26rpx;
+	color: #b2b2b2;
+}
+.index-sousuo>image{
+	position: absolute;
+	width: 25rpx;
+	height: 25rpx;
+	top: 16rpx;
+	left: 46%;
+}
+
+/*轮播*/
+.index-banner{
+  width: 100%;
+  height: auto;
+}
+.index-banner-image{
+  width: 100%;
+  height: 100%;
+}
+/*公告*/
+.index-notice{
+	width: 100%;
+	height: auto;
+	border-bottom: 1px solid #d6d6db;
+}
+.index-notice>view{
+	width: 96%;
+	height: 54rpx;
+	line-height: 54rpx;
+	background-color: #fff;
+	margin: 15rpx 2%;
+	border-radius: 10rpx;
+	position: relative;
+}
+.index-notice>view>image{
+	width: 40rpx;
+	height: 30rpx;
+	padding: 12rpx 20rpx;
+}
+.swiper_container{
+	width:620rpx;
+	height: 54rpx;
+	line-height: 54rpx;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 70rpx;
+	font-size: 26rpx;
+	color: #999;
+}
+/*主体内容*/
+.index{
+	width: 84%;
+	height: auto;
+	margin: 40rpx 8%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap:wrap;
+	position: relative;
+}
+.index-item{
+	width: 300rpx;
+	height: 300rpx;
+	position: relative;
+	margin-bottom: 30rpx;
+	text-align: center;
+}
+.index-item>image{
+	width: 100%;
+	height: 100%;
+}
+.index-item>text{
+	position: absolute;
+	top: 210rpx;
+	left: 0;
+	right: 0;
+	font-size: 34rpx;
+	color: #fff;
+}
+.index-center{
+	width: 160rpx;
+	height: 160rpx;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -100rpx 0 0 -80rpx;
+	z-index: 999;
+}
+.index-center>image{
+	width: 100%;
+	height: 100%;
+}

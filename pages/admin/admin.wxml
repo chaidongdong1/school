@@ -1,0 +1,32 @@
+<!--pages/admin/admin.wxml-->
+<image class='top_img' src='/image/admin_1.png'></image>
+<view class='wrap clear'>
+  <view class='item fl_l' bindtap='statistics'>
+    <image class='item_img' src='/image/admin_2.png'></image>
+    <view class='item_txt'>统计信息</view>
+  </view>
+  <view class='item fl_l' bindtap='order'>
+    <image class='item_img' src='/image/admin_3.png'></image>
+    <view class='item_txt'>订单管理</view>
+  </view>
+  <!-- <view class='item fl_l' bindtap='teacher'>
+    <image class='item_img' src='/image/admin_4.png'></image>
+    <view class='item_txt'>教师审核</view>
+  </view>
+  <view class='item fl_l' bindtap='send_man'>
+    <image class='item_img' src='/image/admin_5.png'></image>
+    <view class='item_txt'>派单员审核</view>
+  </view> -->
+</view>
+<view bindtap='cut' wx:if="{{show}}" class='wrap_black'></view>
+<view wx:if="{{show}}" class='order_wrap'>
+  <view class='order_item bo_b' bindtap='user_order'>
+    <image class='order_img fl_l' src='/image/user_order.png'></image>
+    <view class='order_txt fl_l'>用户订单</view>
+  </view>
+  <view class='order_item' bindtap='send_order'>
+    <image class='order_img fl_l' src='/image/admin_order.png'></image>
+    <view class='order_txt fl_l'>派单员派送订单</view>
+  </view>
+</view>
+

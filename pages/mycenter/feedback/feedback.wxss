@@ -1,0 +1,83 @@
+/* pages/feedback/feedback.wxss */
+.feed{
+	width: 96%;
+	height: atuo;
+	margin: 20rpx 2% 0 2%;
+}
+.feed-xuanze{
+	width: 100%;
+	height: atuo;
+	background: #fff;
+	box-shadow: 5rpx 5rpx 5rpx #eee;
+	margin: 15rpx 0 25rpx 0;
+}
+.feed-xuanze>view:first-child{
+	width: 96%;
+	height: 100rpx;
+	line-height: 100rpx;
+	border-bottom: 1px solid #eee;
+	padding: 0 2%;
+}
+.feed-xuanze>view:first-child>view{
+	font-size: 32rpx;
+	color: #333;
+}
+.feed-xuanze>view:first-child>view>text{
+	font-size: 28rpx;
+	color: #666;
+}
+.feed-xuanze>view:last-child{
+	width: 96%;
+	height: auto;
+	padding:15rpx 2%;
+	font-size: 30rpx;
+	color: #333;
+}
+.checkbox{
+	width: 100%;
+	margin: 10rpx 0;
+	display: flex;
+	font-size: 30rpx;
+}
+.feed-text{
+	width: 100%;
+	height: atuo;
+	background: #fff;
+	box-shadow: 5rpx 5rpx 5rpx #eee;
+	margin: 15rpx 0 25rpx 0;
+	padding-bottom: 20rpx;
+}
+.feed-text>view{
+	width: 96%;
+	height: 100rpx;
+	line-height: 100rpx;
+	padding:0 2%;
+	font-size: 32rpx;
+	color: #333;
+	border-bottom: 1px solid #eee;
+}
+.feed-text>view>text{
+	font-size: 28rpx;
+	color: #666;
+}
+.feed-text>textarea{
+	width: 92%;
+	height: 250rpx;
+	margin: 25rpx 2% 10rpx 2%;
+	padding:15rpx 2%;
+	font-size: 30rpx;
+	color: #333;
+	box-shadow: 0 0 5rpx #f1f1f1;
+}
+.feed>button{
+	width: 96%;
+	height: 80rpx;
+	line-height: 80rpx;
+	text-align: center;
+	background: #FF5B62;
+	border-radius: 25rpx;
+	font-size: 34rpx;
+	color: #fff;
+	border: 0;
+	margin-top: 50rpx;
+}

@@ -1,0 +1,15 @@
+<!--pages/reset/reset.wxml-->
+<view class="reset">
+	<view>
+		<view>新密码</view>
+		<input type="password" name="" placeholder="请填写新密码" placeholder-style="font-size:30rpx;color:#999;" />
+	</view>
+	<view style="border:0;">
+		<view>确认密码</view>
+		<input type="password" name="" placeholder="请确认密码" placeholder-style="font-size:30rpx;color:#999;" />
+	</view>
+</view>
+<!-- 按钮 -->
+<view class="reset-button">
+  <button>确认</button>
+</view>

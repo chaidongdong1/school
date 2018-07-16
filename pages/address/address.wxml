@@ -1,0 +1,49 @@
+<!--pages/address/address.wxml-->
+<view class="address">
+  <!-- 新增地址 -->
+  <navigator url='./addAddress/addAddress' class="addAddress">
+    <view>
+      <image src="../../image/address-01.png"></image>
+    </view>
+    <view>新增地址</view>
+    <view>
+      <image src="../../image/index-06.png"></image>
+    </view>
+  </navigator>
+  <!-- 地址列表 -->
+  <view class="address-list">
+    <!-- 第一条 -->
+    <view class='wrap' wx:for="{{address}}" wx:key="{{index}}">
+      <view class="address-list-item" bindtap='choose' data-index='{{item.addressId}}'>
+        <view class="item-neirong">
+          <image src="../../image/address-02.png"></image>
+        </view>
+        <view class="item-neirong item-wz">
+          <view class='clear'>
+            <view class='fl_l'>姓名：{{item.userName}}</view>
+            <view class='fl_r'>手机号：{{item.userPhone}}</view>
+          </view>
+          <view class='address'>地址：{{item.schoolName}}{{item.buildName}}{{item.address}}</view>
+        </view>
+      </view>
+      <view class='botm clear'>
+        <view class='fl_l clear' bindtap='{{item.isDefault == 1 ? "":"choose"}}' data-index='{{item.addressId}}'>
+          <image wx:if="{{item.isDefault == 1}}" class='fl_l default_img' src='/image/cart_del.png'></image>
+          <view wx:if="{{item.isDefault == 0}}" class='fl_l null'></view>
+          <view wx:if="{{item.isDefault == 1}}" class='fl_l default_txt'>默认地址</view>
+          <view wx:if="{{item.isDefault == 0}}" class='fl_l default_txt'>设为默认</view>
+        </view>
+        <view class='fl_r clear'>
+          <view bindtap='del' class='botm_wrap fl_r' data-index='{{item.addressId}}'>
+            <image class='botm_img fl_l' src='/image/del.png'></image>
+            <view class='botm_txt fl_l'>删除</view>
+          </view>
+          <view bindtap='write' class='botm_wrap fl_r' data-index='{{item.addressId}}'>
+            <image class='botm_img fl_l' src='/image/write.png'></image>
+            <view class='botm_txt fl_l'>编辑</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

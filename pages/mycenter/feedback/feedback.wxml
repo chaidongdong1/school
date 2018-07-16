@@ -1,0 +1,20 @@
+<!--pages/feedback/feedback.wxml-->
+<view class="feed">
+  <view class="feed-xuanze">
+    <view>
+      <view>反馈问题类型<text>(必选)</text></view>
+    </view>
+    <view>
+      <radio-group bindchange="checkboxChange">
+        <label class="checkbox" wx:for="{{items}}" wx:key="{{index}}">
+          <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </radio-group>
+    </view>
+  </view>
+  <view class="feed-text">
+  	<view>请补充详细问题和意见<text>(必填)</text></view>
+  	<textarea placeholder="请输入您的问题或建议" bindinput="bindText"></textarea>
+  </view>
+  <button bindtap="bindtapButton">提交反馈</button>
+</view>

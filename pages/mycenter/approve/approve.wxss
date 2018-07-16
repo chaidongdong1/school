@@ -1,0 +1,58 @@
+/* pages/mycenter/approve/approve.wxss */
+.section1{
+  background: #fff;
+  padding: 180rpx 0 200rpx;
+}
+.info1{
+  font-size: 30rpx;
+  color: #f00;
+  text-align: center;
+  line-height: 60rpx;
+}
+.info2{
+  color: #999;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 58rpx;
+  margin-bottom: 78rpx;
+}
+.info3{
+  width: 216rpx;
+  height: 216rpx;
+  margin: 0 auto 54rpx;
+  display: block;
+  border-radius: 50%;
+}
+.info4{
+  width: 216rpx;
+  height: 216rpx;
+  margin: 0 auto 54rpx;
+  display: block;
+  border-radius: 50%;
+}
+
+.section2{
+  padding-top: 135rpx;
+  background: #fff;
+}
+.info5{
+  width: 216rpx;
+  height: 216rpx;
+  margin: 0 auto 25rpx;
+  display: block;
+  border-radius: 50%;
+}
+.info6{
+  font-size: 32rpx;
+  color: #333;
+  line-height: 70rpx;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+.info7{
+  color: #666;
+  font-size: 30rpx;
+  text-align: center;
+  line-height: 58rpx;
+  padding-bottom: 200rpx;
+}

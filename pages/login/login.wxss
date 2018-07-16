@@ -1,0 +1,154 @@
+/* pages/login/login.wxss */
+.login{
+	width: 86%;
+	height: 100vh;
+	background-color: #fff;
+	padding: 0 7%;
+}
+.login-logo{
+	width: 160rpx;
+	height: 160rpx;
+	padding: 106rpx 0 65rpx 0;
+	margin: 0 auto;
+	transition: all 0.5s;
+}
+.login-logo image{
+	width: 100%;
+	height: 100%;
+}
+.login-logo1{
+	width: 160rpx;
+	height: 160rpx;
+	padding: 30rpx 0 30rpx 0;
+	margin: 0 auto;
+	transition: all 0.5s;
+}
+.login-logo1 image{
+	width: 100%;
+	height: 100%;
+}
+.login-button{
+	width: 100%;
+	height: 70rpx;
+	line-height: 70rpx;
+	text-align: center;
+}
+.login-button>view>text{
+	font-size: 40rpx;
+	color: #999999;
+	margin: 0 40rpx;
+}
+.login-button-active{
+	color: #333 !important;
+	padding-bottom: 10rpx;
+	border-bottom: 6rpx solid #309efd;
+	transition:all 0.5s;
+}
+.login-input{
+	width: 100%;
+	height: auto;
+	margin-top: 60rpx;
+	transition: all 0.5s;
+}
+.login-input>.login-input-text{
+	width: 100%;
+	height: 88rpx;
+	border:1px solid #e6e6e6;
+	border-radius: 12rpx;
+	display: flex;
+	margin-bottom: 30rpx;
+	box-sizing: border-box;
+	box-shadow:  0 0 2rpx #e6e6e6 inset;
+	position: relative;
+}
+.login-input>.login-input-text>image{
+	width: 45rpx;
+	height: 45rpx;
+	padding: 21rpx;
+}
+.login-input>.login-input-text>input{
+	width: 520rpx;
+	height: 100%;
+	font-size: 30rpx;
+	color: #333;
+}
+.login-input>.login-input-text>view{
+	position: absolute;
+	top: 24rpx;
+	right: 20rpx;
+	width: 31rpx;
+	height: 17rpx;
+}
+.login-input>.login-input-text>view>image{
+	width: 100%;
+	height: 100%;
+}
+.login-input>.login-input-text1{
+	width: 100%;
+	height: 88rpx;
+	border:1px solid #e6e6e6;
+	border-radius: 12rpx;
+	display: flex;
+	margin-bottom: 30rpx;
+	box-sizing: border-box;
+	box-shadow:  0 0 2rpx #e6e6e6 inset;
+}
+.login-input>.login-input-text1>image{
+	width: 45rpx;
+	height: 45rpx;
+	padding: 21rpx;
+}
+.login-input>.login-input-text1>input{
+	width: 320rpx;
+	height: 100%;
+	font-size: 30rpx;
+	color: #333;
+}
+.login-input>.login-input-text1>view{
+	font-size: 28rpx;
+	color: #309efd;
+	border:1px solid #309efd;
+	border-radius: 10rpx;
+	width: 200rpx;
+	height: 50rpx;
+	text-align: center;
+	line-height: 50rpx;
+	margin: 16rpx auto;
+}
+.login-input>.login-wj{
+	width: 100%;
+	height: auto;
+	display: flex;
+	justify-content: flex-end;
+	font-size: 28rpx;
+	color: #999;
+}
+.login-input>button{
+	width: 100%;
+	height: 88rpx;
+	text-align: center;
+	line-height: 88rpx;
+	font-size: 38rpx;
+	color: #fff;
+	border:0;
+	background-color: #309efd;
+	border-radius: 15rpx;
+	margin-top: 40rpx;
+}
+.swiper{
+	width: 100%;
+	height: 860rpx;
+}
+.swiper1{
+	width: 100%;
+	height: 500rpx;
+}
+.login-input-text>picker{
+	flex: 1;
+	line-height: 88rpx;
+}
+.picker{
+	width: 100%;
+	font-size: 32rpx;
+	color: #666;
+}

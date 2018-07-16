@@ -1,0 +1,34 @@
+<view class='section1 clear yellow'>
+  <image class='fl_l order_img' src='/image/user.png'></image>
+  <view class='fl_l order_txt'>用户数量（{{lists[0].listsNumber}}）</view>
+  <view class='fl_r order_date arrow'>
+    <picker mode="date" style="width: 100%;font-size: 30rpx;color: #333;" bindchange="bindDateChange">
+      <view class="picker">{{date}}</view>
+    </picker>
+  </view>
+</view>
+<view class='tab'>
+  <view bindtap='tab_choose' data-index="{{index}}" class='tab_item {{choose == index ? "active":""}}' wx:for="{{lists}}" wx:key="{{index}}">
+    <view class='key'>{{item.listsName}}</view>
+    <view class='val'>{{item.listsNumber}}</view>
+  </view>
+</view>
+<view class='list1' wx:for="{{datas}}" wx:key="{{index}}">
+  <view class='list_item'>
+    <view class='list_t clear'>
+      <image class='list_tl fl_l' src='{{item.statsHead}}'></image>
+      <view class='list_tr fl_l'>
+        <view class='list_tr1'>
+          <view class='fl_l'>{{item.statsName}}</view>
+        </view>
+        <view class='list_tr3'>
+          <view class='num fl_l'>手机号码：{{item.statsPhone}}</view>
+        </view>
+        <view class='list_tr2'>
+          <view class='num fl_l'>申请时间：{{item.statsDate}}</view>
+        </view>
+      </view>
+      <view class='arrow_wrap fl_l'>{{item.statsType == 0 ? '' : (item.statsType == 1 ? '教师' : '派单员')}}</view>
+    </view>
+  </view>
+</view>

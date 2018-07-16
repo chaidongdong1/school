@@ -1,0 +1,38 @@
+<!--pages/admin/user_order/user_order.wxml-->
+<view class='section1 clear yellow'>
+  <image class='fl_l order_img' src='/image/order.png'></image>
+  <view class='fl_l order_txt'>订单数量（{{lists[0].listsNumber}}）</view>
+  <view class='fl_r order_date arrow'>
+    <picker mode="date" style="width: 100%;font-size: 30rpx;color: #333;" bindchange="bindDateChange">
+      <view class="picker">{{date}}</view>
+    </picker>
+  </view>
+</view>
+<view class='tab'>
+  <view bindtap='tab_choose' data-index="{{index}}" class='tab_item {{choose == index ? "active":""}}' wx:for="{{lists}}" wx:key="{{index}}">
+    <view class='key'>{{item.listsName}}</view>
+    <view class='val'>{{item.listsNumber}}</view>
+  </view>
+</view>
+<view class='list1' wx:for="{{datas}}" wx:key="{{index}}">
+  <view class='list_item'>
+    <view class='list_t clear'>
+      <image class='list_tl fl_l' src='{{item.statsHead}}'></image>
+      <view class='list_tr fl_l'>
+        <view class='list_tr1'>
+          <view class='fl_l'>{{item.statsName}}发表了</view>
+          <view class='yellow fl_l'>{{item.statsStats == 0 ? '超市订单' : (item.statsStats == 1 ? '送水订单' : (item.statsStats == 2 ? '快递订单' : '餐饮订单'))}}</view>
+        </view>
+         <view class='list_tr2'>
+          <view class='num fl_l'>共{{item.statsNumber}}件商品</view>
+          <!-- <view class='send_user fl_l'>接单人：张三</view> -->
+        </view> 
+      </view>
+      <view class='arrow_wrap arrow fl_l'></view>
+    </view>
+    <view class='list_b clear'>
+      <view class='date fl_l'>{{item.statsDate}}</view>
+      <view class='status fl_r'>{{item.statsType == 0 ? '待受理' : (item.statsType == 1 ? '配送中' : '已完成')}}</view>
+    </view>
+  </view>
+</view>

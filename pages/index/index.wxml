@@ -1,0 +1,67 @@
+<!--index.wxml-->
+<!-- 搜索 -->
+<!-- <navigator class="index-sousuo" url="../seek/seek">
+  <image src="../../image/index-01.png"></image>
+  <view>搜索</view>
+</navigator> -->
+<view class="indexss">
+  <!-- top -->
+  <view class="top">
+    <view>
+      <image src="../../image/position.png"></image>
+      <view>我的校区：
+        <text>龙子湖校区</text>
+      </view>
+    </view>
+    <navigator url="../mycenter/information/information">
+      <image src="../../image/me-16.png"></image>
+      <view>完善信息</view>
+    </navigator>
+  </view>
+  <!-- 轮播 -->
+  <view class="index-banner">
+    <swiper class="index-swiper" indicator-dots="true" indicator-active-color="#43d9ac" autoplay="true" interval="5000" duration="1000" circular="true">
+      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+        <swiper-item>
+          <image src="{{baseUrl}}{{item}}" class="index-banner-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 公告 -->
+  <view class="index-notice">
+    <view>
+      <image bindtap="bindtapNotice" src="../../image/index-notice.png"></image>
+      <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="3000">
+        <block wx:for="{{msgList}}" wx:key="{{index}}">
+          <swiper-item>
+            <view class="swiper_item" bindtap="bindtapNoticeDetails" data-index="{{item.articleId}}">公告：{{item.articleTitle}}</view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <!-- 主体内容 -->
+  <view class="index">
+    <navigator url='../catering/catering' class="index-item">
+      <image src="../../image/indexs-01.png"></image>
+      <text>精品超市</text>
+    </navigator>
+    <navigator url='../water/water' class="index-item">
+      <image src="../../image/indexs-02.png"></image>
+      <text>送水服务</text>
+    </navigator>
+    <navigator url='../courier/courier' class="index-item">
+      <image src="../../image/indexs-03.png"></image>
+      <text>快递业务</text>
+    </navigator>
+    <navigator url='../meal/index/index' class="index-item">
+      <image src="../../image/indexs-04.png"></image>
+      <text>餐饮外卖</text>
+    </navigator>
+    <!-- 居中 -->
+    <view bindtap='task_hall' class="index-center">
+      <image src="../../image/indexs-05.png"></image>
+    </view>
+  </view>
+</view>

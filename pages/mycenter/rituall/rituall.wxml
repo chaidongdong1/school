@@ -1,0 +1,36 @@
+<!-- <loading wx:if="{{showLoading}}">加载中</loading> -->
+<!-- <view class="orderDetails" wx:for="{{vou}}" wx:key="key">
+  <view class="orderListDetails"> 
+    <view class="productInfo">
+      <text class="x">¥</text>
+      <text class="y">{{item.amount}}</text>
+    </view>
+    <view class="pr">
+      <view class="n">{{item.title}}</view>
+      <view class="b">满{{item.full_money}}可用（{{item.desc}}）</view>
+    </view>
+    <view class="hh"  data-vid="{{item.id}}">
+      <view class="hb">未使用</view>
+    </view>
+  </view>
+  <view class="c">
+    有效期：{{item.start_time}}-{{item.end_time}}</view>
+</view> -->
+
+<view class="orderDetails">
+  <view class="orderListDetails"> 
+    <view class="productInfo">
+      <text class="x">¥</text>
+      <text class="y">10</text>
+    </view>
+    <view class="pr">
+      <view class="n">100元优惠券</view>
+      <view class="b">满100元可用</view>
+    </view>
+    <view class="hh"  data-vid="{{item.id}}">
+      <view class="hb">未使用</view>
+    </view>
+  </view>
+  <view class="c">
+    有效期：2017-11-11-2018-11-11</view>
+</view>

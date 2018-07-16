@@ -1,0 +1,127 @@
+/* pages/admin/user_order/user_order.wxss */
+/* section1 */
+.section1{
+  padding: 0 20rpx 0 30rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #ccc;
+}
+.order_img{
+  width: 33rpx;
+  height: 40rpx;
+  padding: 24rpx 0;
+  display: block;
+}
+.order_txt{
+  font-size: 28rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  margin-left: 16rpx;
+}
+.order_date{
+  font-size: 24rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #999;
+}
+.arrow::after{
+  width: 15rpx;
+  height: 15rpx;
+}
+/*tab  */
+.tab{
+  width: 100%;
+  height: 102rpx;
+  display: flex;
+  background: #fff;
+}
+.tab_item{
+  flex: 1;
+  border-bottom: 4rpx solid #fff;
+  padding: 15rpx 0 10rpx;
+}
+.tab_item .key{
+  font-size: 28rpx;
+  color: #000;
+  text-align: center;
+  line-height: 40rpx;
+}
+.tab_item .val{
+  font-size: 24rpx;
+  color: #333;
+  text-align: center;
+  line-height: 43rpx;
+}
+.active .key{
+  color: #ff0000;
+}
+.active .val{
+  color: #ff0000;
+}
+.active{
+  border-bottom: 4rpx solid #ff0000;
+}
+
+/*列表  */
+.list1{
+  width: 100%;
+  margin-top: 10rpx;
+}
+.list_item{
+  width: 100%;
+  margin-bottom: 10rpx;
+  background: #fff;
+}
+.list_t{
+  padding: 20rpx;
+}
+.list_tl{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 35rpx;
+}
+.list_tr{
+  width: 555rpx;
+  height: 100rpx;
+}
+.list_tr1{
+  width: 555rpx;
+  color: #333;
+  font-size: 26rpx;
+  line-height: 50rpx;
+  height: 50rpx;
+  margin-top: 5rpx;
+  overflow: hidden;
+}
+.yellow{
+  color: #fc9d49
+}
+.list_tr2{
+  width: 540rpx;
+  color: #999;
+  font-size: 24rpx;
+  line-height: 35rpx;
+  height: 35rpx;
+  overflow: hidden;
+}
+.send_user{
+  padding-left: 30rpx;
+}
+.arrow_wrap{
+  width: 20rpx;
+  height: 100rpx;
+}
+.list_b{
+  padding: 0 20rpx;
+  border-top: 1rpx solid #e0e0e0;
+}
+.date{
+  color: #999;
+  font-size: 20rpx;
+  line-height: 40rpx;
+}
+.status{
+  color: #fc9d49;
+  font-size: 22rpx;
+  line-height: 40rpx;
+}

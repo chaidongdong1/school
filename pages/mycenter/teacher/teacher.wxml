@@ -1,0 +1,16 @@
+<!--pages/teacher/teacher.wxml-->
+<view class="teacher">请填写您的正确信息</view>
+<view class="reset">
+	<view>
+		<view>真实姓名</view>
+		<input type="text" name="" placeholder="请填写真实姓名" placeholder-style="font-size:30rpx;color:#999;" bindinput="bindName" />
+	</view>
+	<view style="border:0;">
+		<view>教师工号</view>
+		<input type="number" name="" placeholder="请输入您的工号" placeholder-style="font-size:30rpx;color:#999;" bindinput="bindNumber" />
+	</view>
+</view>
+<!-- 按钮 -->
+<view class="reset-button">
+  <button bindtap="bindtapButton">提交审核</button>
+</view>

@@ -1,0 +1,66 @@
+/* pages/mycenter/real_name/real_name.wxss */
+
+.cont{
+  background: #fff;
+}
+.prompt{
+  font-size: 26rpx;
+  color: #989898;
+  height: 75rpx;
+  line-height: 75rpx;
+  padding-left: 30rpx;
+  background-color: #efeff4;
+}
+.info_item1{
+  margin-left: 30rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+.info_item2{
+  margin-left: 30rpx;
+}
+.key{
+  width: 135rpx;
+  font-size: 30rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  padding-right: 24rpx;
+  border-right: 1rpx solid #e5e5e5;
+}
+.val{
+  border: none;
+  width: 520rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 30rpx;
+  color: #333;
+  padding-left: 25rpx;
+}
+
+.id_card_wrap{
+  padding-top: 20rpx;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #333;
+  border-top: 1rpx solid #e5e5e5;
+}
+.id_card{
+  width: 492rpx;
+  height: 276rpx;
+  display: block;
+  margin: 0 auto 70rpx;
+}
+
+.submit{
+  width: 680rpx;
+  border-radius: 10rpx;
+  background: #309efd;
+  font-size: 30rpx;
+  text-align: center;
+  line-height: 96rpx;
+  color: #fff;
+  margin: 0 auto;
+}
+.wrap{
+  padding: 50rpx 0;
+}

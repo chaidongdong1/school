@@ -1,0 +1,56 @@
+<!--pages/evaluate/evaluate.wxml-->
+<view class="eval">
+  <!-- 商品 -->
+  <view class="order-shoplist">
+    <!-- 第一件商品 -->
+    <view class="order-shoplist-one">
+      <!-- 左图片 -->
+      <view>
+        <image src="../../image/shopdetails.jpg"></image>
+      </view>
+      <!-- 右内容 -->
+      <view class="order-shoplist-right">
+        <view>可口可乐</view>
+        <view>
+          <text>规格：500ml</text>
+          <text>口味：原味</text>
+          <text>数量：2</text>
+        </view>
+        <view>
+          <text>￥800.00</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 商品打分 -->
+  <view class="eval-dafen">
+  	<view>商品打分</view>
+  	<view>
+  		<image wx:for="{{lists}}" bindtap="bindtapDafen" wx:key="{{index}}" data-index="{{index}}" src="{{item}}"></image>
+  	</view>
+  </view>
+  <!-- 快递打分 -->
+  <view class="eval-dafen">
+    <view>快递打分</view>
+    <view>
+      <image wx:for="{{list}}" bindtap="bindtapKuai" wx:key="{{index}}" data-index="{{index}}" src="{{item}}"></image>
+    </view>
+  </view>
+  <!-- 商品评价 -->
+  <view class="eval-shop">
+  	<view>商品评价<text>(选填)</text></view>
+  	<textarea placeholder="请输入您的评价" bindinput="bindText"></textarea>
+  </view>
+  <!-- 拍照 -->
+  <view class="eval0-photos">
+  	<view>添加图片</view>
+  	<view>
+      <image wx:for="{{temp}}" wx:key="{{index}}" src="{{item}}"></image>
+  		<image bindtap="bindtapPhost" src="../../image/paizhao.png"></image>
+  	</view>
+  </view>
+  <!-- 提交按钮 -->
+  <view class="eval-button">
+  	<button>提交评价</button>
+  </view>
+</view>

@@ -1,0 +1,147 @@
+<!--pages/admin/send_man/send_man.wxml-->
+<view class='tab'>
+  <view bindtap='tab_choose' data-index='0' class='tab_item bo_r {{choose==0 ? "active":""}}'>
+    <view class='key'>未审核（8）</view>
+  </view>
+  <view bindtap='tab_choose' data-index='1' class='tab_item {{choose==1 ? "active":""}}'>
+    <view class='key'>已审核（880）</view>
+  </view>
+</view>
+<view class='list1' wx:if="{{choose==0}}">
+  <view class='list_item'>
+    <view class='list_t clear'>
+      <image class='list_tl fl_l' src='/image/user_img.png'></image>
+      <view class='list_tr fl_l'>
+        <view class='list_tr1'>
+          <view class='fl_l'>在水一方</view>
+          <view class='send_user fl_l'>
+            <view class='fl_l'>真实姓名：</view>
+            <view class='fl_l yellow'>张三</view>
+          </view>
+        </view>
+         <view class='list_tr2'>
+           <view class='send_user2 fl_l'>身份证号：452542185652140254</view> 
+        </view> 
+      </view>
+      <image class='bg_img' src='/image/grab_bg.png'></image>
+      <view class='audit'>审核</view>
+    </view>
+  </view>
+  <view class='list_item'>
+    <view class='list_t clear'>
+      <image class='list_tl fl_l' src='/image/user_img.png'></image>
+      <view class='list_tr fl_l'>
+        <view class='list_tr1'>
+          <view class='fl_l'>在水一方</view>
+          <view class='send_user fl_l'>
+            <view class='fl_l'>真实姓名：</view>
+            <view class='fl_l yellow'>张三</view>
+          </view>
+        </view>
+         <view class='list_tr2'>
+           <view class='send_user2 fl_l'>身份证号：452542185652140254</view> 
+        </view> 
+      </view>
+      <image class='bg_img' src='/image/grab_bg.png'></image>
+      <view class='audit'>审核</view>
+    </view>
+  </view>
+  <view class='list_item'>
+    <view class='list_t clear'>
+      <image class='list_tl fl_l' src='/image/user_img.png'></image>
+      <view class='list_tr fl_l'>
+        <view class='list_tr1'>
+          <view class='fl_l'>在水一方</view>
+          <view class='send_user fl_l'>
+            <view class='fl_l'>真实姓名：</view>
+            <view class='fl_l yellow'>张三</view>
+          </view>
+        </view>
+         <view class='list_tr2'>
+           <view class='send_user2 fl_l'>身份证号：452542185652140254</view> 
+        </view> 
+      </view>
+      <image class='bg_img' src='/image/grab_bg.png'></image>
+      <view class='audit'>审核</view>
+    </view>
+  </view>
+</view>
+<view class='list1' wx:if="{{choose==1}}">
+  <view class='list_item'>
+    <view class='list_t clear'>
+      <image class='list_tl fl_l' src='/image/user_img.png'></image>
+      <view class='list_tr fl_l'>
+        <view class='list_tr1'>
+          <view class='fl_l'>在水一方</view>
+          <view class='send_user fl_l'>
+            <view class='fl_l'>真实姓名：</view>
+            <view class='fl_l yellow'>张三</view>
+          </view>
+        </view>
+         <view class='list_tr2'>
+           <view class='send_user2 fl_l'>身份证号：452542185652140254</view> 
+        </view> 
+      </view>
+      <image class='bg_img' src='/image/grab_bg.png'></image>
+      <view class='audit2'>已审核</view>
+    </view>
+  </view>
+  <view class='list_item'>
+    <view class='list_t clear'>
+      <image class='list_tl fl_l' src='/image/user_img.png'></image>
+      <view class='list_tr fl_l'>
+        <view class='list_tr1'>
+          <view class='fl_l'>在水一方</view>
+          <view class='send_user fl_l'>
+            <view class='fl_l'>真实姓名：</view>
+            <view class='fl_l yellow'>张三</view>
+          </view>
+        </view>
+         <view class='list_tr2'>
+           <view class='send_user2 fl_l'>身份证号：452542185652140254</view> 
+        </view> 
+      </view>
+      <image class='bg_img' src='/image/grab_bg.png'></image>
+      <view class='audit2'>已审核</view>
+    </view>
+  </view>
+  <view class='list_item'>
+    <view class='list_t clear'>
+      <image class='list_tl fl_l' src='/image/user_img.png'></image>
+      <view class='list_tr fl_l'>
+        <view class='list_tr1'>
+          <view class='fl_l'>在水一方</view>
+          <view class='send_user fl_l'>
+            <view class='fl_l'>真实姓名：</view>
+            <view class='fl_l yellow'>张三</view>
+          </view>
+        </view>
+         <view class='list_tr2'>
+           <view class='send_user2 fl_l'>身份证号：452542185652140254</view> 
+        </view> 
+      </view>
+      <image class='bg_img' src='/image/grab_bg.png'></image>
+      <view class='audit2'>已审核</view>
+    </view>
+  </view>
+  <view class='list_item'>
+    <view class='list_t clear'>
+      <image class='list_tl fl_l' src='/image/user_img.png'></image>
+      <view class='list_tr fl_l'>
+        <view class='list_tr1'>
+          <view class='fl_l'>在水一方</view>
+          <view class='send_user fl_l'>
+            <view class='fl_l'>真实姓名：</view>
+            <view class='fl_l yellow'>张三</view>
+          </view>
+        </view>
+         <view class='list_tr2'>
+           <view class='send_user2 fl_l'>身份证号：452542185652140254</view> 
+        </view> 
+      </view>
+      <image class='bg_img' src='/image/grab_bg.png'></image>
+      <view class='audit2'>已审核</view>
+    </view>
+  </view>
+</view>
+

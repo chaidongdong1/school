@@ -1,0 +1,17 @@
+一、已写
+1、app.js              增加登陆接口
+2、首页                 index/index       增加轮播图和公告接口
+3、公示公告          mycenter/notice/notice
+4、公告详情          mycenter/noticeDetails/noticeDetails
+5、详情页插件      修改app.wxss    (增加style    wxParse文件夹)
+6、完善信息          绑定手机号（增加完善信息页面）
+7、个人中心          增加完善信息
+8、超市首页、送水、快递业务、餐饮、抢单   （都增加头部显示的校区）
+9、app.json         增加
+mycenter/about/about
+10、订单列表修改
+
+
+二、未写接口
+1、写入用户推荐人
+2、验证码暂无

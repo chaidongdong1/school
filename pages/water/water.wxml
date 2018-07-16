@@ -1,0 +1,149 @@
+<!--pages/water/water.wxml-->
+<view class="shop">
+  <!-- top -->
+  <view class="top">
+    <view>
+      <image src="../../image/position.png"></image>
+      <view>我的校区：
+        <text>龙子湖校区</text>
+      </view>
+    </view>
+    <navigator url="../mycenter/information/information">
+      <image src="../../image/me-16.png"></image>
+      <view>完善信息</view>
+    </navigator>
+  </view>
+  <!-- 商品轮播 -->
+  <view class="index-banner">
+    <swiper class="index-swiper" indicator-dots="true" indicator-active-color="#309EFD" autoplay="true" interval="5000" duration="1000" circular="true">
+      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+        <swiper-item>
+          <image src="{{item}}" class="index-banner-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 产品内容 -->
+  <view class="shop-title">
+    <view>可口可乐 畅饮任何一款可口可乐产品所带来的简单快乐让那一刻变得与众不同</view>
+    <view class="shop-t-jiage">
+      <view>
+        <view>￥800.00</view>
+        <view>存货量：1566件</view>
+      </view>
+      <!-- 分享 -->
+      <view class="shop-t-fenxiang">
+        <image src="../../image/shopdetails-01.png"></image>
+        <view>分享</view>
+      </view>
+    </view>
+    <!-- <view>发货地：一号公寓一楼学生超市</view> -->
+  </view>
+  <!-- 选择参数 -->
+  <view class="shop-canshu" bindtap="bindtapMasks">
+    <view>选择商品参数、数量</view>
+    <image src="../../image/index-06.png"></image>
+  </view>
+  <navigator class="shop-canshu" url="">
+    <view>评价
+      <text>(300)</text>
+    </view>
+    <image src="../../image/index-06.png"></image>
+  </navigator>
+  <!-- 图文详情 -->
+  <view class="shop-xiang">
+    <view>
+      <view class="{{swiperIndexs == 0 ? 'shop-x-active' : ''}}" bindtap="shopDetail">商品详情</view>
+      <view class="{{swiperIndexs == 1 ? 'shop-x-active' : ''}}" bindtap="shopSize">规格参数</view>
+    </view>
+    <!-- 详情内容 -->
+    <view class="shops-detail">
+      <view wx:if="{{swiperIndexs == 0}}" style="font-size: 28rpx;color: #666;">可口可乐 畅饮任何一款可口可乐产品所带来的简单快乐让那一刻变得与众不同可口可乐 畅饮任何一款可口可乐产品所带来的简单快乐让那一刻变得与众不同可口可乐 畅饮任何一款可口可乐产品所带来的简单快乐让那一刻变得与众不同</view>
+      <view wx:if="{{swiperIndexs == 1}}">
+        <view class="shop-guige">商品名称：
+          <text>可口可乐</text>
+        </view>
+        <view class="shop-guige">商品编号：1520023200</view>
+        <view class="shop-guige">商品分类：饮品类</view>
+        <view class="shop-guige1">商品售后：
+          <text>商品售后商品售后商品售后商品售后</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 底部栏 -->
+  <view class="shop-bottom">
+    <view class="shop-b-kefu">
+      <image src="../../image/shopdetails-02.png"></image>
+      <view>客服</view>
+    </view>
+    <view bindtap='go_cart' class="shop-b-kefu">
+      <image src="../../image/shopdetails-03.png"></image>
+      <view>购物车</view>
+    </view>
+    <view class="shop-b-goumai" data-type='0' bindtap="bindtapMasks">加入购物车</view>
+    <view class="shop-b-goumai" data-type='1' bindtap="bindtapMasks">立即购买</view>
+  </view>
+</view>
+<!-- 弹窗 -->
+<view class="mask" style="opacity: {{mask.opacity}}; display: {{mask.display}};">
+  <view class="masks" bindtap="bindtapClose"></view>
+  <view class="mask-shop"  style="transform: {{returnDeposit.translateY}}; opacity: {{returnDeposit.opacity}};">
+    <view class="mask-tp">
+      <image src="../../image/shui.png"></image>
+      <view>￥{{total}}</view> 
+      <view>存货量：{{stock}}件</view>
+      <image bindtap="bindtapClose" src="../../image/shopdetails-05.png"></image>
+    </view>
+
+    <view class='list_wrap'>
+      <view class="commodity_attr_list">
+        <view class="attr_box">
+          <view class="attr_name">规格</view>
+          <view class="attr_value_box">
+            <view class="attr_value {{choose==index?'active':''}} attr_value_active" wx:for="{{water}}" wx:key="water" bindtap="{{choose==index? '': 'choose'}}" data-price='{{item.price}}' data-index="{{index}}">{{item.name}}</view>
+          </view>
+        </view>
+        <view class="attr_box">
+          <view class="attr_name">楼层</view>
+          <view class="attr_value_box">
+            <view class="attr_value {{choose2==index?'active':''}} attr_value_active" wx:for="{{floor}}" wx:key="floor" bindtap="{{choose2==index? '': 'choose2'}}" data-price='{{item.price}}' data-index="{{index}}">{{item.name}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 规格和口味 -->
+     <!-- <view class="mask-guige"> -->
+      <!-- 规格 -->
+      <!--<view class="mask-guige1">
+        <view>规格</view>
+        <view class="mask-g-xuan">
+          <view class="mask-active">有桶</view>
+          <view>无桶</view>
+        </view>
+      </view> -->
+      <!-- 楼层 -->
+      <!-- <view class="mask-guige1">
+        <view>楼层</view>
+        <view class="mask-g-xuan">
+          <view class="mask-active">一楼到三楼</view>
+          <view>四楼到六楼</view>
+        </view>
+      </view>
+    </view> -->
+    <!-- 数量 -->
+    <view class="mask-number">
+      <view>数量</view>
+      <view>
+        <view bindtap="bindtapJian">-</view>
+        <veiw>{{numbers}}</veiw>
+        <view bindtap="bindtapJia">+</view>
+      </view>
+    </view>
+    <!-- 按钮 -->
+    <view class="mask-anniu">
+      <view bindtap='confirm'>确定</view>
+    </view>
+  </view>
+</view>

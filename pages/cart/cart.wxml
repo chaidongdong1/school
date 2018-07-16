@@ -1,0 +1,138 @@
+<!--pages/cart/cart.wxml-->
+<view class="cart" wx:if="{{show}}">
+  <!-- 超市商品 --> 
+  <view class="cart-chao" wx:if="{{shop_cart.length>0}}"> 
+    <!-- 头部 -->  
+    <view class="cart-top">  
+      <view>
+        <!-- cart-top-active  为选中状态 -->
+        <view data-index='{{index}}' bindtap='g_active_all' class='{{g_check_all ? "cart-top-active":""}}'>
+          <image src="{{del ? '/image/cart_del.png' : '/image/cat-01.png'}}"></image>
+        </view>
+        <view>超市商品</view>
+        <view>
+          <image src="../../image/index-06.png"></image>
+        </view> 
+      </view>
+      <view bindtap='amend'>{{val}}</view>
+    </view>
+    <!-- 商品内容 --> 
+    <view class="cart-shop"> 
+      <!-- 第一件商品 -->
+      <view class="cart-shop-one" wx:for="{{shop_cart}}" wx:key="shop">
+        <!--  class="cart-top-active"  为选中状态 -->
+        <view data-index='{{index}}' bindtap='g_active' class='{{item.active ? "cart-top-active":""}}'>
+          <image src="{{del ? '/image/cart_del.png' : '/image/cat-01.png'}}"></image>
+        </view>
+        <view>
+          <image src="../../image/shopdetails.jpg"></image>
+        </view>
+        <view>
+          <view>{{item.name}}</view>
+          <view>
+            <text>{{item.info}}</text>
+            <!-- <text>口味：原味</text> -->
+          </view>
+          <view class="cart-one-jiage">
+            <view>￥{{item.price}}</view>
+            <view>
+              <view data-index='{{index}}' bindtap='g_sub'>-</view>
+              <view>{{item.num}}</view>
+              <view data-index='{{index}}' bindtap='g_add'>+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 饮用水 -->
+  <view class="cart-chao" wx:if="{{water_cart.length>0}}">
+    <!-- 头部 -->
+    <view class="cart-top">
+      <view>
+        <!-- cart-top-active  为选中状态 -->
+        <view data-index='{{index}}' bindtap='w_active_all' class='{{w_check_all ? "cart-top-active":""}}'>
+          <image src="{{del ? '/image/cart_del.png' : '/image/cat-01.png'}}"></image>
+        </view>
+        <view>桶装水</view>
+        <view>
+          <image src="../../image/index-06.png"></image>
+        </view>
+      </view>
+      <view bindtap='amend'>{{val}}</view>
+    </view>
+    <!-- 商品内容 -->
+    <view class="cart-shop">
+      <!-- 第一件商品 -->
+      <view class="cart-shop-one" wx:for="{{water_cart}}" wx:key="water">
+        <!--  class="cart-top-active"  为选中状态 -->
+        <view  data-index='{{index}}' bindtap='w_active' class='{{item.active ? "cart-top-active":""}}'>
+          <image src="{{del ? '/image/cart_del.png' : '/image/cat-01.png'}}"></image>
+        </view>
+        <view>
+          <image src="{{item.img}}"></image>
+        </view>
+        <view>
+          <view>{{item.name}}</view>
+          <view>
+            <text>规格：{{item.specs}}</text>
+            <text>楼层：{{item.floor}}</text>
+          </view>
+          <view class="cart-one-jiage">
+            <view>￥{{item.price}}</view>
+            <view>
+              <view data-index='{{index}}' bindtap='w_sub'>-</view>
+              <view>{{item.num}}</view>
+              <view data-index='{{index}}' bindtap='w_add'>+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 底部 -->
+  <!--结算  -->
+  <view wx:if="{{control==0}}" class="cart-bottom">
+    <!-- 全选 -->
+    <view>
+      <!--  class="cart-top-active" 为选中状态 -->
+      <view>
+        <image src="../../image/cat-01.png"></image>
+      </view>
+      <view>全选</view>
+    </view>
+    <!-- 合计 结算 -->
+    <view>
+      <view>合计：
+        <text>￥{{total}}</text>
+      </view>
+      <view bindtap='buy_cart'>去结算</view>
+    </view>
+  </view>
+</view>
+<!--删除  -->
+<view wx:if="{{control==1}}" class="cart-bottom">
+    <!-- 全选 -->
+    <view>
+      <!--  class="cart-top-active" 为选中状态 -->
+      <view>
+        <image src="../../image/cat-01.png"></image>
+      </view>
+      <view>全选</view>
+    </view>
+    <!-- 合计 结算 -->
+    <view>
+      <view>
+        <text></text>
+      </view>
+      <view class='del' bindtap='del'>删除</view>
+    </view>
+</view>
+<!-- 购物车为空时 -->
+<view wx:if="{{!show}}" class="address-kong" >
+	<view><image src="../../image/cart-kong.png"></image></view>
+	<view>暂无商品</view>
+	<view>暂无购物车商品记录！</view>
+	<view bindtap='go_index'>立即添加</view>
+</view>
