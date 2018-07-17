@@ -39,19 +39,21 @@
     <!-- 商品 -->
     <view class="cater-shop">
       <!-- 第一条 -->
-      <view class="shop-item" bindtap='go_detail' wx:for="{{datas}}" wx:key="{{index}}" data-goodsid="{{item.goodsid}}">
+      <view class="shop-item" bindtap='go_detail' wx:for="{{datas}}" wx:key="{{index}}" data-goodsid="{{item.id}}">
         <view>
-          <image src="{{item.goodsimg}}"></image>
+          <image src="{{baseUrl}}{{item.photo_x}}"></image>
         </view>
-        <view>{{item.goodsname}}</view>
-        <view>{{item.goodsspec}}</view>
-        <view>￥{{item.shopprice}}
-          <text>销量{{item.goodssort}}件</text>
+        <view>{{item.name}}</view>
+        <view>{{item.is_hot == 1 ? '精品' : ''}}</view>
+        <view>￥{{item.price_yh}}
+          <text>销量{{item.saleNum}}件</text>
         </view>
       </view>
     </view>
     <!-- 已加载全部 -->
-    <view class="cart-quanbu">已加载全部</view>
+    <view class="cart-quanbu" wx:if="{{currPage==totalPage}}">已加载全部</view>
+    <!-- 暂无商品 -->
+    <view class="cart-quanbu" wx:if="{{!datas || datas.length == 0}}">暂无商品</view>
   </view>
 </view>
 <!-- 右侧栏 -->
@@ -59,7 +61,7 @@
   <view class="masks" bindtap="bindtapClose"></view>
   <!-- 右侧内容 -->
   <view class="mask-nav" style="transform: {{returnDeposit.translateY}}; opacity: {{returnDeposit.opacity}};">
-    <view wx:for="{{lists}}" wx:key="{{index}}">{{item.listName}}</view>
+    <view wx:for="{{lists}}" wx:key="{{index}}" bindtap="bindFenlei" data-listid="{{item.catId}}">{{item.catName}}</view>
   </view>
 </view>
 

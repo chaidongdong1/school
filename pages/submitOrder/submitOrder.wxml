@@ -12,10 +12,10 @@
       <view>
         <image src="/image/address-02.png"></image>
       </view>
-      <view>
-        <view>姓名：{{address.name}}</view>
-        <view>手机号：{{address.tel}}</view>
-        <view>收货地址：{{address.address}}
+      <view> 
+        <view>姓名：{{address.userName}}</view>
+        <view>手机号：{{address.userPhone}}</view>
+        <view>收货地址：{{address.schoolName}}{{address.buildName}}{{address.floorNum}}楼 {{address.address}}
           <text>【默认】</text>
         </view>
       </view> 
@@ -45,8 +45,8 @@
         </view>
         <view>
           <view>{{item.name}}</view>
-          <view>
-            <text>{{item.info}}</text>
+          <view class='ellipsis'>
+            <text class='ellipsis'>{{item.info}}</text>
             <!-- <text>口味：原味</text> -->
           </view>
           <view class='botm clear'>
@@ -87,92 +87,32 @@
     </view>
   </view>
 
-  <view class="sub-shop">
+  <view class="sub-shop" wx:if="{{dining.length>0}}">
     <!-- 标题 -->
     <view class="sub-shop-title">
-      <image src="/image/kuaidi.png"></image>
-      <view>超市商品</view>
+      <image src="/image/canyin.png"></image>
+      <view>{{shopName}}</view>
     </view>
     <!-- 商品 -->
     <view class="sub-shop-nei">
-      <!-- 第一条 -->
-      <view class="sub-nei-one">
+      <view wx:for="{{dining}}" wx:key="dining" class="sub-nei-one">
         <view>
-          <image src="/image/shopdetails.jpg"></image>
+          <image src="{{item.img}}"></image>
         </view>
         <view>
-          <view>吖商家孤岛惊魂申达股份会计师对方环能科新城V你师父打卡机老虎机等方面大V会</view>
-          <view>
-            <text>规格：500ml</text>
-            <text>口味：原味</text>
+          <view>{{item.name}}</view>
+          <view class='ellipsis'>
+            <text class='ellipsis'>{{item.detail}}</text>
+            <!-- <text>口味：原味</text> -->
           </view>
           <view class='botm clear'>
-            <view class='botm_l fl_l'>￥800.00</view>
-            <view class='botm_r fl_l'>数量：2</view>
+            <view class='botm_l fl_l'>￥{{item.price_yh}}</view>
+            <view class='botm_r fl_l'>数量：{{item.num}}</view>
           </view>
-        </view>
-      </view>
-      <!-- 第一条 -->
-      <view class="sub-nei-one">
-        <view>
-          <image src="/image/shopdetails.jpg"></image>
-        </view>
-        <view>
-          <view>吖商家孤岛惊魂申达股份会计师对方环能科新城V你师父打卡机老虎机等方面大V会</view>
-          <view>
-            <text>规格：500ml</text>
-            <text>口味：原味</text>
-            <text>数量：2</text>
-          </view>
-          <view>￥800.00</view>
         </view>
       </view>
     </view>
   </view>
-
-  <view class="sub-shop">
-    <!-- 标题 -->
-    <view class="sub-shop-title">
-      <image src="/image/chaoshi.png"></image>
-      <view>超市商品</view>
-    </view>
-    <!-- 商品 -->
-    <view class="sub-shop-nei">
-      <!-- 第一条 -->
-      <view class="sub-nei-one">
-        <view>
-          <image src="/image/shopdetails.jpg"></image>
-        </view>
-        <view>
-          <view>吖商家孤岛惊魂申达股份会计师对方环能科新城V你师父打卡机老虎机等方面大V会</view>
-          <view>
-            <text>规格：500ml</text>
-            <text>口味：原味</text>
-          </view>
-          <view class='botm clear'>
-            <view class='botm_l fl_l'>￥800.00</view>
-            <view class='botm_r fl_l'>数量：2</view>
-          </view>
-        </view>
-      </view>
-      <!-- 第一条 -->
-      <view class="sub-nei-one">
-        <view>
-          <image src="/image/shopdetails.jpg"></image>
-        </view>
-        <view>
-          <view>吖商家孤岛惊魂申达股份会计师对方环能科新城V你师父打卡机老虎机等方面大V会</view>
-          <view>
-            <text>规格：500ml</text>
-            <text>口味：原味</text>
-            <text>数量：2</text>
-          </view>
-          <view>￥800.00</view>
-        </view>
-      </view>
-    </view>
-  </view>
-
   <!-- 快递费用 -->
   <view class="sub-kuaidi">
     <view>快递费用</view>
@@ -193,7 +133,7 @@
     <textarea wx:if="{{mask.opacity == 0}}" placeholder="请输入您的备注信息" placeholder-style="font-size:28rpx;color:#999;"></textarea>
   </view>
   <!-- 保险费 -->
-  <view class="sub-bao">
+  <!-- <view class="sub-bao">
     <view>保险费
       <text bindtap="bindtapMasks">什么是保险费？</text>
     </view>
@@ -203,17 +143,17 @@
         <switch style="transform : scale(0.8);" checked bindchange="switch1Change" />
       </view>
     </view>
-  </view>
+  </view> -->
   <!-- 底部栏 -->
   <view class="sub-bottom">
     <view>合计：
       <text>￥320.00</text>
     </view>
-    <view>提交订单</view>
+    <view bindtap='submitOrders'>提交订单</view>
   </view>
 </view>
 <!-- 弹窗 -->
-<view class="mask" style="opacity: {{mask.opacity}}; display: {{mask.display}};">
+<!-- <view class="mask" style="opacity: {{mask.opacity}}; display: {{mask.display}};">
   <view class="masks" bindtap="bindtapClose"></view>
   <view class="mask-shop" style="transform: {{returnDeposit.translateY}}; opacity: {{returnDeposit.opacity}};">
     <view class="masks-neir">
@@ -224,4 +164,4 @@
       <image src="/image/close.png" style="width: 120rpx;height: 120rpx;margin-top: 30rpx;"></image>
     </view>
   </view>
-</view>
+</view> -->

@@ -80,11 +80,11 @@
   margin-right: 35rpx;
 }
 .list_tr{
-  width: 450rpx;
+  width: 420rpx;
   height: 120rpx;
 }
 .list_tr1{
-  width: 450rpx;
+  width: 420rpx;
   color: #333;
   font-size: 30rpx;
   line-height: 42rpx;
@@ -96,7 +96,7 @@
   color: #fc9d49
 }
 .list_tr3{
-  width: 450rpx;
+  width: 420rpx;
   color: #666;
   font-size: 26rpx;
   height: 42rpx;
@@ -104,7 +104,7 @@
   overflow: hidden;
 }
 .list_tr2{
-  width: 450rpx;
+  width: 420rpx;
   color: #999;
   font-size: 24rpx;
   line-height: 35rpx;
@@ -115,12 +115,34 @@
   padding-left: 30rpx;
 }
 .arrow_wrap{
-  width: 90rpx;
+  width: 120rpx;
   height: 120rpx;
   text-align: center;
+}
+.arrow_view{
+  width: 100%;
+  height: 50rpx;
+  color: #ff0000;
+  font-size: 30rpx;
+  line-height: 50rpx;
+}
+.arrow_view1{
+  width: 100%;
+  height: 120rpx;
   color: #ff0000;
   font-size: 30rpx;
   line-height: 120rpx;
+}
+.arrow_butt{
+  width: 120rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  color: #fff;
+  background: #3CA3FD;
+  border-radius: 10rpx;
 }
 .list_b{
   padding: 0 20rpx;
@@ -135,4 +157,85 @@
   color: #fc9d49;
   font-size: 22rpx;
   line-height: 40rpx;
+}
+
+/*弹窗*/
+.mask{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,.5);
+}
+.masks{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99998;
+}
+.mask-shop{
+  width: 100%;
+  height: auto;
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 9999999;
+  transition: all 0.5s;
+  transform: translateY(-1500)rpx;
+}
+.mask-ju{
+  width: 96%;
+  height: auto;
+  padding: 30rpx 2%;
+  display:flex;
+  position: relative;
+}
+.mask-guan{
+  width: 45rpx;
+  height: 45rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  padding: 15rpx;
+}
+.mask-guan>image{
+  width: 100%;
+  height: 100%;
+}
+.mask-ju>view:nth-child(2){
+  width: 120rpx;
+  height: 120rpx;
+  margin: 50rpx 30rpx 0 15rpx;
+}
+.mask-ju>view:nth-child(2)>image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.mask-ju>view:last-child{
+  flex: 1;
+}
+.mask-ju>view:last-child>view{
+  font-size: 28rpx;
+  color: #666;
+  line-height: 42rpx;
+}
+.mask-ju>view:last-child>view>text{
+  font-size: 30rpx;
+  color: #333;
+}
+.mask-button{
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #3CA3FD;
+  font-size: 32rpx;
+  color: #fff;
 }

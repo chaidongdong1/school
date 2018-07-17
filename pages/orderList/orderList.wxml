@@ -2,10 +2,13 @@
 <veiw class="order">
 	<!-- 头部导航 -->
 	<view class="order-nav">
-		<view bindtap="bindtapDao" class="{{listsIndex == index ? 'order-nav-active' : ''}}" wx:for="{{lists}}" wx:key="{{index}}" data-index="{{index}}">
-			<view></view>
-			<view>{{item.listsName}}</view>
-			<view>({{item.listsNumber}})</view>
+		<view bindtap="bindtapDao" class="{{listsIndex == 0 ? 'order-nav-active' : ''}}" data-index='0'>
+			<view><image src="{{listsIndex == 0 ? '../../image/ding-01.png' : '../../image/ding-02.png'}}"></image></view>
+			<view>订单进行中<text>(15)</text></view>
+		</view>
+		<view bindtap="bindtapDao" class="{{listsIndex == 1 ? 'order-nav-active1' : ''}}" data-index='1'>
+			<view><image src="{{listsIndex == 1 ? '../../image/ding-03.png' : '../../image/ding-04.png'}}"></image></view>
+			<view>订单已完成<text>(13)</text></view>
 		</view>
 	</view>
 	<!-- 商品订单 -->

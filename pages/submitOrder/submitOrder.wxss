@@ -124,16 +124,25 @@
 }
 .sub-nei-one>view:last-child>view:first-child{
 	width: 100%;
+  max-width:480rpx;
 	max-height: 90rpx;
 	line-height: 45rpx;
 	overflow: hidden;
 	font-size: 30rpx;
 	color: #333;
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2; 
+}
+.sub-nei-one>view:last-child>view:nth-child(2){
+  max-width:480rpx;
 }
 .sub-nei-one>view:last-child>view:nth-child(2)>text{
 	font-size: 28rpx;
 	color: #666;
 	margin-right: 20rpx;
+  max-width:480rpx;
 }
 .botm{
   max-width: 500rpx;

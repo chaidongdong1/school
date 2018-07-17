@@ -1,12 +1,5 @@
 // pages/orderList/orderList.js
 let datas = {
-  lists: [{
-    listsName: "待完成",
-    listsNumber: "2",
-  }, {
-    listsName: "已完成",
-    listsNumber: "2",
-  }],
   goods: [{
     goodsId: '120', //订单ID
     goodstype: '1', //订单类型
@@ -97,7 +90,6 @@ let datas = {
 Page({
 
   data: {
-    lists: [], //导航名字
     datas: [], //订单内容
     listsIndex: 0, //导航下标
   },
@@ -105,6 +97,7 @@ Page({
     this.setData({
       lists: datas.lists
     });
+    console.log(this.data.listsIndex);
     wx.showLoading({
       title: '加载中',
     });
@@ -120,9 +113,11 @@ Page({
   },
   //订单导航
   bindtapDao(e) {
+    console.log(e)
     this.setData({
       listsIndex: e.currentTarget.dataset.index
     });
+    console.log(this.data.listsIndex)
     if (this.data.listsIndex == 1) {
       let data2 = datas.goods.filter((item) => { return item.goodsStats == 2; });
       console.log(data2);

@@ -1,4 +1,5 @@
 /* pages/shopDetails/shopDetails.wxss */
+@import '../../../wxParse/wxParse.wxss';
 /*轮播*/
 .index-banner{
   width: 100%;
@@ -54,8 +55,7 @@
 }
 .shop-t-fenxiang{
 	width: 80rpx;
-	height: 80rpx;
-	margin-top: 10rpx;
+	height: auto;
 }
 .shop-t-fenxiang>image{
 	width: 40rpx;
@@ -81,6 +81,7 @@
 	background: #fff;
 }
 .shop-canshu>view{
+  height: 100%;
 	font-size: 30rpx;
 	color: #333;
 }
@@ -237,12 +238,14 @@
 	padding:0 2%;
 	display:flex;
 	justify-content: space-between;
+  overflow-x:visible !important;
 }
 .mask-tp>image:first-child{
 	width: 140rpx;
 	height: 140rpx;
 	margin-top: -70rpx;
 	border:1px solid #eee;
+  background: #fff;
 }
 .mask-tp>view:nth-child(2){
 	font-size: 42rpx;

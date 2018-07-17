@@ -7,10 +7,10 @@ let datas = {
     listsName: "待受理",
     listsNumber: "66",
   }, {
-    listsName: "配送中",
+    listsName: "已完成",
     listsNumber: "600",
   }, {
-    listsName: "已完成",
+    listsName: "异常订单",
     listsNumber: "6000",
   }],
   stats: [{

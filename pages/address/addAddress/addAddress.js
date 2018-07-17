@@ -17,11 +17,11 @@ Page({
   onLoad: function(options) {
     console.log(options);
     let type = options.type;
-    this.setData({
-      type: type
-    });
     //修改地址
     if (type) {
+      this.setData({
+        type: type
+      });
       wx.showLoading({
         title: '加载中',
       })

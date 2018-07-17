@@ -6,7 +6,6 @@
   background: #fff;
 }
 .item{
-  padding-right: 30rpx;
   border-bottom: 1rpx solid #e7e7e7;
   display: flex;
 }
@@ -35,4 +34,25 @@
   font-size: 32rpx;
   background: #309efd;
   color: #fff;
+}
+
+.wrap{
+  padding-left: 30rpx;
+  padding-right: 44rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+.old_address{
+  width: 600rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+.add_img{
+  width: 40rpx;
+  height: 40rpx;
+  margin: 25rpx 15rpx 25rpx 0;
+}
+.add_info{
+  font-size: 30rpx;
+  color: #fc9d49;
 }

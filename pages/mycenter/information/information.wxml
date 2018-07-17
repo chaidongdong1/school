@@ -12,10 +12,10 @@
   </view>
 </view>
 <view class="infor">
-  <view class="intor-yong">
+  <!-- <view class="intor-yong">
     <view>真实姓名：</view>
     <input type="text" name="" placeholder="请输入真实姓名" placeholder-style="font-size:30rpx;color:#666;" bindinput="bindtapName" />
-  </view>
+  </view> -->
   <view class="intor-yong">
     <view>手机号码：</view>
     <input type="number" name="" placeholder="请输入手机号" placeholder-style="font-size:30rpx;color:#666;" bindinput="bindtapNumber" />

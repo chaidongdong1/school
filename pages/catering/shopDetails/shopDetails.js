@@ -1,51 +1,6 @@
 // pages/shopDetails/shopDetails.js
-let datas = {
-  "goodsid": "260",
-  "goodsname": "可口可乐",
-  "goodsimg": "/image/catering-01.jpg",
-  "price": "5.00",
-  'stock':999,
-  "goodsspec": "精品新品",
-  "goodssort": "800", //存货量
-  "createtime": "2018-07-03 12:00:51",
-  "goodsfahuo": "一号公寓三楼超市",
-  "goodsping": "300", //评价数量
-  "goodsCanshu": {
-    goodsCanname: "可口可乐",
-    goodsCanNumber: "154100221",
-    goodsCanlei: "饮品类",
-    goodsCanshou: "商品售后商品售后商品售后商品售后",
-  }, 
-  // "goodsKouwei": {
-  //   goodsKouname: "口味",
-  //   goodsKou: [{
-  //     goodsKou: "原味",
-  //     goodssort: "100",
-  //   }, {
-  //     goodsKou: "樱桃味",
-  //     goodssort: "200",
-  //   }, {
-  //     goodsKou: "荔枝味",
-  //     goodssort: "300",
-  //   }]
-  // },
-  // "goodsGuige": {
-  //   goodsGuiname: "规格",
-  //   goodsGui: [{
-  //     goodsGui: "150ml",
-  //     goodsGuiMoney: "99.00",
-  //     goodssort: "100",
-  //   }, {
-  //     goodsGui: "250ml",
-  //     goodsGuiMoney: "129.00",
-  //     goodssort: "200",
-  //   }, {
-  //     goodsGui: "400ml",
-  //     goodsGuiMoney: "159.00",
-  //     goodssort: "300",
-  //   }]
-  // },
-};
+import WxParse from '../../../wxParse/wxParse.js';
+const app = getApp();
 let goodsid;
 Page({
 
@@ -54,7 +9,7 @@ Page({
     mask: {
       opacity: 0,
       display: 'none',
-      goods_id:''
+      goods_id: ''
     },
     //弹窗
     returnDeposit: {
@@ -62,71 +17,96 @@ Page({
       opacity: 1
     },
     datas: '', //商品详情
-    guiGeNumber:0,     //弹窗里商品规格下标
-    KouweiNumber:0,    //弹窗里口味下标
+    guiGeNumber: 0, //弹窗里商品规格下标
+    KouweiNumber: 0, //弹窗里口味下标
     numbers: 1, //商品数量
     swiperIndexs: 0, //商品详情和规格参数的下标
-    imgUrls: ['/image/shopdetails.jpg', '/image/shopdetails.jpg'], //轮播图
+    imgUrls: [], //轮播图
+    baseUrl: app.globalData.baseUrl, //图片路径
+    type: '', //判断是否是购物车还是购买
   },
   onLoad: function(options) {
     console.log(options);
     goodsid = options.goodsid;
-    console.log(goodsid)
-    this.setData({
-      datas: datas
+    wx.showLoading({
+      title: '加载中',
     })
-    console.log(this.data.datas)
+    //商品详情接口
+    wx.request({
+      method: 'POST',
+      url: `${app.globalData.api}goods/goodsInfo`,
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+        schoolId: 1,
+        goodsId: goodsid
+      },
+      success: res => {
+        wx.hideLoading();
+        console.log(res);
+        console.log({
+          shopId: goodsid
+        })
+        this.setData({
+          imgUrls: res.data.pro.img_arr,
+          datas: res.data.pro
+        });
+        let article = res.data.pro.content;
+        article = article.replace(/&amp;nbsp;/g, ' ');
+        WxParse.wxParse('article', 'html', article, this, 5);
+        console.log(this.data.datas)
+      }
+    });
   },
   // 进入购物车
-  go_cart(){
+  go_cart() {
     wx.switchTab({
-      url: '../cart/cart',
+      url: '../../cart/cart',
     })
   },
 
   //点击规格
-  bindtapGui(e){
+  bindtapGui(e) {
     console.log(e);
     let guiGe = e.currentTarget.dataset.index;
     this.setData({
-      guiGeNumber:guiGe
+      guiGeNumber: guiGe
     })
     console.log(this.data.datas.goodsGuige.goodsGui)
     console.log()
   },
   //点击口味
-  bindtapKou(e){
+  bindtapKou(e) {
     console.log(e);
     let Kouwei = e.currentTarget.dataset.index;
     this.setData({
-      KouweiNumber:Kouwei
+      KouweiNumber: Kouwei
     })
   },
   // 加入购物车
-  addcart(){
+  addcart() {
     var numbers = this.data.numbers;
     var datas = this.data.datas;
-    var goodsimg = datas.goodsimg;
-    var goodsname = datas.goodsname;
-    var price = datas.price;
+    var goodsimg = app.globalData.baseUrl+datas.photo_x;
+    var goodsname = datas.name;
+    var price = datas.price_yh;
     console.log(goodsid)
-    var cart_item = { goods_id: goodsid, name: goodsname, img: goodsimg, price: price, num: numbers,info:'规格：500ml'};
+    var cart_item = { goods_id: goodsid, name: goodsname, img: goodsimg, price: price, num: numbers, info: '规格：500ml' };
     var shop_cart = wx.getStorageSync('shop_cart');
     var test = true;
-    if (shop_cart){
+    if (shop_cart) {
       var len = shop_cart.length;
-      if(len>0){
-        for(var i=0;i<len;i++){
-          if (goodsid == shop_cart[i].goods_id){
+      if (len > 0) {
+        for (var i = 0; i < len; i++) {
+          if (goodsid == shop_cart[i].goods_id) {
             shop_cart[i].num += numbers;
             test = false;
           }
         }
       }
-      if (test){
+      if (test) {
         shop_cart.push(cart_item);
       }
-    }else{
+    } else {
       shop_cart = [];
       shop_cart.push(cart_item);
     }
@@ -187,9 +167,9 @@ Page({
   confrim() {
     this.bindtapClose();
     var type = this.data.type;
-    if(type==0){
+    if (type == 0) {
       this.addcart();
-    }else{
+    } else {
       this.buy_now();
     }
   },
@@ -197,7 +177,7 @@ Page({
   bindtapMasks(e) {
     var index = e.currentTarget.dataset.index;
     this.setData({
-      type:index
+      type: index
     })
     let mask = this.data.mask,
       returnDeposit = this.data.returnDeposit;

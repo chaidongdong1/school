@@ -122,6 +122,16 @@ let datas = {
 Page({
 
   data: {
+    //遮罩层
+    mask: {
+      opacity: 0,
+      display: 'none',
+    },
+    //弹窗
+    returnDeposit: {
+      translateY: 'translateY(1500px)',
+      opacity: 1
+    },
     choose: 0, //导航下标
     date: '请选择时间', //时间选择器
     lists: [], //导航
@@ -210,6 +220,30 @@ Page({
 
     setTimeout(function() {
       wx.hideLoading();
+    }, 500);
+  },
+  //弹窗显示
+  bindtapMasks(e) {
+    let mask = this.data.mask,
+      returnDeposit = this.data.returnDeposit;
+    mask.display = 'block';
+    this.setData({ mask });
+    mask.opacity = 1;
+    returnDeposit.translateY = 'translateY(0)';
+    returnDeposit.opacity = 1;
+    this.setData({ mask, returnDeposit });
+  },
+  //关闭弹窗
+  bindtapClose() {
+    let mask = this.data.mask,
+      returnDeposit = this.data.returnDeposit;
+    mask.opacity = 0;
+    returnDeposit.opacity = 0;
+    this.setData({ mask, returnDeposit });
+    setTimeout(() => {
+      mask.display = 'none';
+      returnDeposit.translateY = 'translateY(1500px)';
+      this.setData({ mask, returnDeposit });
     }, 500);
   },
   onShareAppMessage: function() {

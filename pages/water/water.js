@@ -1,3 +1,5 @@
+import WxParse from '../../wxParse/wxParse.js';
+const app = getApp();
 Page({
 
   data: {
@@ -11,29 +13,92 @@ Page({
       translateY: 'translateY(1500px)',
       opacity: 1
     },
-    choose2:0,
-    choose: 0,
-    water: '',
-    floor: '',
-    freight:'0.00',
+    datas: '', //商品详情数据
+    baseUrl: app.globalData.baseUrl, //图片路径
+    lists: [], //送水列表数据
+    water: '', //有桶无桶的数组
+    floor: '', //楼层的数组
+    freight: '0.00', //楼层的价格
     numbers: 1, //商品数量
     swiperIndexs: 0, //商品详情和规格参数的下标
-    imgUrls: ['../../image/shui.png', '../../image/shui.png'], //轮播图
-    buy_type: '',
+    buy_type: '', //判断是购买还是加入购物车
+    price: '', //有无桶的价格
+    total: '', //总价
+    choose2: 0, //楼层的下标
+    choose: 0, //有桶无桶的下标
     list: [],
-    list3: [],
-    id: '',
-    price: '',
-    stock: '',
-    record: [],
-    total:''
+    // list3: [],
+    // id: '',
+    // record: [],
   },
-  onLoad: function (option) {
+  onLoad: function(option) {
+    this.getLists();
+  },
+  getLists() {
+    wx.showLoading({
+      title: '加载中',
+    });
+    //送水列表接口
+    wx.request({
+      method: 'POST',
+      url: `${app.globalData.api}goods/goodsList`,
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+        schoolId: 2,
+        proType: 2,
+      },
+      success: res => {
+        console.log(res);
+        this.setData({
+          lists: res.data.data.root
+        });
+        let goodsId = res.data.data.root[this.data.choose].id;
+        //送水详情接口（获取列表的第一个商品Id）
+        wx.request({
+          method: 'POST',
+          url: `${app.globalData.api}goods/goodsInfo`,
+          header: { 'content-type': 'application/x-www-form-urlencoded' },
+          data: {
+            schoolId: 2,
+            goodsId: goodsId,
+          },
+          success: res => {
+            console.log({ goodsId: goodsId })
+            wx.hideLoading()
+            console.log(res);
+            this.setData({
+              datas: res.data.pro
+            });
+            this.loadProductDetail();
+            console.log(this.data.datas);
+            let article = res.data.pro.content;
+            article = article.replace(/&amp;nbsp;/g, ' ');
+            WxParse.wxParse('article', 'html', article, this, 5);
+          }
+        });
+      }
+    });
+  },
+  // 商品详情数据获取
+  loadProductDetail: function() {
     var that = this;
-    that.loadProductDetail();
+    var water = this.data.lists;
+    var floor = [{ name: '一楼到三楼', price: '3.00' }, { name: '四楼到六楼', price: '5.00' }];
+    // var stock = 999;
+    var price = water[this.data.choose].price_yh;
+    console.log(price);
+    var freight = floor[this.data.choose2].price;
+    var total = parseFloat(price) + parseFloat(freight);
+    that.setData({
+      water: water, //有桶无桶的数组
+      floor: floor, //楼层的数组
+      price: price, //有无桶的价格
+      freight: freight, //楼层的价格
+      total: total //总价
+    });
   },
   // 加入购车、立即购买确定
-  confirm: function (e) {
+  confirm: function(e) {
     var type = this.data.buy_type;
     var list = this.data.list;
     if (list[0]) {
@@ -56,13 +121,13 @@ Page({
     }
   },
   // 进入购物车
-  go_cart(){
+  go_cart() {
     wx.switchTab({
       url: '../cart/cart',
     })
   },
   // 立即购买
-  buy_now(){
+  buy_now() {
     var price = this.data.price;
     var freight = this.data.freight;
     var u_price = parseFloat(price) + parseFloat(freight);
@@ -71,14 +136,14 @@ Page({
     var water0 = this.data.water;
     var floor = this.data.floor;
     var numbers = this.data.numbers;
-    var water_item = { specs: water0[choose].name, floor: floor[choose2].name, img: '/image/shui.png', price: u_price, num: numbers, name: "桶装水", choose: choose, choose2: choose2 };
+    var water_item = { specs: water0[choose].name, floor: floor[choose2].name, img: '/image/shui.png', price: u_price, num: numbers, name: water0[choose].name, choose: choose, choose2: choose2 };
     wx.setStorageSync('water_buy', water_item);
     wx.navigateTo({
       url: '../submitOrder/submitOrder?type=2'
     })
   },
   // 加入购物车
-  addShopCart(){
+  addShopCart() {
     var price = this.data.price;
     var freight = this.data.freight;
     var u_price = parseFloat(price) + parseFloat(freight);
@@ -86,20 +151,20 @@ Page({
     var choose2 = this.data.choose2;
     var water0 = this.data.water;
     var floor = this.data.floor;
-    var numbers = this.data.numbers; 
-    var water_item = { specs: water0[choose].name, floor: floor[choose2].name, img:'/image/shui.png', price: u_price, num: numbers, name: "桶装水", choose: choose, choose2: choose2};
+    var numbers = this.data.numbers;
+    var water_item = { specs: water0[choose].name, floor: floor[choose2].name, img: '/image/shui.png', price: u_price, num: numbers, name: water0[choose].name, choose: choose, choose2: choose2 };
 
     var water = wx.getStorageSync('water_cart');
     var control = true;
-    if (water){
+    if (water) {
       var len = water.length;
-      for(var i=0;i<len;i++){
-        if (choose == water[i].choose && choose2 == water[i].choose2){
+      for (var i = 0; i < len; i++) {
+        if (choose == water[i].choose && choose2 == water[i].choose2) {
           water[i].num += numbers;
           control = false;
         }
       }
-      if (control){
+      if (control) {
         water.push(water_item);
         control = false;
       }
@@ -111,69 +176,18 @@ Page({
     wx.setStorageSync('water_cart', water);
     wx.showToast({
       title: '成功加入购物车',
-      icon:'none',
-      duration:1000
+      icon: 'none',
+      duration: 1000
     })
-  },
-  // 商品详情数据获取
-  loadProductDetail: function () {
-    var that = this;
-    // wx.request({
-    //   url: app.data.ceshiUrl + '/Api/Product/index',
-    //   method: 'post',
-    //   data: {},
-    //   header: {
-    //     'Content-Type': 'application/x-www-form-urlencoded'
-    //   },
-    //   success: function (res) {
-    
-        //var status = res.data.status;
-    var status=1;
-        if (status == 1) {
-          var water = [{ name: '有桶水', price: '10.00' }, { name: '无桶水', price: '60.00' }];
-          var floor = [{ name: '一楼到三楼', price: '3.00' }, { name: '四楼到六楼', price: '5.00' }];
-          var stock = 999;
-          var price = water[0].price;
-          var freight = floor[0].price;
-          var total = parseFloat(price) + parseFloat(freight);
-          that.setData({
-            water: water,
-            stock: stock,
-            floor: floor,
-            price: price,
-            freight: freight,
-            total: total
-          });
-        } else {
-          // wx.showToast({
-          //   title: res.data.err,
-          //   duration: 2000,
-          //   icon: 'none'
-          // });
-        }
-    //   },
-    //   fail: function (e) {
-    //     wx.showToast({
-    //       title: '网络异常！',
-    //       duration: 2000,
-    //       icon: 'none'
-    //     });
-    //   },
-    //   complete: function () {
-    //     that.setData({
-    //       showLoading: false
-    //     })
-    //   }
-    // });
   },
   // 选择楼层
   choose2(e) {
     var index = e.currentTarget.dataset.index;
     var price = this.data.price;
-    var numbers = this.data.numbers; 
     var freight = e.currentTarget.dataset.price;
     var total = parseFloat(freight) + parseFloat(price);
-    total = total * numbers.toFixed(2);
+    // var numbers = this.data.numbers;
+    // total = total * numbers.toFixed(2);
     this.setData({
       choose2: index,
       freight: freight,
@@ -181,18 +195,19 @@ Page({
     })
   },
   /* 选择规格事件 */
-  choose(e){
+  choose(e) {
     var index = e.currentTarget.dataset.index;
     var price = e.currentTarget.dataset.price;
-    var freight = this.data.freight;
-    var numbers = this.data.numbers; 
-    var total = parseFloat(freight) + parseFloat(price);
-    total = total * numbers.toFixed(2);
+    // var freight = this.data.freight;
+    // var numbers = this.data.numbers;
+    // var total = parseFloat(freight) + parseFloat(price);
+    // total = total * numbers.toFixed(2);
     this.setData({
       choose: index,
       price: price,
-      total: total
+      // total: total
     })
+    this.getLists();
   },
   //点击显示商品详情
   shopDetail() {
@@ -215,32 +230,28 @@ Page({
         duration: 1500
       })
     } else {
-      let numbersJian = this.data.numbers - 1;
-      var freight = this.data.freight; 
-      var price = this.data.price;
-      var total = parseFloat(freight) + parseFloat(price);
-      total = total * numbersJian.toFixed(2);
+      let numbersJian = this.data.numbers*1 - 1;
+      // var freight = this.data.freight;
+      // var price = this.data.price;
+      // var total = parseFloat(freight) + parseFloat(price);
+      // total = total * numbersJian.toFixed(2);
       this.setData({
         numbers: numbersJian,
-        total: total
+        // total: total
       })
     }
   },
   //商品数量增加
   bindtapJia() {
-    var stock = this.data.stock;
-    var numbers = this.data.numbers;
-    if (numbers < stock){
-      let numbersJia = numbers + 1;
-      var freight = this.data.freight;
-      var price = this.data.price;
-      var total = parseFloat(freight) + parseFloat(price);
-      total = total * numbersJia.toFixed(2);
-      this.setData({
-        numbers: numbersJia,
-        total: total
-      })
-    }
+    var numbersJia = this.data.numbers*1 + 1;
+    // var freight = this.data.freight;
+    // var price = this.data.price;
+    // var total = parseFloat(freight) + parseFloat(price);
+    // total = total * numbersJia.toFixed(2);
+    this.setData({
+      numbers: numbersJia,
+      // total: total
+    })
   },
   //弹窗显示
   bindtapMasks(e) {
@@ -249,7 +260,7 @@ Page({
       buy_type: buy_type
     })
     let mask = this.data.mask,
-    returnDeposit = this.data.returnDeposit;
+      returnDeposit = this.data.returnDeposit;
     mask.display = 'block';
     this.setData({ mask });
     mask.opacity = 1;

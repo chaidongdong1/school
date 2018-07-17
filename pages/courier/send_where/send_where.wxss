@@ -82,6 +82,7 @@
 	line-height: 88rpx;
 	border-radius: 10rpx;
 }
+
 .wrap{
   padding-left: 30rpx;
   padding-right: 44rpx;

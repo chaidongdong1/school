@@ -4,71 +4,39 @@
   <view class="seek-top">
     <view>
       <image src="../../image/index-01.png"></image>
-      <input type="text" name="" placeholder="请输入您的搜索内容" />
+      <input type="text" name="" bindinput="bindText" placeholder="请输入您的搜索内容" bindblur="bindJiaodian" auto-focus/>
     </view>
     <view>
-      <button>搜索</button>
+      <button bindtap="bindButton">搜索</button>
     </view>
   </view>
   <!-- 有搜索内容时 -->
-  <view class="catering">
+  <view class="catering" wx:if="{{datas.length != 0}}">
     <!-- 商品 -->
     <view class="cater-shop">
       <!-- 第一条 -->
-      <view class="shop-item">
+      <view class="shop-item" bindtap='go_detail' wx:for="{{datas}}" wx:key="{{index}}" data-goodsid="{{item.id}}">
         <view>
-          <image src="../../image/catering-01.jpg"></image>
+          <image src="{{baseUrl}}{{item.photo_x}}"></image>
         </view>
-        <view>超市精品方便面超市精品方便面</view>
-        <view>精品新品</view>
-        <view>￥8.00
-          <text>销量：800件</text>
-        </view>
-      </view>
-      <!-- 第一条 -->
-      <view class="shop-item">
-        <view>
-          <image src="../../image/catering-01.jpg"></image>
-        </view>
-        <view>超市精品方便面超市精品方便面</view>
-        <view>精品新品</view>
-        <view>￥8.00
-          <text>销量：800件</text>
-        </view>
-      </view>
-      <!-- 第一条 -->
-      <view class="shop-item">
-        <view>
-          <image src="../../image/catering-02.jpg"></image>
-        </view>
-        <view>超市精品方便面超市精品方便面</view>
-        <view>精品新品</view>
-        <view>￥8.00
-          <text>销量：800件</text>
-        </view>
-      </view>
-      <!-- 第一条 -->
-      <view class="shop-item">
-        <view>
-          <image src="../../image/catering-02.jpg"></image>
-        </view>
-        <view>超市精品方便面超市精品方便面</view>
-        <view>精品新品</view>
-        <view>￥8.00
-          <text>销量：800件</text>
+        <view>{{item.name}}</view>
+        <view>{{item.is_hot == 1 ? '精品' : ''}}</view>
+        <view>￥{{item.price_yh}}
+          <text>销量{{item.saleNum}}件</text>
         </view>
       </view>
     </view>
     <!-- 已加载全部 -->
-    <view class="cart-quanbu">已加载全部</view>
+    <view class="cart-quanbu" wx:if="{{finish == true && currPage == totalPage && datas.length != 0}}">已加载全部</view>
   </view>
   <!-- 没有搜索内容时 -->
-  <view class="address-kong">
+  <view class="address-kong" wx:if="{{finish == true && (!datas || datas.length == 0)}}">
     <view>
       <image src="../../image/seek-kong.png"></image>
     </view>
     <view>找不到搜索结果</view>
-    <view>没有所搜索到关于“<text>方便面</text>”的商品，</view>
+    <view>没有所搜索到关于“
+      <text>{{value}}</text>”的商品，</view>
     <view>建议换个关键词试试</view>
   </view>
 </view>

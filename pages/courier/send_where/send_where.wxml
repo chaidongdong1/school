@@ -5,7 +5,7 @@
     <image class='add_img fl_l' src='/image/position2.png'></image>
     <view class='add_info fl_l'>已有地址</view>
   </view>
-</navigator>
+</navigator> 
 <view class="address"> 
   <view class="address-item">
     <view>收 货 人 ：</view>

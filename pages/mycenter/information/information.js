@@ -7,7 +7,7 @@ Page({
     // index: 0,
     showModal: false, //判断授权弹窗是否显示
     name: '', //真实姓名
-    number: '', //手机号
+    // number: '', //手机号
     code: '', //验证码
   },
   onLoad: function(options) {
@@ -30,12 +30,12 @@ Page({
     });
   },
   //输入真实姓名
-  bindtapName(e) {
-    let name = e.detail.value;
-    this.setData({
-      name: name
-    });
-  },
+  // bindtapName(e) {
+  //   let name = e.detail.value;
+  //   this.setData({
+  //     name: name
+  //   });
+  // },
   //输入手机号
   bindtapNumber(e) {
     let number = e.detail.value;
@@ -52,13 +52,7 @@ Page({
   },
   //提交信息
   bindButton() {
-    if (!this.data.name) {
-      wx.showToast({
-        title: '请填写姓名',
-        image: '../../../image/warning.png',
-        duration: 1500
-      });
-    } else if (!this.data.number) {
+    if (!this.data.number) {
       wx.showToast({
         title: '请填写手机号',
         image: '../../../image/warning.png',
@@ -82,7 +76,7 @@ Page({
           mobile: this.data.number,
           userId: app.globalData.userId,
           passcode: this.data.code,
-          trueName: this.data.name
+          // trueName: this.data.name
         },
         success: res => {
           console.log(res);

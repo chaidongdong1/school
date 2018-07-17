@@ -14,7 +14,7 @@
   <view class="address-list">
     <!-- 第一条 -->
     <view class='wrap' wx:for="{{address}}" wx:key="{{index}}">
-      <view class="address-list-item" bindtap='choose' data-index='{{item.addressId}}'>
+      <view class="address-list-item" data-isDefault='{{item.isDefault}}' bindtap='{{type==1?"goBack":""}}' data-id='{{item.addressId}}' data-index='{{index}}'>
         <view class="item-neirong">
           <image src="../../image/address-02.png"></image>
         </view>
@@ -23,11 +23,11 @@
             <view class='fl_l'>姓名：{{item.userName}}</view>
             <view class='fl_r'>手机号：{{item.userPhone}}</view>
           </view>
-          <view class='address'>地址：{{item.schoolName}}{{item.buildName}}{{item.address}}</view>
+          <view class='address'>地址：{{item.schoolName}}{{item.buildName}}{{item.floorNum}}楼 {{item.address}}</view>
         </view>
       </view>
       <view class='botm clear'>
-        <view class='fl_l clear' bindtap='{{item.isDefault == 1 ? "":"choose"}}' data-index='{{item.addressId}}'>
+        <view class='fl_l clear' bindtap='{{item.isDefault == 1 ? "":"choose"}}' data-id='{{item.addressId}}' data-index='{{index}}'>
           <image wx:if="{{item.isDefault == 1}}" class='fl_l default_img' src='/image/cart_del.png'></image>
           <view wx:if="{{item.isDefault == 0}}" class='fl_l null'></view>
           <view wx:if="{{item.isDefault == 1}}" class='fl_l default_txt'>默认地址</view>

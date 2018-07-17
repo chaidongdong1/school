@@ -1,4 +1,5 @@
 <!--pages/water/water.wxml-->
+<import src="../../wxParse/wxParse.wxml" />
 <view class="shop">
   <!-- top -->
   <view class="top">
@@ -16,20 +17,19 @@
   <!-- 商品轮播 -->
   <view class="index-banner">
     <swiper class="index-swiper" indicator-dots="true" indicator-active-color="#309EFD" autoplay="true" interval="5000" duration="1000" circular="true">
-      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+      <block wx:for="{{datas.img_arr}}" wx:key="{{index}}">
         <swiper-item>
-          <image src="{{item}}" class="index-banner-image" />
+          <image src="{{baseUrl}}{{item}}" class="index-banner-image" />
         </swiper-item>
       </block>
     </swiper>
   </view>
   <!-- 产品内容 -->
   <view class="shop-title">
-    <view>可口可乐 畅饮任何一款可口可乐产品所带来的简单快乐让那一刻变得与众不同</view>
+    <view>{{datas.name}}</view>
     <view class="shop-t-jiage">
       <view>
-        <view>￥800.00</view>
-        <view>存货量：1566件</view>
+        单价：<text>￥{{datas.price_yh}}</text>
       </view>
       <!-- 分享 -->
       <view class="shop-t-fenxiang">
@@ -37,10 +37,9 @@
         <view>分享</view>
       </view>
     </view>
-    <!-- <view>发货地：一号公寓一楼学生超市</view> -->
   </view>
   <!-- 选择参数 -->
-  <view class="shop-canshu" bindtap="bindtapMasks">
+  <view class="shop-canshu" bindtap="bindtapMasks" data-type='1'>
     <view>选择商品参数、数量</view>
     <image src="../../image/index-06.png"></image>
   </view>
@@ -58,7 +57,9 @@
     </view>
     <!-- 详情内容 -->
     <view class="shops-detail">
-      <view wx:if="{{swiperIndexs == 0}}" style="font-size: 28rpx;color: #666;">可口可乐 畅饮任何一款可口可乐产品所带来的简单快乐让那一刻变得与众不同可口可乐 畅饮任何一款可口可乐产品所带来的简单快乐让那一刻变得与众不同可口可乐 畅饮任何一款可口可乐产品所带来的简单快乐让那一刻变得与众不同</view>
+      <view wx:if="{{swiperIndexs == 0}}">
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      </view>
       <view wx:if="{{swiperIndexs == 1}}">
         <view class="shop-guige">商品名称：
           <text>可口可乐</text>
@@ -88,20 +89,18 @@
 <!-- 弹窗 -->
 <view class="mask" style="opacity: {{mask.opacity}}; display: {{mask.display}};">
   <view class="masks" bindtap="bindtapClose"></view>
-  <view class="mask-shop"  style="transform: {{returnDeposit.translateY}}; opacity: {{returnDeposit.opacity}};">
+  <view class="mask-shop" style="transform: {{returnDeposit.translateY}}; opacity: {{returnDeposit.opacity}};">
     <view class="mask-tp">
-      <image src="../../image/shui.png"></image>
-      <view>￥{{total}}</view> 
-      <view>存货量：{{stock}}件</view>
+      <image src="{{baseUrl}}{{datas.photo_x}}"></image>
+      <view>单价：<text>￥{{total}}</text></view>
       <image bindtap="bindtapClose" src="../../image/shopdetails-05.png"></image>
     </view>
-
     <view class='list_wrap'>
       <view class="commodity_attr_list">
         <view class="attr_box">
           <view class="attr_name">规格</view>
           <view class="attr_value_box">
-            <view class="attr_value {{choose==index?'active':''}} attr_value_active" wx:for="{{water}}" wx:key="water" bindtap="{{choose==index? '': 'choose'}}" data-price='{{item.price}}' data-index="{{index}}">{{item.name}}</view>
+            <view class="attr_value {{choose==index?'active':''}} attr_value_active" wx:for="{{water}}" wx:key="water" bindtap="{{choose==index? '': 'choose'}}" data-price='{{item.price_yh}}' data-index="{{index}}">{{item.name}}</view>
           </view>
         </view>
         <view class="attr_box">
@@ -112,26 +111,6 @@
         </view>
       </view>
     </view>
-
-    <!-- 规格和口味 -->
-     <!-- <view class="mask-guige"> -->
-      <!-- 规格 -->
-      <!--<view class="mask-guige1">
-        <view>规格</view>
-        <view class="mask-g-xuan">
-          <view class="mask-active">有桶</view>
-          <view>无桶</view>
-        </view>
-      </view> -->
-      <!-- 楼层 -->
-      <!-- <view class="mask-guige1">
-        <view>楼层</view>
-        <view class="mask-g-xuan">
-          <view class="mask-active">一楼到三楼</view>
-          <view>四楼到六楼</view>
-        </view>
-      </view>
-    </view> -->
     <!-- 数量 -->
     <view class="mask-number">
       <view>数量</view>
@@ -143,7 +122,7 @@
     </view>
     <!-- 按钮 -->
     <view class="mask-anniu">
-      <view bindtap='confirm'>确定</view>
+      <view bindtap='confirm'>{{buy_type == 1 ? '立即购买' : '加入购物车'}}</view>
     </view>
   </view>
 </view>

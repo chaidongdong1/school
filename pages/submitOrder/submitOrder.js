@@ -1,4 +1,5 @@
 // pages/submitOrder/submitOrder.js
+var app = getApp();
 Page({
 
   data: {
@@ -16,10 +17,15 @@ Page({
     address:'',
     shop_goods:[],
     water:[],
+    dining:[], 
+    type:''   //订单类型
   },
   onLoad: function (options) {  // type 1 超市； 2 水；  3餐饮 ; 0 购物车
     console.log(options)
     var type = options.type;
+    this.setData({
+      type:type
+    })
     if (type==1){
       var shop_goods = [];
       var shop_buy = wx.getStorageSync('shop_buy');
@@ -37,6 +43,17 @@ Page({
         water: water
       })
     }
+    if (type == 3) {
+      var dining_buy = wx.getStorageSync('dining_buy');
+      var dining = dining_buy.val;
+      var shopId = dining_buy.shop_id;
+      var shopName = dining_buy.shopName;
+      this.setData({
+        dining: dining,
+        shopName:shopName,
+        shopId: shopId
+      })
+    }
   },
   onShow: function (options) {
     var default_address = wx.getStorageSync('default_address');
@@ -48,7 +65,7 @@ Page({
   },
   choose_address(){
     wx.navigateTo({
-      url: '../address/address'
+      url: '../address/address?type=1'
     })
   },
   //选择保险费开关
@@ -84,4 +101,45 @@ Page({
       this.setData({ mask, returnDeposit });
     }, 500);
   },
+  submitOrders(){
+    var type = this.data.type;
+    var that = this;
+    var address = this.data.address;
+    if(type==3){
+      // wx.request({
+      //   url: app.globalData.api + 'payment/unifiedorder',
+      //   method: 'POST',
+      //   header: {
+      //     'Content-Type': 'application/x-www-form-urlencoded'
+      //   },
+      //   data: {
+      //     userId:2,
+      //     schoolId: 2,
+      //     userName: address
+      //   },
+      //   success(data) {
+      //     var status = data.data.status;
+      //     if (status == 1) {
+      //       var root = data.data.data.root;
+      //       that.loadShopList(root);
+      //     } else {
+      //       wx.showToast({
+      //         title: data.data.msg,
+      //         duration: 2000,
+      //         icon: 'none'
+      //       });
+      //     }
+
+      //   },
+      //   fail: function () {
+      //     // fail
+      //     wx.showToast({
+      //       title: '网络异常！',
+      //       duration: 2000,
+      //       icon: 'none'
+      //     });
+      //   }
+      // })
+    }
+  }
 })

@@ -11,6 +11,10 @@
 	background: #309EFD;
 	display: flex;
 	justify-content: space-between;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
 }
 .seek-top>view:first-child{
 	flex: 1;
@@ -52,7 +56,7 @@
 .catering{
   width: 96%;
   height: atuo;
-  margin: 0 2%;
+  margin: 120rpx 2% 0 2%;
 }
 .cater-shop{
   width: 100%;
@@ -121,7 +125,7 @@
 .address-kong>view:first-child{
 	width: 325rpx;
 	height: 330rpx;
-	margin: 200rpx auto 50rpx auto;
+	margin: 300rpx auto 50rpx auto;
 }
 .address-kong>view:first-child>image{
 	width: 100%;

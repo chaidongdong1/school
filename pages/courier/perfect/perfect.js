@@ -1,10 +1,10 @@
 // pages/courier/perfect/perfect.js
 Page({
   data: {
-    courier: ['请选择','申通快递', '圆通快递', '顺丰快递'],
-    courier_index: 0,
-    address: ['请选择','学校东门口', '学校西门口', '学校北门口'],
-    address_index: 0,
+    //courier: ['请选择','申通快递', '圆通快递', '顺丰快递'],
+    courier:'',
+    //address: ['请选择','学校东门口', '学校西门口', '学校北门口'],
+    address:'',
     tel:'',
     name:'',
     code:''
@@ -20,18 +20,18 @@ Page({
   }, 
   // 提交完善信息
   submit() {
-    var courier_index = this.data.courier_index;
-    if (courier_index==0){
+    var courier = this.data.courier;
+    if (!courier){
       wx.showToast({
-        title: '请选择快递类型',
+        title: '请输入快递类型',
         icon:'none'
       })
       return;
     }
-    var address_index = this.data.address_index;
-    if (address_index == 0) {
+    var address = this.data.address;
+    if (address == 0) {
       wx.showToast({
-        title: '请选择快递位置',
+        title: '请输入快递位置',
         icon: 'none'
       })
       return;
@@ -71,13 +71,9 @@ Page({
       })
       return;
     }
-    var courier = this.data.courier;
-    var address = this.data.address;
-    var courier_choose = courier[courier_index];
-    var address_choose = address[address_index];
     var take_info={
-      courier:courier_choose,
-      address: address_choose,
+      courier: courier,
+      address: address,
       name:name,
       tel:tel,
       code:code
@@ -95,14 +91,16 @@ Page({
   },
   // 快递类型选择
   change1: function (e) {
+    var courie = e.detail.value;
     this.setData({
-      courier_index: e.detail.value
+      courier: courie
     })
   },
   // 快递位置选择
   change2: function (e) {
+    var address = e.detail.value;
     this.setData({
-      address_index: e.detail.value
+      address: address
     })
   },
   // 获取收货人名字

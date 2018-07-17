@@ -32,7 +32,7 @@
     </view>
     <view class='list_b clear'>
       <view class='date fl_l'>{{item.statsDate}}</view>
-      <view class='status fl_r'>{{item.statsType == 0 ? '待受理' : (item.statsType == 1 ? '配送中' : '已完成')}}</view>
+      <view class='status fl_r'>{{item.statsType == 0 ? '待受理' : (item.statsType == 1 ? '已完成' : '异常订单')}}</view>
     </view>
   </view>
 </view>

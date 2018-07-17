@@ -75,7 +75,7 @@
         <view>
           <view>{{item.name}}</view>
           <view>
-            <text>规格：{{item.specs}}</text>
+            <!-- <text>规格：{{item.specs}}</text> -->
             <text>楼层：{{item.floor}}</text>
           </view>
           <view class="cart-one-jiage">

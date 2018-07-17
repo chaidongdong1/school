@@ -1,20 +1,18 @@
 <!--pages/courier/perfect/perfect.wxml-->
-<view class='wrap'>
-  <view class='item clear arrow'>
-   <view class='item_l'>快 递 类 型：</view>
-   <picker class='item_r' bindchange="change1" value="{{courier_index}}" range="{{courier}}">
-    <view class="picker">
-      {{courier[courier_index]}}
-    </view>
-    </picker>
+<navigator url='../courAddress/courAddress' class='wrap arrow'>
+  <view class='old_address'>
+    <image class='add_img fl_l' src='/image/kuaidi2.png'></image>
+    <view class='add_info fl_l'>常用快递</view>
   </view>
-  <view class='item clear arrow'>
+</navigator>  
+<view class='wrap'>
+  <view class='item clear'>
+   <view class='item_l'>快 递 类 型：</view>
+   <input type='text' bindinput='change1' class='item_r' placeholder='请输入快递类型'></input>
+  </view>
+  <view class='item clear'>
    <view class='item_l'>快 递 位 置：</view>
-   <picker class='item_r' bindchange="change2" value="{{address_index}}" range="{{address}}">
-    <view class="picker">
-      {{address[address_index]}}
-    </view>
-    </picker>
+   <input type='text' bindinput='change2' class='item_r' placeholder='请输入快递位置'></input>
   </view>
   <view class='item clear'>
    <view class='item_l'>包裹收货人：</view>

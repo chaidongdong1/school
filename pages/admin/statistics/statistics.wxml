@@ -1,11 +1,11 @@
 <view class='section1 clear yellow'>
   <image class='fl_l order_img' src='/image/user.png'></image>
   <view class='fl_l order_txt'>用户数量（{{lists[0].listsNumber}}）</view>
-  <view class='fl_r order_date arrow'>
+  <!-- <view class='fl_r order_date arrow'>
     <picker mode="date" style="width: 100%;font-size: 30rpx;color: #333;" bindchange="bindDateChange">
       <view class="picker">{{date}}</view>
     </picker>
-  </view>
+  </view> -->
 </view>
 <view class='tab'>
   <view bindtap='tab_choose' data-index="{{index}}" class='tab_item {{choose == index ? "active":""}}' wx:for="{{lists}}" wx:key="{{index}}">
@@ -16,8 +16,8 @@
 <view class='list1' wx:for="{{datas}}" wx:key="{{index}}">
   <view class='list_item'>
     <view class='list_t clear'>
-      <image class='list_tl fl_l' src='{{item.statsHead}}'></image>
-      <view class='list_tr fl_l'>
+      <image bindtap="bindtapMasks" class='list_tl fl_l' src='{{item.statsHead}}'></image>
+      <view class='list_tr fl_l' bindtap="bindtapMasks">
         <view class='list_tr1'>
           <view class='fl_l'>{{item.statsName}}</view>
         </view>
@@ -28,7 +28,35 @@
           <view class='num fl_l'>申请时间：{{item.statsDate}}</view>
         </view>
       </view>
-      <view class='arrow_wrap fl_l'>{{item.statsType == 0 ? '' : (item.statsType == 1 ? '教师' : '派单员')}}</view>
+      <view class='arrow_wrap fl_l'>
+        <view class="{{item.statsType != 2 ? 'arrow_view1' : 'arrow_view'}}">{{item.statsType == 0 ? '' : (item.statsType == 1 ? '教师' : '派单员')}}</view>
+        <view wx:if="{{item.statsType == 2}}" class="arrow_butt">封禁</view>
+      </view>
     </view>
+  </view>
+</view>
+<!-- 弹窗 -->
+<view class="mask" style="opacity: {{mask.opacity}}; display: {{mask.display}};">
+  <view class="masks" bindtap="bindtapClose"></view>
+  <view class="mask-shop" style="transform: {{returnDeposit.translateY}}; opacity: {{returnDeposit.opacity}};">
+    <view class="mask-ju">
+      <!-- 关闭按钮 -->
+      <view class="mask-guan" bindtap="bindtapClose">
+        <image src="../../../image/shopdetails-05.png"></image>
+      </view>
+      <!-- 头像 -->
+      <view>
+        <image src="../../../image/user_img.png"></image>
+      </view>
+      <!-- 个人信息 -->
+      <view>
+        <view>真实姓名：<text>柴冬冬</text></view>
+        <view>用户昵称：<text>别离开</text></view>
+        <view>手 机 号 ：<text>13298343196</text></view>
+        <view>身份证号：<text>410923199710126666</text></view>
+        <view>申请时间：<text>2018-07-15 12:30:25</text></view>
+      </view>
+    </view>
+    <view class="mask-button">立即封禁</view>
   </view>
 </view>

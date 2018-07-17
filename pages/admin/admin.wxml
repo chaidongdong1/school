@@ -18,7 +18,7 @@
     <view class='item_txt'>派单员审核</view>
   </view> -->
 </view>
-<view bindtap='cut' wx:if="{{show}}" class='wrap_black'></view>
+<!-- <view bindtap='cut' wx:if="{{show}}" class='wrap_black'></view>
 <view wx:if="{{show}}" class='order_wrap'>
   <view class='order_item bo_b' bindtap='user_order'>
     <image class='order_img fl_l' src='/image/user_order.png'></image>
@@ -28,5 +28,5 @@
     <image class='order_img fl_l' src='/image/admin_order.png'></image>
     <view class='order_txt fl_l'>派单员派送订单</view>
   </view>
-</view>
+</view> -->
 

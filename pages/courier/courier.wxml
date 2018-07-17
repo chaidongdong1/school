@@ -2,7 +2,7 @@
 <view bindtap='take' wx:if="{{!take_info}}" class='section clear'>
   <view class='section_l fl_l'>
     取
-  </view>
+  </view> 
   <view class='section1_c fl_l'>
     <view class='section1_ct'>你的包裹在哪里？</view>
     <view class='section1_cb'>请输入地址信息</view>
