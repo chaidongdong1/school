@@ -1,11 +1,8 @@
 /* pages/courier/perfect/perfect.wxss */
-.wrap{
-  margin: 30rpx 0;
-  border-top: 1rpx solid #e5e5e5;
-  padding-left: 30rpx;
+page{
   background: #fff;
 }
-.item{
+.wrap .item{
   border-bottom: 1rpx solid #e7e7e7;
   display: flex;
 }
@@ -37,22 +34,123 @@
 }
 
 .wrap{
-  padding-left: 30rpx;
-  padding-right: 44rpx;
+  position: relative;
+  padding:0 30rpx;
   background: #fff;
-  margin-bottom: 20rpx;
+  margin-bottom: 60rpx;
+}
+.wrap2{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 200rpx;
+  height: 178rpx;
+  background: #fff;
+  border-left: 1rpx solid #e7e7e7;
+  border-bottom: 1rpx solid #e7e7e7;
+  z-index: 8;
+}
+.item1{
+  width: 270rpx;
+}
+.courieImg{
+  width: 86rpx;
+  height: 60rpx;
+  margin: 35rpx auto 0;
+  display: block;
+}
+.courieTxt{
+  text-align: center;
+  line-height: 80rpx;
+  color: #333;
+  font-size: 26rpx;
 }
 .old_address{
-  width: 600rpx;
+  width: 100%;
   height: 90rpx;
   line-height: 90rpx;
+  text-align: center;
 }
 .add_img{
   width: 40rpx;
   height: 40rpx;
   margin: 25rpx 15rpx 25rpx 0;
+  display: inline-block;
+  vertical-align: middle;
 }
 .add_info{
+  vertical-align: middle;
   font-size: 30rpx;
   color: #fc9d49;
+  display: inline-block;
+
+}
+.prompt{
+  font-size: 24rpx;
+  line-height: 48rpx;
+  height: 48rpx;
+  padding-left: 30rpx;
+  color: #fc9d49;
+  border-top: 10rpx solid #f5f5f5;
+  border-bottom: 10rpx solid #f5f5f5;
+  letter-spacing: 2rpx;
+}
+/*常用快递弹框  */
+.boxWrap{
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  opacity: 0.3;
+  z-index: 9;
+}
+.box{
+  background: #fff;
+  position: fixed;
+  left: 30rpx;
+  top: 300rpx;
+  z-index: 20;
+  width: 690rpx;
+  border-radius: 10rpx;
+  min-height: 300rpx;
+  padding: 20rpx 0 50rpx;
+}
+.cont{
+  padding: 0 20rpx;
+  margin-top: 30rpx;
+}
+.cont .item{
+  height: 60rpx;
+  color: #fff;
+  padding: 0 25rpx;
+  line-height: 60rpx;
+  letter-spacing: 3rpx;
+  font-size: 24rpx; 
+  background: #ccc;
+  border-radius: 10rpx;
+  margin: 0 15rpx 30rpx;
+}
+.cont .active{
+  background: #309efd;
+}
+.chooseEnd{
+  width: 580rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #fff;
+  margin: 30rpx auto 0;
+  background: #309efd;
+  border-radius: 10rpx;
+}
+.shut{
+  position: absolute;
+  bottom: -140rpx;
+  left: 300rpx;
+  width: 90rpx;
+  height: 90rpx;
+
 }

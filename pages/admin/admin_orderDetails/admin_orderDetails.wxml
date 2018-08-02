@@ -1,0 +1,151 @@
+<!--pages/mycenter/orderDetails/orderDetails.wxml-->
+<view class="order">
+  <view class="order-stats">当前订单状态：
+    <text>{{datas.orderStatus == 0 ? '未付款' : (datas.orderStatus == 10 ? '已付款' : (datas.orderStatus == 20 ? '已接单' : (datas.orderStatus == 30 ? '已完成' : (datas.orderStatus == -10 ? '退款中订单' : '退款已完成'))))}}</text>
+  </view>
+  <!-- 地址 -->
+  <view class="order-address">
+    <view>
+      <image src="../../../image/address-02.png"></image>
+    </view>
+    <view>
+      <view>姓名：{{datas.userName}}</view>
+      <view>手机号：{{datas.userPhone}}</view>
+      <view>收货地址：{{datas.userAddress}}</view>
+    </view>
+  </view>
+  <view class="order-a-bottom">
+    <image src="../../../image/address-bottom.png"></image>
+  </view>
+  <!-- 第一个订单 -->
+  <view class="order-shop-one">
+    <!-- 超市商品 -->
+    <view class="order-s-chao">
+      <view>
+        <image src="{{datas.orderType == 1 ? '/image/chaoshi.png' : (datas.orderType == 2 ? '/image/songshui.png' : (datas.orderType == 0 ? '/image/kuaidi.png' : '/image/canyin.png'))}}"></image>
+        <text>{{datas.orderType == 1 ? '超市订单' : (datas.orderType == 2 ? '送水订单' : (datas.orderType == 3 ? '餐饮订单' : '快递订单'))}}</text>
+        <image src="../../../image/index-06.png"></image>
+      </view>
+      <view>{{datas.orderStatus == 0 ? '未付款' : (datas.orderStatus == 10 ? '已付款' : (datas.orderStatus == 20 ? '已接单' : (datas.orderStatus == 30 ? '已完成' : (datas.orderStatus == -10 ? '退款中订单' : '退款已完成'))))}}</view>
+    </view>
+    <!-- 商品 -->
+    <view class="order-shoplist" data-shop="{{i.orderId}}">
+      <!-- 第一件商品 -->
+      <view class="order-shoplist-one" wx:for="{{datas.goodsList}}" wx:key="{{index}}" wx:if="{{datas.orderType != 0}}" bindtap="bindXiang" data-goodsid="{{item.goodsId}}" data-ordertype="{{datas.orderType}}">
+        <!-- 左图片 -->
+        <view wx:if="{{datas.orderType != 0}}">
+          <image src="{{baseUrl}}{{item.goodsThumbs}}"></image>
+        </view>
+        <!-- 右内容 -->
+        <view class="order-shoplist-right" wx:if="{{datas.orderType != 0}}">
+          <view>{{item.goodsName}}</view>
+          <view>
+            <text>规格：默认</text>
+            <!-- <text>口味：{{item.goodsShopKou}}</text> -->
+            <text>数量：{{item.goodsNums}}</text>
+          </view>
+          <view>
+            <text>￥{{item.goodsPrice}}</text>
+          </view>
+        </view>
+      </view>
+      <!-- 快递商品 -->
+      <view class="order-shoplist-one" wx:if="{{datas.orderType == 0}}" bindtap="bindXiang" data-ordertype="{{datas.orderType}}">
+        <!-- 左快递图片 -->
+        <view class="order-shoplist11" wx:if="{{datas.orderType == 0}}">
+          <image src="../../../image/kuaidi-01.png"></image>
+        </view>
+        <!-- 右内容 (快递)-->
+        <view class="order-shoplist-right" wx:if="{{datas.orderType == 0}}">
+          <view>{{datas.shopName}} {{datas.shopAddress}}</view>
+          <view>
+            <text>包裹信息：{{datas.packageName}} {{datas.packagePhone}}</text>
+            <!-- <view>数量：{{item.goodsShopNumber}}</view> -->
+          </view>
+          <view>包裹取件码：
+            <text>{{datas.packageCode}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 合计 -->
+    <view class="order-heji">
+      <view>共计
+        <text>{{datas.orderType == 0 ? '1' : datas.goodsList.length}}</text>件产品</view>
+      <view wx:if="{{datas.orderStatus == 0}}">合计
+        <text>{{datas.totalMoney*1 + datas.deliverMoney*1}}.00</text>元（含运费{{datas.deliverMoney}}元）</view>
+      <view wx:if="{{datas.orderStatus != 0}}">实付
+        <text>{{datas.realTotalMoney}}元</text>
+      </view>
+    </view>
+  </view>
+  <!-- 价格信息 -->
+  <view class="order-xiang1" wx:if="{{datas.orderStatus != 0}}">
+    <view>商品总价：
+      <text>{{datas.totalMoney}}元</text>
+    </view>
+    <view>运费价格：
+      <text>{{datas.deliverMoney}}元</text>
+    </view>
+    <view>优惠价格：
+      <text>{{datas.reduceMoney}}元</text>
+    </view>
+    <view>实付价格：
+      <text>{{datas.realTotalMoney}}元</text>
+    </view>
+  </view>
+  <!-- 订单信息 -->
+  <view class="order-xiang">
+    <view>订单编号：
+      <text>{{datas.orderNo}}</text>
+    </view>
+    <view>下单人名字：
+      <text>{{datas.userName}}</text>
+    </view>
+    <view>下单地址：
+      <text>{{datas.userAddress}}</text>
+    </view>
+    <view>下单电话：
+      <text>{{datas.userPhone}}</text>
+    </view>
+    <view>下单时间：
+      <text>{{datas.createTime}}</text>
+    </view>
+    <view wx:if="{{datas.orderStatus == 30}}">完成时间：
+      <text>{{datas.completeTime}}</text>
+    </view>
+    <view>我的备注：
+      <text>{{datas.orderRemarks}}</text>
+    </view>
+    <view wx:if="{{datas.orderStatus == -10 || datas.orderStatus == -11}}">退款原因：
+      <text>{{datas.refundReason}}</text>
+    </view>
+  </view>
+  <!-- 派单员信息 -->
+  <view class="order-xiang" wx:if="{{datas.orderStatus == 0 || datas.orderStatus == 10 ? false : true}}">
+    <view>派单员名字：
+      <text>{{datas.taskInfo.senderName}}</text>
+    </view>
+    <view>接单时间：
+      <text>{{datas.taskInfo.getTime}}</text>
+    </view>
+  </view>
+  <!-- 包裹信息 -->
+  <view class="order-xiang" wx:if="{{datas.orderType == 0}}">
+    <view>收件人姓名：
+      <text>{{datas.packageName}}</text>
+    </view>
+    <view>收件人电话：
+      <text>{{datas.packagePhone}}</text>
+    </view>
+    <view>收件时间：
+      <text>{{datas.sendTime}}</text>
+    </view>
+    <view>快递重量：
+      <text>{{datas.packageWeight}}</text>
+    </view>
+    <view>保险购买：
+      <text>{{datas.isProtect == 0 ? '未购买' : '已购买'}}</text>
+    </view>
+  </view>
+</view>

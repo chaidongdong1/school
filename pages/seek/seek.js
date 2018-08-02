@@ -13,6 +13,13 @@ Page({
   onLoad: function(options) {
 
   },
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/start/start?scene=' + app.globalData.userId
+    }
+  },
   //input输入框的内容
   bindText(e) {
     console.log(e);

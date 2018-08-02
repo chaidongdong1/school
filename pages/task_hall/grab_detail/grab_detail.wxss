@@ -68,7 +68,8 @@
 }
 .list_item{
   width: 100%;
-  margin-bottom: 20rpx
+  margin-bottom: 20rpx;
+  display: flex;
 }
 .item_l{
   width: 178rpx;
@@ -78,10 +79,10 @@
   display: block;
 }
 .item_c{
-  width: 500rpx;
-  height: 180rpx;
+  padding-right: 20rpx;
   display: block;
   margin: auto 0;
+  flex: 1;
 }
 .item_ct{
   width: 100%;
@@ -147,7 +148,6 @@
 /*section4  */
 .section4{
   background: #fff;
-  margin-bottom: 30rpx;
 }
 .section4_cont{
   padding: 20rpx;

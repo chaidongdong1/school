@@ -7,7 +7,7 @@
   </view>
   <view class='item fl_l' bindtap='order'>
     <image class='item_img' src='/image/admin_3.png'></image>
-    <view class='item_txt'>订单管理</view>
+    <view class='item_txt'>业务大厅</view>
   </view>
   <!-- <view class='item fl_l' bindtap='teacher'>
     <image class='item_img' src='/image/admin_4.png'></image>

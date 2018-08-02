@@ -1,80 +1,113 @@
 <!--pages/orderList/orderList.wxml-->
-<veiw class="order">
-	<!-- 头部导航 -->
-	<view class="order-nav">
-		<view bindtap="bindtapDao" class="{{listsIndex == 0 ? 'order-nav-active' : ''}}" data-index='0'>
-			<view><image src="{{listsIndex == 0 ? '../../image/ding-01.png' : '../../image/ding-02.png'}}"></image></view>
-			<view>订单进行中<text>(15)</text></view>
-		</view>
-		<view bindtap="bindtapDao" class="{{listsIndex == 1 ? 'order-nav-active1' : ''}}" data-index='1'>
-			<view><image src="{{listsIndex == 1 ? '../../image/ding-03.png' : '../../image/ding-04.png'}}"></image></view>
-			<view>订单已完成<text>(13)</text></view>
-		</view>
-	</view>
-	<!-- 商品订单 -->
-	<view class="order-shop">
-		<!-- 第一个订单 -->
-		<view class="order-shop-one" wx:for="{{datas}}" wx:key="{{i}}" wx:for-item="i">
-			<!-- 超市商品 -->
-			<view class="order-s-chao">
-				<view bindtap="bindtapTiao" data-shoptype="{{i.goodstype}}">
-					<image src="{{i.goodstype == 1 ? '/image/chaoshi.png' : (i.goodstype == 2 ? '/image/songshui.png' : (i.goodstype == 3 ? '/image/kuaidi.png' : '/image/canyin.png'))}}"></image>
-					<text>{{i.goodsname}}</text>
-					<image src="/image/index-06.png"></image>
-				</view>
-				<view>{{i.goodsStats == 0 ? '待付款' : (i.goodsStats == 1 ? '已付款' : '已完成')}}</view>
-			</view>
-			<!-- 商品 -->
-			<view class="order-shoplist" bindtap="bindtapShop" data-shop="{{i.goodsId}}">
-				<!-- 第一件商品 -->
-				<view class="order-shoplist-one" wx:for="{{i.goodsShop}}" wx:key="{{index}}">
-					<!-- 左图片 -->
-					<!-- class="{{i.goodstype == 3 ? 'order-shoplist11' : ''}}" -->
-					<view>
-						<image src="{{item.goodsShopimage}}"></image>
-					</view>
-					<!-- 右内容 -->
-					<view class="order-shoplist-right" wx:if="{{i.goodstype != 3}}">
-						<view>{{item.goodsShopname}}</view>
-						<view>
-							<text>规格：{{item.goodsShopGui}}</text>
-							<text>口味：{{item.goodsShopKou}}</text>
-							<text>数量：{{item.goodsShopNumber}}</text>
-						</view>
-						<view><text>￥{{item.goodsShopMoney}}</text></view>
-					</view>
-					<!-- 右内容 (快递)-->
-					<view class="order-shoplist-right" wx:if="{{i.goodstype == 3}}">
-						<view>{{item.goodsShopname}}</view>
-						<view>
-							<text>包裹信息：{{item.goodsShopGui}} {{item.goodsShopKou}}</text>
-							<!-- <view>数量：{{item.goodsShopNumber}}</view> -->
-						</view>
-						<view>包裹取件码：<text>{{item.goodsShopMa}}</text></view>
-					</view>
-				</view>
-			</view>
-			<!-- 按钮 -->
-			<view class="order-anniu">
-				<view>总计：￥{{i.goodsMoney}}元</view>
-				<view>
-					<view wx:if="{{i.goodsStats == 0 }}" bindtap="bindtapQuxiao" data-goodsid="{{i.goodsId}}">取消订单</view>
-					<view wx:if="{{i.goodsStats == 0 }}" bindtap="bindtapFukuan" data-goodsid="{{i.goodsId}}">继续付款</view>
-					<view wx:if="{{i.goodsStats == 1 }}" bindtap="bindtapTuikuan" data-goodsid="{{i.goodsId}}">订单退款</view>
-					<view wx:if="{{i.goodsStats == 1 }}" bindtap="bindtapQueren" data-goodsid="{{i.goodsId}}">确认收货</view>
-					<view wx:if="{{i.goodsStats == 2 }}" bindtap="bindtapXiadan" data-goodstype="{{i.goodstype}}">再来一单</view>
-					<view wx:if="{{i.goodsStats == 2 }}" bindtap="bindtapPingjia" data-goodsid="{{i.goodsId}}">去评价</view>
-				</view>
-			</view>
-		</view>
-	</view>
-	<!-- 已加载全部 -->
-	<view class="order-quanbu" wx:if="{{datas.length != 0}}">已加载全部</view>
-	<!-- 没有数据时 -->
-	<view class="order-wu" wx:if="{{!datas || datas.length == 0}}">
-		<view><image src="/image/dingdan-kong.png"></image></view>
-		<view>暂无记录</view>
-		<view>暂无商品订单记录！~</view>
-	</view>
-</veiw>
-
+<loading wx:if="{{showLoading}}">加载中</loading>
+<scroll-view class="order">
+  <!-- 头部导航 -->
+  <view class="order-nav">
+    <view bindtap="bindtapDao" class="{{listsIndex == 0 ? 'order-nav-active' : ''}}" data-index='0'>
+      <view>
+        <image src="{{listsIndex == 0 ? '../../image/ding-01.png' : '../../image/ding-02.png'}}"></image>
+      </view>
+      <view>订单进行中
+        <text>({{total}})</text>
+      </view>
+    </view>
+    <view bindtap="bindtapDao" class="{{listsIndex == 1 ? 'order-nav-active1' : ''}}" data-index='1'>
+      <view>
+        <image src="{{listsIndex == 1 ? '../../image/ding-03.png' : '../../image/ding-04.png'}}"></image>
+      </view>
+      <view>订单已完成
+        <text>({{total1}})</text>
+      </view>
+    </view>
+  </view>
+  <!-- 商品订单 -->
+  <view class="order-shop">
+    <!-- 第一个订单 -->
+    <view class="order-shop-one" wx:for="{{datas}}" wx:key="{{i}}" wx:for-item="i">
+      <!-- 超市商品 -->
+      <view class="order-s-chao">
+        <view bindtap="bindtapTiao" data-shoptype="{{i.orderType}}">
+          <image src="{{i.orderType == 1 ? '/image/chaoshi.png' : (i.orderType == 2 ? '/image/songshui.png' : (i.orderType == 0 ? '/image/kuaidi.png' : '/image/canyin.png'))}}"></image>
+          <text>{{i.orderType == 1 ? '超市订单' : (i.orderType == 2 ? '送水订单' : (i.orderType == 3 ? '餐饮订单' : '快递订单'))}}</text>
+          <image src="/image/index-06.png"></image>
+        </view>
+        <view>{{i.orderStatus == 0 ? '未付款' : ''}}
+        {{i.orderStatus == 10 ? '已付款' : ''}}
+        {{i.orderStatus == 20 ? '已接单' : ''}}
+        {{i.orderStatus == 30 ? '已完成' : ''}}
+        {{i.orderStatus == -10 ? '退款中订单' : ''}}
+        {{i.orderStatus == -11 ?  '退款已完成':''}}
+        {{i.orderStatus == 31 && i.goodsList.length > 1 ?  '评价中':''}}
+        {{i.orderStatus == 31 && i.goodsList.length == 1 ?  '评价已完成':''}}</view>
+      </view>
+      <!-- 商品 -->
+      <view class="order-shoplist" bindtap="bindtapShop" data-shop="{{i.orderId}}">
+        <!-- 非快递商品 -->
+        <view class="order-shoplist-one" wx:for="{{i.goodsList}}" wx:key="{{index}}" wx:if="{{i.orderType != 0}}">
+          <!-- 左图片 -->
+          <view wx:if="{{i.orderType != 0}}">
+            <image src="{{baseUrl}}{{item.goodsThumbs}}"></image>
+          </view>
+          <!-- 右内容 -->
+          <view class="order-shoplist-right" wx:if="{{i.orderType != 0}}">
+            <view>{{item.goodsName}}</view>
+            <view>
+              <text>规格：默认</text>
+              <!-- <text>口味：{{item.goodsShopKou}}</text> -->
+              <text>数量：{{item.goodsNums}}</text>
+            </view>
+            <view>
+              <text>￥{{item.goodsPrice}}</text>
+            </view>
+          </view>
+        </view>
+        <!-- 快递商品 -->
+        <view class="order-shoplist-one" wx:if="{{i.orderType == 0}}">
+          <!-- 左快递图片 -->
+          <view class="order-shoplist11" wx:if="{{i.orderType == 0}}">
+            <image src="../../image/kuaidi-01.png"></image>
+          </view>
+          <!-- 右内容 (快递)-->
+          <view class="order-shoplist-right" wx:if="{{i.orderType == 0}}">
+            <view>{{i.shopName}} {{i.shopAddress}}</view>
+            <view>
+              <text>包裹信息：{{i.packageName}} {{i.packagePhone}}</text>
+              <!-- <view>数量：{{item.goodsShopNumber}}</view> -->
+            </view>
+            <view>包裹取件码：
+              <text>{{i.packageCode}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 按钮 --> 
+      <view class="order-anniu">
+        <view wx:if="{{i.orderStatus == 0}}">总计：￥{{i.totalMoney}}元</view>
+        <view wx:if="{{i.orderStatus != 0}}">实付：￥{{i.realTotalMoney}}元</view>
+        <view>
+        	<!-- 未付款订单 -->
+          <view class="order-anniu-hui" wx:if="{{i.orderStatus == 0 }}" bindtap="bindtapQuxiao" data-goodsid="{{i.orderId}}" data-orderstatus="{{i.orderStatus}}">取消订单</view>
+          <view class="order-anniu-hong" wx:if="{{i.orderStatus == 0 }}" bindtap="bindtapFukuan" data-goodsid="{{i.orderId}}">继续付款</view>
+          <!-- 已付款 -->
+          <view class="order-anniu-hui" wx:if="{{i.orderStatus == 10 || i.orderStatus == 20}}" bindtap="bindtapTuikuan" data-goodsid="{{i.orderId}}">订单退款</view>
+          <view class="order-anniu-hong" wx:if="{{i.orderStatus == 10 ||  i.orderStatus == -10 || i.orderStatus == -11}}" bindtap="bindtapShop" data-shop="{{i.orderId}}">查看详情</view>
+          <view class="order-anniu-hong" wx:if="{{i.orderStatus == 20 }}" bindtap="bindtapQueren" data-goodsid="{{i.orderId}}">确认收货</view>
+          <!-- 已完成时 -->
+          <view class="order-anniu-hui" wx:if="{{i.orderStatus == 30 || i.orderStatus == 31 }}" bindtap="bindtapQuxiao" data-goodsid="{{i.orderId}}" data-orderstatus="{{i.orderStatus}}">删除订单</view>
+          <view class="order-anniu-hong" wx:if="{{i.orderStatus == 30 }}" bindtap="bindtapPingjia" data-index="{{index}}" >去评价</view>
+          <view class="order-anniu-hong" wx:if="{{i.orderStatus == 31 && i.goodsList.length > 1 }}" bindtap="bindtapPingjia" data-index="{{index}}" >去评价</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 已加载全部 -->
+  <view class="order-quanbu" wx:if="{{datas.length != 0 || currPage == totalPage}}">已加载全部</view>
+  <!-- 没有数据时 -->
+  <view class="order-wu" wx:if="{{!datas || datas.length == 0}}">
+    <view>
+      <image src="/image/dingdan-kong.png"></image>
+    </view>
+    <view>暂无记录</view>
+    <view>暂无商品订单记录！~</view>
+  </view>
+</scroll-view>

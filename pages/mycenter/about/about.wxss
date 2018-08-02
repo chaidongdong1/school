@@ -23,7 +23,7 @@
 	justify-content: space-between;
 }
 .about-bottom>view>view:first-child{
-	width: 150rpx;
+	width: auto;
 	height: 100%;
 	font-size: 30rpx;
 	color: #333;
@@ -41,4 +41,21 @@
 	width: 15rpx;
 	height: 25rpx;
 	margin: 27rpx 0 27rpx 15rpx;
+}
+.about-jian{
+	width: 96%;
+	padding: 10rpx 2% 20rpx 2%;
+	background: #fff;
+	height: auto;
+}
+.about-jian>view{
+	font-size: 28rpx;
+	color: #333;
+	line-height: 42rpx;
+}
+.about-jian>view>text{
+	font-size: 28rpx;
+	color: #333;
+	line-height: 42rpx;
+	padding-right: 15rpx;
 }

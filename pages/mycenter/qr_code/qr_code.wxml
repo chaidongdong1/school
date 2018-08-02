@@ -3,10 +3,11 @@
 <image class='bg_wrap' src='/image/code_bg.png'></image>
 <view class='cont'>
   <view class='cont_t'>
+  	<image class="imgPhone" src="{{datas.userPhoto}}"></image>
     <image class='cont_t_img' src='/image/me-14.png'></image>
     <view class='cont_t_txt'>分享二维码</view>
   </view>
-  <image class='code' src='/image/code.jpg'></image>
+  <image class='code' src='{{baseUrl+rqcode}}'></image>
   <view class='cont_b' bindtap='my_team'>
     <image class='cont_b_img' src='/image/team.png'></image>
     <view class='cont_b_txt'>我的团队</view>

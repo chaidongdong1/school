@@ -1,4 +1,5 @@
 
+var app = getApp();
 Page({
 
   /**
@@ -12,6 +13,14 @@ Page({
   },
 
 
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/start/start?scene=' + app.globalData.userId
+    }
+  },
+
   onShow: function () {
 
   },
@@ -22,10 +31,4 @@ Page({
       choose: index
     })
   },
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

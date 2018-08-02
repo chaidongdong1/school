@@ -1,4 +1,55 @@
 /* pages/mycenter/orderRefund/orderRefund.wxss */
+.order{
+	width: 100%;
+	height: auto;
+}
+.order-stats{
+	width: 96%;
+	height: 100rpx;
+	line-height: 100rpx;
+	padding: 0 2%;
+	background: #fff;
+	font-size: 30rpx;
+	color: #333;
+	margin-bottom: 10rpx;
+}
+.order-stats>text{
+	font-size: 30rpx;
+	color: #f00;
+	padding-left: 5rpx;
+}
+.order-address{
+	width: 96%;
+	height: auto;
+	background: #fff;
+	padding:20rpx 2%;
+	display: flex;
+}
+.order-address>view:first-child{
+	width: 50rpx;
+	height: 60rpx;
+	margin: 40rpx 20rpx 0 5rpx; 
+}
+.order-address>view:first-child>image{
+	width: 100%;
+	height: 100%;
+}
+.order-address>view:last-child{
+	flex: 1;
+	font-size: 30rpx;
+	color: #333;
+	line-height: 46rpx;
+}
+.order-a-bottom{
+	width: 100%;
+	height: 8rpx;
+	margin-bottom: 10rpx;
+}
+.order-a-bottom>image{
+	width: 100%;
+	height: 100%;
+	display:block;
+}
 .order-shop-one{
 	width: 100%;
 	height: 100%;
@@ -67,7 +118,7 @@
 }
 .order-shoplist-right>view:first-child{
 	width: 100%;
-	height: 80rpx;
+	max-height: 80rpx;
 	overflow: hidden;
 	line-height: 40rpx;
 	font-size: 30rpx;
@@ -135,6 +186,22 @@
 .order-xiang>view>text{
 	font-size: 28rpx;
 	color: #333;
+}
+.order-xiang1{
+	width: 96%;
+	height: auto;
+	background: #fff;
+	padding:10rpx 2%;
+	margin-bottom: 10rpx;
+}
+.order-xiang1>view{
+	font-size: 26rpx;
+	color: #666;
+	line-height: 46rpx;
+}
+.order-xiang1>view>text{
+	font-size: 32rpx;
+	color: #f00;
 }
 .order-miao{
 	width: 96%;

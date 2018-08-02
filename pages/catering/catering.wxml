@@ -1,13 +1,13 @@
 <!--pages/catering/catering.wxml-->
 <view class="caterings">
   <!-- top -->
-  <view class="top">
+  <view class="top" wx:if="{{schoolName}}">
     <view>
       <image src="../../image/position.png"></image>
       <view>我的校区：
-        <text>龙子湖校区</text>
+        <text>{{schoolName}}</text>
       </view>
-    </view>
+    </view> 
     <navigator url="../mycenter/information/information">
       <image src="../../image/me-16.png"></image>
       <view>完善信息</view>
@@ -18,7 +18,7 @@
     <swiper class="index-swiper" indicator-dots="true" indicator-active-color="#309EFD" autoplay="true" interval="5000" duration="1000" circular="true">
       <block wx:for="{{imgUrls}}" wx:key="{{index}}">
         <swiper-item>
-          <image src="{{item}}" class="index-banner-image" />
+          <image src="{{baseUrl+item}}" class="index-banner-image" />
         </swiper-item>
       </block>
     </swiper>

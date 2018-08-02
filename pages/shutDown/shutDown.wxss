@@ -1,0 +1,43 @@
+/* pages/shutDown/shutDown.wxss */
+.wrap{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.bgImg{
+  width: 100%;
+  display: block;
+}
+
+.show{
+  position: absolute;
+  left: 0;
+  bottom: 150rpx;
+  width: 100%;
+  letter-spacing: 4rpx;
+}
+.show1{
+  font-size: 36rpx;
+  line-height: 60rpx;
+  color: #fff;
+  text-align: center;
+}
+.show2{
+  font-size: 30rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #fff;
+  margin-top: 20rpx;
+}
+.show3{
+  font-size: 30rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+}
+.show4{
+  font-size: 36rpx;
+}

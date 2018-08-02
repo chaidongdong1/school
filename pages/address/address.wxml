@@ -3,18 +3,18 @@
   <!-- 新增地址 -->
   <navigator url='./addAddress/addAddress' class="addAddress">
     <view>
-      <image src="../../image/address-01.png"></image>
+      <image src="/image/address-01.png"></image>
     </view>
     <view>新增地址</view>
     <view>
-      <image src="../../image/index-06.png"></image>
+      <image src="/image/index-06.png"></image>
     </view>
   </navigator>
   <!-- 地址列表 -->
   <view class="address-list">
     <!-- 第一条 -->
     <view class='wrap' wx:for="{{address}}" wx:key="{{index}}">
-      <view class="address-list-item" data-isDefault='{{item.isDefault}}' bindtap='{{type==1?"goBack":""}}' data-id='{{item.addressId}}' data-index='{{index}}'>
+      <view class="address-list-item" data-isDefault='{{item.isDefault}}' bindtap='{{type==1?"goBack":""}}{{type==2?"goBack2":""}}' data-id='{{item.addressId}}' data-index='{{index}}'>
         <view class="item-neirong">
           <image src="../../image/address-02.png"></image>
         </view>

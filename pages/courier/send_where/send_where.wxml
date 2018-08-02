@@ -1,11 +1,12 @@
 <!--pages/courier/send_where/send_where.wxml-->
+<loading wx:if="{{showLoading}}">加载中</loading>
 <!--已有地址  -->
-<navigator url='../../address/address' class='wrap arrow'>
+<navigator url='../../address/address?type=2' class='wrap arrow'>
   <view class='old_address'>
     <image class='add_img fl_l' src='/image/position2.png'></image>
     <view class='add_info fl_l'>已有地址</view>
   </view>
-</navigator> 
+</navigator>  
 <view class="address"> 
   <view class="address-item">
     <view>收 货 人 ：</view>
@@ -17,7 +18,7 @@
   </view>
   <view class="address-item1">
     <view>所在校区：</view>
-      <view class="picker">{{campus}}</view>
+      <view class="picker">{{schoolName}}</view>
     <view>
     </view>
   </view>

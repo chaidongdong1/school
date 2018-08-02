@@ -78,6 +78,10 @@
   height: 60rpx;
   overflow: hidden;
 }
+.item_r2{
+  margin-left: 10rpx;
+  width: 245rpx;
+}
 .scroll{
   width: 480rpx;
   height: 580rpx;

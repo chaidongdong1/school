@@ -1,20 +1,38 @@
 // pages/address/address.js
 const app = getApp();
 Page({
-
+ 
   /**
    * 页面的初始数据
    */
   data: {
     address: '',
-    type:0
+    type:0,
+    userId:'',  //用户id
   },
 
   onLoad: function(options) {
+    var schoolId = wx.getStorageSync('schoolId');
+    console.log(schoolId)
+    //如果学校id不存在跳转到引导页
+    if (!schoolId) {
+      console.log('1111111111');
+      var way = '../address/address';
+      wx.reLaunch({
+        url: '../start/start?way=' + way
+      });
+    }
     if (options.type){
       this.setData({
         type: options.type
       })
+    }
+  },
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/start/start?scene=' + this.data.userId
     }
   },
   onShow() {
@@ -22,16 +40,20 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+    var userId = wx.getStorageSync('userId');
+    this.setData({
+      userId: userId
+    })
     wx.request({
       method: 'POST',
       url: `${app.globalData.api}address/list_address`,
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       data: {
-        userId:app.globalData.userId
+        userId: userId
       },
       success: res => {
         wx.hideLoading();
-
+        wx.stopPullDownRefresh();
         console.log(res);
         this.setData({
           address: res.data.data
@@ -94,8 +116,8 @@ Page({
       url: `./addAddress/addAddress?type=${index}`
     })
   },
-  // 选择返回上一页
-  goBack(e){
+  // 选择返回上一页 type=1
+  goBack(e){ 
     var index = e.currentTarget.dataset.index;
     var isDefault = e.currentTarget.dataset.isDefault;
     var addId = e.currentTarget.dataset.id;
@@ -157,6 +179,18 @@ Page({
       }, 1000)
     }
   }, 
+  // 选择返回上一页 type=2
+  goBack2(e) {
+    var index = e.currentTarget.dataset.index;
+    var address = this.data.address;
+    var choose = address[index];
+    wx.setStorageSync('send_info2', choose);
+    setTimeout(function () {
+      wx.navigateBack({
+        delta: 1,
+      })
+    }, 1000)
+  }, 
   // 选择默认地址
   choose(e) {
     // 1、将该条地址设为默认地址
@@ -212,5 +246,9 @@ Page({
         }
       }
     });
+  },
+  //下拉刷新
+  onPullDownRefresh(){
+    this.onShow();
   },
 })

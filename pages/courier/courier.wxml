@@ -1,7 +1,7 @@
 <!--pages/courier/courier.wxml-->
 <view bindtap='take' wx:if="{{!take_info}}" class='section clear'>
   <view class='section_l fl_l'>
-    取
+    取 
   </view> 
   <view class='section1_c fl_l'>
     <view class='section1_ct'>你的包裹在哪里？</view>
@@ -40,7 +40,7 @@
   <view class='section2_c fl_l'>
     <view class='section2_ct '>姓名：{{send_info.name}}</view>
     <view class='section2_cc'>手机号：{{send_info.tel}}</view>
-    <view class='section2_ct ellipsis'>收货地址：{{send_info.builde}}{{send_info.floor}}{{send_info.address}}</view>
+    <view class='section2_ct ellipsis'>收货地址：{{send_info.builde}}{{send_info.floor}}楼 {{send_info.address}}</view>
   </view>
   <image src='/image/position.png' class='section_r'></image>
 </view>
@@ -49,7 +49,7 @@
   <view class='time_wrap clear'>
     <view class='time_txt'>选择送达时间</view>
     <view class='time_wrap2 clear'>
-      <view data-id='{{item.id}}' bindtap='choose1' class='tiem_item {{choose1==item.id ? "active":""}}' wx:for="{{time}}" wx:key="item1">{{item.time}}</view>
+      <view data-index='{{index}}' bindtap='choose1' class='tiem_item {{choose1==index ? "active":""}}' wx:for="{{time}}" wx:key="item1">{{item.fieldName}}</view>
     </view>
   </view>
 </view>
@@ -59,17 +59,17 @@
     <view class='import fl_l'>*</view>
   </view>
   <view class='time_wrap2 clear'>
-      <view data-id='{{item.id}}' bindtap='choose2' class='tiem_item {{choose2==item.id ? "active":""}}' wx:for="{{weight}}" wx:key="item1">{{item.weight}}</view>
+      <view data-index='{{index}}' bindtap='choose2' class='tiem_item {{choose2==index ? "active":""}}' wx:for="{{weight}}" wx:key="item1">{{item.fieldName}}</view>
   </view>
 </view>
 <view class='wrap1 info1'>
   <view class='time_wrap clear'>
     <view class='time_txt info2'>我对取件人说</view>
-    <textarea bindinput="textarea" class='textarea' placeholder='留下你想说的话...'></textarea>
+    <textarea cursor-spacing="150" bindinput="textarea" class='textarea' placeholder='留下你想说的话...'></textarea>
   </view>
 </view>
 
 <view class='botm clear'>
-  <view class='botm_l fl_l'>费用估算<text class='red'>{{money}}</text>元</view>
+  <view class='botm_l fl_l'>费用估算<text class='red'>{{total}}</text>元</view>
   <view class='botm_r fl_r' bindtap='submit'>提交</view>
 </view>

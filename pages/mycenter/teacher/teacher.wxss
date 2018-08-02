@@ -1,9 +1,14 @@
 /* pages/teacher/teacher.wxss */
 .teacher{
+	width: 94%;
 	height: 70rpx;
 	line-height: 70rpx;
-	padding-left: 30rpx;
-	font-size: 28rpx;
+	padding: 0 3%;
+	display:flex;
+	justify-content: space-between;
+}
+.teacher>text{
+	font-size: 26rpx;
 	color: #666;
 }
 .reset{

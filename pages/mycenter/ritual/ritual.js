@@ -1,99 +1,115 @@
 // pages/panic/panic.js
 var app = getApp();
 Page({
-  data:{
-    vou:[],
-    showLoading:true
+  data: {
+    vou: [],
+    showLoading: true
   },
   // 分享
-  onShareAppMessage: function () {
+  onShareAppMessage: function(res) {
     return {
-      title: '软件开发企业',
-      path: '/pages/index/index?scene=' + app.data.userId,
-      success: function (res) {
-        // 分享成功
-      },
-      fail: function (res) {
-        // 分享失败
-      }
+      title: app.globalData.programName,
+      path: 'pages/start/start?scene=' + app.globalData.userId
     }
   },
-   getvou:function(e){
+  getvou(e) {
     var vid = e.currentTarget.dataset.vid;
-    var uid = app.data.userId;
     wx.request({
-      url: app.data.ceshiUrl + '/Api/Voucher/get_voucher',
-      method:'post',
-      data: {vid:vid,uid:uid},
-      header: {
-        'Content-Type':  'application/x-www-form-urlencoded'
+      url: app.globalData.api + 'voucher/get_voucher',
+      method: 'post',
+      data: {
+        vid: vid,
+        userId: this.data.userId
       },
-      success: function (res) {  
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      success: res => {
         var status = res.data.status;
-        if(status==1){
+        if (status == 1) {
           wx.showToast({
             title: '领取成功！',
-            duration: 2000
+            duration: 1500
           });
-        }else{
+          setTimeout(() => {
+            this.onShow();
+          },500);
+        } else {
           wx.showToast({
             title: res.data.err,
-            icon:'none',
-            duration: 2000
+            icon: 'none',
+            duration: 1500
           });
         }
         //endInitData
       },
-      fail:function(e){
+      fail: function(e) {
+        wx.showToast({
+          title: '网络异常！',
+          duration: 1500,
+          icon: 'none'
+        });
+      },
+    });
+  },
+  onLoad: function(options) {
+
+  },
+  onShow: function() {
+    var schoolId = wx.getStorageSync('schoolId');
+    var userId = wx.getStorageSync('userId');
+    var schoolName = wx.getStorageSync('schoolName');
+    console.log(schoolId)
+    //如果学校id不存在跳转到引导页
+    if (!schoolId) {
+      console.log('1111111111')
+      var way = '../mycenter/ritual/ritual';
+      wx.reLaunch({
+        url: '../../start/start?way=' + way
+      })
+    }
+    this.setData({
+      schoolId: schoolId,
+      userId: userId,
+      schoolName: schoolName
+    })
+    var that = this;
+    wx.request({
+      url: app.globalData.api + 'voucher/index',
+      method: 'post',
+      data: {
+        userId: this.data.userId
+      },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      success: res => {
+        console.log(res)
+        var vou = res.data.vou;
+        if (vou && vou.length > 0) {
+          that.setData({
+            vou: vou
+          });
+        }
+      },
+      fail: function(e) {
         wx.showToast({
           title: '网络异常！',
           duration: 2000,
           icon: 'none'
         });
       },
+      complete: function() {
+        that.setData({
+          showLoading: false
+        })
+      }
     });
   },
-  onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数
-    // var that = this;
-    // wx.request({
-    //   url: app.data.ceshiUrl + '/Api/Voucher/index',
-    //   method:'post',
-    //   data: {},
-    //   header: {
-    //     'Content-Type':  'application/x-www-form-urlencoded'
-    //   },
-    //   success: function (res) {  
-    //     var vou = res.data.vou;
-    //     that.setData({
-    //       vou:vou
-    //     });
-    //     //endInitData
-    //   },
-    //   fail:function(e){
-    //     wx.showToast({
-    //       title: '网络异常！',
-    //       duration: 2000,
-    //       icon: 'none'
-    //     });
-    //   },
-    //   complete: function () {
-    //     that.setData({
-    //       showLoading: false
-    //     })
-    //   }
-    // });
-  },
-  onReady:function(){
-    // 页面渲染完成
-  },
-  onShow:function(){
-    // 页面显示
-  },
-  onHide:function(){
+  onHide: function() {
     // 页面隐藏
   },
-  onUnload:function(){
+  onUnload: function() {
     // 页面关闭
   }
 })

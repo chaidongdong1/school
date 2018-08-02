@@ -1,0 +1,9 @@
+<!--pages/shutDown/shutDown.wxml-->
+<view class='wrap'>
+ <image class='bgImg' mode='widthFix' src='/image/shutDown.jpg'></image>
+ <view class='show'>
+  <view class='show1'>亲，你好</view>
+  <view class='show2'>此时间段非营业时间</view>
+  <view class='show3'>营业时间：<text class='show4'>{{time[0]}}-{{time[1]}}</text></view>
+ </view>
+</view>

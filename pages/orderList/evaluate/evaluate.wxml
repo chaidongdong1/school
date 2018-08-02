@@ -1,0 +1,70 @@
+<!--pages/evaluate/evaluate.wxml-->
+<view class="eval">
+  <!-- 商品 -->
+  <view class="order-shop-one">
+    <!-- 商品 -->
+    <view class="order-shoplist">
+      <!-- 第一件商品 -->
+      <view class="order-shoplist-one" wx:for="{{goodsList}}" wx:key="{{index}}" wx:if="{{datas.orderType != 0}}" bindtap="goShop" data-goodsid="{{item.goodsId}}" data-orderType="{{datas.orderType}}">
+        <!-- 左图片 -->
+        <view wx:if="{{datas.orderType != 0}}">
+          <image src="{{baseUrl}}{{item.goodsThumbs}}"></image>
+        </view>
+        <!-- 右内容 -->
+        <view class="order-shoplist-right ellipsis" wx:if="{{datas.orderType != 0}}">
+          {{item.goodsName}}
+        </view>
+      </view>
+      <!-- 快递商品 -->
+      <view class="order-shoplist-one" wx:if="{{datas.orderType == 0}}" bindtap="bindXiang"  data-ordertype="{{datas.orderType}}">
+        <!-- 左快递图片 -->
+        <view class="order-shoplist11" wx:if="{{datas.orderType == 0}}">
+          <image src="../../../image/kuaidi-01.png"></image>
+        </view>
+        <!-- 右内容 (快递)-->
+        <view class="order-shoplist-right" wx:if="{{datas.orderType == 0}}">
+          {{datas.shopName}} {{datas.shopAddress}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='wrap'>
+    <!-- 商品打分 -->
+    <view class="eval-dafen clear">
+      <view class='fl_l'>描述相符</view>
+      <view class='fl_l img'>
+        <image wx:for="{{lists}}" bindtap="bindtapDafen" wx:key="{{index}}" data-index="{{index}}" src="{{item}}"></image>
+      </view>
+      <view class='fl_l info'>{{listsIndex==0?'差':''}}{{listsIndex==1?'较差':''}}{{listsIndex==2?'一般':''}}{{listsIndex==3?'好':''}}{{listsIndex==4?'很好':''}}</view>
+    </view>
+    <!-- 快递打分 -->
+    <view class="eval-dafen">
+      <view>物流服务</view>
+      <view class='fl_l img'>
+        <image wx:for="{{list}}" bindtap="bindtapKuai" wx:key="{{index}}" data-index="{{index}}" src="{{item}}"></image>
+      </view>
+      <view class='fl_l info'>{{listIndex==0?'慢':''}}{{listIndex==1?'较慢':''}}{{listIndex==2?'一般':''}}{{listIndex==3?'快':''}}{{listIndex==4?'很快':''}}</view>
+    </view>
+  </view>
+  <!-- 商品评价 -->
+  <view class='txtWrap'>
+    <view class="eval-shop">
+      <textarea cursor-spacing="150" placeholder="亲，请留下您珍贵的评价" bindinput="bindText"></textarea>
+      <!-- 拍照 -->
+      <view style="font-size: 28rpx;color: #666;padding: 15rpx 0 5rpx 10rpx;">上传图片（不超过3张）</view>
+      <view class="eval0-photos clear">
+        <view bindtap="bindtapPhost" data-index='{{index}}' class='evImg fl_l' wx:for="{{temp}}" wx:key="{{index}}">
+          <image mode='aspectFit' class='imgItem'  src="{{item}}"></image>
+        </view>
+        <view bindtap="bindtapPhost" wx:if="{{temp.length<3}}" data-index='{{-1}}' class='evImg fl_l' >
+          <image class='paizhao' src="/image/paizhao2.png"></image>
+          <view class='updata'>上传图片</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 提交按钮 -->
+  <view class="eval-button">
+  	<button bindtap='submit'>提交评价</button>
+  </view>
+</view>

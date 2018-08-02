@@ -1,0 +1,246 @@
+/* pages/task_hall/abnormal/abnormal.wxss */
+/* pages/mycenter/orderRefund/orderRefund.wxss */
+.order-shop-one{
+	width: 100%;
+	height: 100%;
+	margin-bottom: 10rpx;
+	background: #fff;
+}
+.order-s-chao{
+	width: 96%;
+	height: 85rpx;
+	line-height: 85rpx;
+	padding: 0 2%;
+	display:flex;
+	justify-content: space-between;
+}
+.order-s-chao>view:first-child{
+	flex: 1;
+	display:flex;
+}
+.order-s-chao>view:first-child>image:first-child{
+	width: 40rpx;
+	height: 40rpx;
+	margin-top: 22rpx;
+}
+.order-s-chao>view:first-child>text{
+	font-size: 32rpx;
+	color: #333;
+	margin: 0 30rpx;
+}
+.order-s-chao>view:first-child>image:last-child{
+	width: 15rpx;
+	height: 25rpx;
+	margin-top: 30rpx;
+}
+.order-s-chao>view:last-child{
+	font-size: 28rpx;
+	color: #e4393c;
+}
+.order-shoplist{
+	width: 100%;
+	height: auto;
+	padding-top: 20rpx;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+.order-shoplist-one{
+	width: 96%;
+	height: auto;
+	padding:0 2%;
+	margin-bottom: 20rpx;
+	display:flex;
+	justify-content: space-between;
+}
+.order-shoplist-one>view:first-child{
+	width: 180rpx;
+	height: 180rpx;
+	margin-right: 30rpx;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+.order-shoplist-one>view:first-child>image{
+	width: 100%;
+	height: 100%;
+}
+.order-shoplist-right{
+	flex: 1;
+  margin: auto 0;
+}
+.order-shoplist-right>view:first-child{
+	width: 100%;
+	max-height: 80rpx;
+	overflow:hidden; 
+text-overflow:ellipsis;
+display:-webkit-box; 
+-webkit-box-orient:vertical;
+-webkit-line-clamp:2; 
+	line-height: 40rpx;
+	font-size: 30rpx;
+	color: #333;
+}
+.order-shoplist-right>view:nth-child(2)>text{
+	font-size: 28rpx;
+	color: #666;
+	margin-right: 25rpx;
+}
+.order-shoplist-right>view:nth-child(2)>view{
+	font-size: 28rpx;
+	color: #333;
+	margin-top: 5rpx;
+}
+.order-shoplist-right>view:last-child{
+	font-size: 30rpx;
+	color: #333;
+}
+.order-shoplist11{
+	margin-top: 20rpx;
+}
+.order-shoplist-right>view:last-child>text{
+	width: 100%;
+	font-size: 38rpx;
+	color: #f00;
+	word-break:break-all;
+}
+.order-heji{
+	width: 96%;
+	height: 80rpx;
+	line-height: 80rpx;
+	padding:0 2%;
+	display:flex;
+	justify-content: space-between;
+}
+.order-heji>view:first-child{
+	width: 220rpx;
+	font-size: 30rpx;
+	color: #333;
+}
+.order-heji>view>text{
+	font-size: 34rpx;
+	color: #f00;
+	padding:0 5rpx;
+}
+.order-heji>view:last-child{
+	flex: 1;
+	text-align: right;
+	font-size: 32rpx;
+	color: #333;
+}
+.order-xiang{
+	width: 96%;
+	height: auto;
+	background: #fff;
+	padding:10rpx 2%;
+	margin-bottom: 10rpx;
+}
+.order-xiang>view{
+	font-size: 26rpx;
+	color: #666;
+	line-height: 60rpx;
+}
+.order-xiang>view>text{
+	font-size: 28rpx;
+	color: #333;
+}
+.order-miao{
+	width: 96%;
+	height: auto;
+	padding:20rpx 2%;
+	background: #fff;
+}
+.order-miao>view{
+	font-size: 32rpx;
+	color: #333;
+	margin-bottom: 20rpx;
+}
+.order-miao>view>text{
+	font-size: 28rpx;
+	color: #666;
+}
+.order-miao>textarea{
+	width: 96%;
+	height: 160rpx;
+	padding:15rpx 2%;
+	font-size: 28rpx;
+	color: #333;
+	background: #f1f1f1;
+}
+.order-phone{
+	width: 96%;
+	height: auto;
+	padding:20rpx 2%;
+	margin: 10rpx 0;
+	background: #fff;
+}
+.order-phone>view:first-child{
+	width: 100%;
+	height: 50rpx;
+	line-height: 50rpx;
+	font-size: 32rpx;
+	color: #333;
+	margin-bottom: 10rpx;
+}
+.order-phone>view:last-child{
+	width: 100%;
+	height: auto;
+	display:flex;
+	flex-wrap:wrap;
+}
+.order-phone>view:last-child>image{
+	width: 200rpx;
+	height: 200rpx;
+	border:1px solid #eee;
+	border-radius: 10rpx;
+	margin-right: 35rpx;
+	margin-bottom: 20rpx;
+}
+.order-anniu{
+	width: 96%;
+	height: 88rpx;
+	margin: 30rpx 2%;
+}
+.order-anniu>button{
+	width: 100%;
+	height: 100%;
+	line-height: 88rpx;
+	text-align: center;
+	border-radius: 20rpx;
+	font-size: 30rpx;
+	color: #fff;
+	background: #309efd;
+	border: 0;
+}
+
+.item_c{
+  padding-right: 20rpx;
+  display: block;
+  margin: auto 0;
+  flex: 1;
+}
+.item_ct{
+  width: 100%;
+  font-size: 26rpx;
+  color: #333;
+  line-height: 38rpx;
+  max-height: 76rpx;
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2; 
+}
+.item_cc{
+  width: 100%;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 56rpx;
+}
+.item_cb{
+  width: 100%;
+  font-size: 28rpx;
+  color: #525252;
+  line-height: 40rpx;
+}
+.red{
+  color: #ff0000;
+}

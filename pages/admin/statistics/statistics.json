@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "统计信息"
+  "navigationBarTitleText": "统计信息",
+  "onReachBottomDistance":"true"
 }

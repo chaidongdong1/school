@@ -11,10 +11,10 @@
         </label>
       </radio-group>
     </view>
-  </view>
+  </view> 
   <view class="feed-text">
   	<view>请补充详细问题和意见<text>(必填)</text></view>
-  	<textarea placeholder="请输入您的问题或建议" bindinput="bindText"></textarea>
+  	<textarea cursor-spacing="150" placeholder="请输入您的问题或建议" bindinput="bindText"></textarea>
   </view>
   <button bindtap="bindtapButton">提交反馈</button>
 </view>

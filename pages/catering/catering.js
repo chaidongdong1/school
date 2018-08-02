@@ -23,19 +23,67 @@ Page({
       translateY: 'translateX(1500px)',
       opacity: 1
     },
-    imgUrls: ['../../image/banner.jpg', '../../image/banner.jpg'], //轮播图
+    imgUrls: [], //轮播图
+    schoolName: '' //学校名字
+  },
+  // 分享
+  onShareAppMessage() {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/catering/catering?scene='+this.data.userId
+    }
   },
   onLoad: function(options) {
+    let schoolId = wx.getStorageSync('schoolId');
+    var userId = wx.getStorageSync('userId');
+    //如果学校id不存在跳转到引导页
+    if (!schoolId && !options.scene) {
+      console.log('1111111111')
+      var way = '../catering/catering';
+      wx.reLaunch({
+        url: '../start/start?way=' + way
+      })
+    }
+    if (!schoolId && options.scene) {
+      console.log('222222222')
+      var ways = '../catering/catering';
+      wx.reLaunch({
+        url: '../start/start?scene=' + options.scene + '&way=' + ways
+      })
+    }
+    console.log(schoolId)
     this.setData({
       datas: [], //商品数组
       currPage: 1, //当前页数
       totalPage: '', //总页数
+      userId: userId, //用户id
+      schoolId: schoolId //学校id
     });
-    listid = '';  //清空分类
+    listid = ''; //清空分类
     this.getLists();
     console.log("------------------------");
     console.log(listid)
+    wx.showLoading({
+      title: '加载中',
+    })
     //轮播图
+    wx.request({
+      method: 'POST',
+      url: `${app.globalData.api}common/ads`,
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+        adType: 2,
+        schoolId: schoolId
+      },
+      success: res => {
+        console.log(res);
+        let imgurl = res.data.data.map(item => item.photo);
+        console.log(imgurl);
+        this.setData({
+          imgUrls: imgurl
+        })
+      }
+    });
     //商品分类接口
     wx.request({
       method: 'POST',
@@ -45,6 +93,7 @@ Page({
         shopId: 1
       },
       success: res => {
+        wx.hideLoading()
         console.log(res);
         //向数组头部添加全部
         let listName = res.data.data.unshift({ catId: '0', catName: '全部' }, { catId: '-1', catName: '热销推荐' });
@@ -57,7 +106,17 @@ Page({
     });
   },
   onShow() {
-
+    var shop_cart = wx.getStorageSync('shop_cart');
+    if (shop_cart){
+      var len = shop_cart.length;
+      this.setData({
+        num: len
+      })
+    }
+    var schoolName = wx.getStorageSync('schoolName');
+    this.setData({
+      schoolName: schoolName
+    })
   },
   // 进入购物车
   go_cart() {

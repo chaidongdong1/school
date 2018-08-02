@@ -1,140 +1,4 @@
-// pages/admin/user_order/user_order.js
-let datas = {
-  lists: [{
-    listsName: "全部",
-    listsNumber: "6666",
-  }, {
-    listsName: "待受理",
-    listsNumber: "66",
-  }, {
-    listsName: "已完成",
-    listsNumber: "600",
-  }, {
-    listsName: "异常订单",
-    listsNumber: "6000",
-  }],
-  stats: [{
-    statsId: "121",
-    statsType: "0",
-    statsName: "别离开1",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"0",   //超市订单
-    statsNumber:"3",   //订单数量
-    statsDate: "2018-07-10 12:01:30",
-  }, {
-    statsId: "122",
-    statsType: "1",
-    statsName: "别离开2",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"1",   //超市订单
-    statsNumber:"1",   //订单数量
-    statsDate: "2018-07-10 12:01:30",
-  }, {
-    statsId: "123",
-    statsType: "2",
-    statsName: "别离开3",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"2",   //超市订单
-    statsNumber:"1",   //订单数量
-    statsDate: "2018-07-10 12:01:30",
-  }, {
-    statsId: "124",
-    statsType: "0",
-    statsName: "别离开4",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"3",   //超市订单
-    statsNumber:"3",   //订单数量
-    statsDate: "2018-07-09 12:01:30",
-  }, {
-    statsId: "125",
-    statsType: "0",
-    statsName: "别离开5",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"0",   //超市订单
-    statsNumber:"1",   //订单数量
-    statsDate: "2018-07-09 12:01:30",
-  }, {
-    statsId: "126",
-    statsType: "1",
-    statsName: "别离开6",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"2",   //超市订单
-    statsNumber:"2",   //订单数量
-    statsDate: "2018-07-08 12:01:30",
-  }, {
-    statsId: "127",
-    statsType: "1",
-    statsName: "别离开7",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"3",   //超市订单
-    statsNumber:"4",   //订单数量
-    statsDate: "2018-07-08 12:01:30",
-  }, {
-    statsId: "121",
-    statsType: "2",
-    statsName: "别离开8",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"2",   //超市订单
-    statsNumber:"3",   //订单数量
-    statsDate: "2018-07-08 12:01:30",
-  }, {
-    statsId: "128",
-    statsType: "2",
-    statsName: "别离开9",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"1",   //超市订单
-    statsNumber:"3",   //订单数量
-    statsDate: "2018-07-09 12:01:30",
-  }, {
-    statsId: "129",
-    statsType: "0",
-    statsName: "别离开10",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"0",   //超市订单
-    statsNumber:"3",   //订单数量
-    statsDate: "2018-07-10 12:01:30",
-  }, {
-    statsId: "130",
-    statsType: "0",
-    statsName: "别离开11",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"2",   //超市订单
-    statsNumber:"3",   //订单数量
-    statsDate: "2018-07-09 12:01:30",
-  }, {
-    statsId: "121",
-    statsType: "1",
-    statsName: "别离开12",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"3",   //超市订单
-    statsNumber:"3",   //订单数量
-    statsDate: "2018-07-09 12:01:30",
-  }, {
-    statsId: "131",
-    statsType: "1",
-    statsName: "别离开13",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"1",   //超市订单
-    statsNumber:"3",   //订单数量
-    statsDate: "2018-07-10 12:01:30",
-  }, {
-    statsId: "132",
-    statsType: "2",
-    statsName: "别离开14",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"2",   //超市订单
-    statsNumber:"3",   //订单数量
-    statsDate: "2018-07-09 12:01:30",
-  }, {
-    statsId: "133",
-    statsType: "2",
-    statsName: "别离开15",
-    statsHead: "../../../image/user_img.png",
-    statsStats:"3",   //超市订单
-    statsNumber:"3",   //订单数量
-    statsDate: "2018-07-08 12:01:30",
-  }, ],
-};
+var app = getApp();
 Page({
 
   data: {
@@ -143,10 +7,13 @@ Page({
     lists: [], //导航
     datas: [], //内容
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/start/start?scene=' + app.globalData.userId
+    }
+  },
   onLoad: function (options) {
     //导航列表
     this.setData({
@@ -162,7 +29,6 @@ Page({
   
   },
 
-  
   tab_choose: function (e) {
     var index = e.currentTarget.dataset.index;
     this.setData({
@@ -226,8 +92,5 @@ Page({
     setTimeout(function() {
       wx.hideLoading();
     }, 500);
-  },
-  onShareAppMessage: function () {
-  
   }
 })

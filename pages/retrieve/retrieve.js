@@ -1,4 +1,5 @@
 // pages/retrieve/retrieve.js
+var app = getApp();
 Page({
 
   /**
@@ -14,7 +15,13 @@ Page({
   onLoad: function (options) {
   
   },
-
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/start/start?scene=' + app.globalData.userId
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -54,13 +61,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
   
   }
 })

@@ -1,22 +1,29 @@
 
+<loading wx:if="{{showLoading}}">加载中</loading>
+<view class='page {{!list||list.length==0?"bg":""}}'>
 <view class='header clear'>
-  <image class='header_l fl_l' src='/image/user_img.png'></image>
+  <view class='header_l fl_l'>
+    <button class='getUI' bindgetuserinfo="getUI" open-type="getUserInfo">
+      <image src="{{userInfo?userInfo.avatarUrl : '/image/default.jpg'}}" ></image>
+    </button> 
+  </view> 
   <view class='header_r fl_l'>
-    <view class='name'>派单员名字</view>
+    <view class='name'>{{userInfo.nickName}}</view>
     <view class='info clear'>
-      <view class='info_item fl_l'>可接单：<text class='red'>10</text>个</view>
-      <view class='info_item fl_l'>已接单：10个</view>
-      <view class='info_item fl_l'>已完成：10个</view>
+      <view class='info_item fl_l'>可接单：<text class='red'>{{count}}</text>个</view>
+      <view class='info_item fl_l'>已接单：{{nowTask}}个</view>
+      <view class='info_item fl_l'>已完成：{{oldTask}}个</view>
     </view>
-    <view class="names">我的校区：龙子湖校区</view> 
+    <view class="names">我的校区：{{schoolName}}</view> 
   </view>
 </view>
-<view class='list'>
-  <navigator url='../grab_detail/grab_detail?type=2' class='list_item'>
+<view class='list' wx:if="{{list.length>0}}">
+  <view wx:for="{{list}}" wx:key="list" class='list_item'>
     <view class='list_t'>
-      <image class='user_img fl_l' src='/image/user_img.png'></image>
-      <view class='user_name fl_l'>上山若水发布的</view>
-      <view class='order_name yellow fl_l'>超市订单</view>
+      <image class='user_img fl_l' src='{{item.publishPhoto}}'></image>
+      <view class='user_name fl_l'>{{item.publishName}}发布的</view>
+      <view class='order_name yellow fl_l'>{{item.orderType==1?'超市订单':''}}{{item.orderType==0?'快递订单':''}}{{item.orderType==2?'桶装水订单':''}}{{item.orderType==3?'餐饮订单':''}}</view>
+      <view class='date fl_r'>{{item.createTime}}</view>
       <!-- <view class='date fl_r'>
         2018.7.9 11:09
       </view> -->
@@ -24,29 +31,37 @@
       <view class='decorate_l'></view>
       <view class='decorate_r'></view>
     </view>
-    <view class='arrow'>
+    <view data-index='{{index}}' bindtap='goDetail' class='arrow' >
       <view class='list_c'>
         <view class='tack clear'>
           <image class='tack_img fl_l' src='/image/tack.png'></image>
-          <view class='tack_add fl_l'>男生一号公寓一楼东100米</view>
+          <view class='tack_add fl_l'>{{item.shopAddress}}</view>
         </view>
         <view class='tack clear'>
           <image class='tack_img fl_l' src='/image/send.png'></image>
-          <view class='tack_add fl_l'>男生一号公寓一楼东100米</view>
+          <view class='tack_add fl_l'>{{item.userAddress}}</view>
         </view>
       </view>
     </view>
     <view class='list_b'>
       <image class='light fl_l' src='/image/lightning.png'></image>
-      <view class='time fl_l'>送达时间：<text class='yellow'>2018.7.9 11:09</text></view>
+      <view class='time fl_l'>预计送达时间：<text>{{item.sendTime?item.sendTime:'当天送达'}}</text></view>
       <view class='listb_r fl_r'>
         <image class='grab_img fl_l' src='/image/grab_end.png'></image>
         <view class='grab fl_l'>订单已完成</view>
       </view>
     </view>
-  </navigator>
+  </view>
 </view>
-
+<!-- 没有数据时 -->
+  <view class="noOrder" wx:if="{{!list||list.length==0}}">
+    <view>
+      <image src="/image/noGrab.png"></image>
+    </view>
+    <view>暂无记录</view>
+    <view>暂无已完成任务 ~</view>
+  </view>
+  <!--底部tab  -->
 <view class='botm'>
   <view bindtap='jump_start' class='item'>
     <image src='/image/grab_start2.png'></image>
@@ -61,4 +76,4 @@
     <view class='txt'>任务完成</view>
   </view>
 </view>
-
+</view>

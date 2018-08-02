@@ -1,2 +1,45 @@
-<!--pages/meal/search/search.wxml-->
-<text>pages/meal/search/search.wxml</text>
+<!--pages/seek/seek.wxml-->
+<view class="seek">
+  <!-- 头部 -->
+  <view class="seek-top">
+    <view>
+      <image src="../../image/index-01.png"></image>
+      <input bindinput='write' bindblur="search" type="text" name="" placeholder="请输入您的搜索内容" />
+    </view>
+    <view>
+      <button>搜索</button>
+    </view>
+  </view>
+  <!-- 有搜索内容时 -->
+  <view class="catering" wx:if="{{list.length>0}}">
+    <!-- 商品 -->
+    <view class="cater-shop">
+      <!-- 第一条 -->
+       <view class="shop-item" wx:for="{{list}}" wx:key="list">
+        <view>
+          <image src="{{imgUrl+item.logo}}"></image>
+        </view>
+        <view class='ellipsis'>{{item.name}}</view>
+        <view class='ellipsis'>{{item.intro}}</view>
+        <view>￥{{item.grade}}
+          <text>销量：{{item.sales}}件</text>
+        </view>
+      </view> 
+    </view>
+    <!-- 已加载全部 -->
+    <!-- <view class="cart-quanbu">已加载全部</view> -->
+    <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+      <view wx:if="{{control}}" class="weui-loading"></view>
+      <view class="weui-loadmore__tips">{{loadingval}}</view>
+    </view>
+  </view>
+  <!-- 没有搜索内容时 -->
+  <view class="address-kong" wx:if="{{list.length<=0&&show}}">
+    <view>
+      <image src="/image/seek-kong.png"></image>
+    </view>
+    <view>找不到搜索结果</view>
+    <view>没有所搜索到关于“<text>方便面</text>”的商品，</view>
+    <view>建议换个关键词试试</view>
+  </view>
+</view>

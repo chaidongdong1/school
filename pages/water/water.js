@@ -27,14 +27,69 @@ Page({
     choose2: 0, //楼层的下标
     choose: 0, //有桶无桶的下标
     list: [],
-    // list3: [],
-    // id: '',
-    // record: [],
+    schoolName: '', //学校名字
+    waterBaseMoney: '',   //低楼层价格
+    type1_water: ''     //高楼层价格
   },
-  onLoad: function(option) {
+  onShow() {
+    var schoolName = wx.getStorageSync('schoolName');
+    this.setData({
+      schoolName: schoolName
+    });
+    //系统信息接口
+    wx.request({
+      method: 'POST',
+      url: `${app.globalData.api}common/sysConfig`,
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+
+      },
+      success: res => {
+        console.log(res);
+        this.setData({
+          waterBaseMoney: res.data.data[1].waterBaseMoney.fieldValue,
+          type1_water: res.data.data[1].type1_water.fieldValue
+        });
+        console.log(this.data.waterBaseMoney);
+        console.log(this.data.type1_water)
+      }
+    });
+  },
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/water/water?scene=' + this.data.userId
+    }
+  },
+  onLoad: function(options) {
+    var schoolId = wx.getStorageSync('schoolId');
+    console.log(schoolId)
+    //如果学校id不存在跳转到引导页
+    if (!schoolId && !options.scene) {
+      console.log('1111111111')
+      var way = '../water/water';
+      wx.reLaunch({
+        url: '../start/start?way=' + way
+      })
+    }
+    if (!schoolId && options.scene) {
+      console.log('222222222')
+      var ways = '../water/water';
+      wx.reLaunch({
+        url: '../start/start?scene=' + options.scene + '&way=' + ways
+      })
+    }
+    var userId = wx.getStorageSync('userId');
+    this.setData({
+      schoolId: schoolId,
+      userId: userId
+    })
     this.getLists();
   },
   getLists() {
+    var schoolId = this.data.schoolId;
+    var userId = this.data.userId;
     wx.showLoading({
       title: '加载中',
     });
@@ -44,22 +99,40 @@ Page({
       url: `${app.globalData.api}goods/goodsList`,
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       data: {
-        schoolId: 2,
+        schoolId: schoolId,
         proType: 2,
       },
       success: res => {
         console.log(res);
+        var root = res.data.data.root;
+        if (!root || root.length < 1) {
+          wx.hideLoading();
+          wx.showToast({
+            title: '未开通此业务',
+            icon:'none'
+          })
+          setTimeout(function(){
+            wx.navigateBack({
+              delta: 1
+            })
+          },1500)
+          
+          return ;
+        }
+        let goodsId = root[this.data.choose].id;
+        let shopId = root[this.data.choose].shopId;
         this.setData({
-          lists: res.data.data.root
+          lists: root,
+          goodsId: goodsId,
+          shopId: shopId
         });
-        let goodsId = res.data.data.root[this.data.choose].id;
         //送水详情接口（获取列表的第一个商品Id）
         wx.request({
           method: 'POST',
           url: `${app.globalData.api}goods/goodsInfo`,
           header: { 'content-type': 'application/x-www-form-urlencoded' },
           data: {
-            schoolId: 2,
+            schoolId: schoolId,
             goodsId: goodsId,
           },
           success: res => {
@@ -83,7 +156,7 @@ Page({
   loadProductDetail: function() {
     var that = this;
     var water = this.data.lists;
-    var floor = [{ name: '一楼到三楼', price: '3.00' }, { name: '四楼到六楼', price: '5.00' }];
+    var floor = [{ name: '一楼到三楼', price: this.data.waterBaseMoney*1 }, { name: '四楼到六楼', price:this.data.waterBaseMoney*1 + this.data.type1_water*1 }];
     // var stock = 999;
     var price = water[this.data.choose].price_yh;
     console.log(price);
@@ -128,38 +201,58 @@ Page({
   },
   // 立即购买
   buy_now() {
-    var price = this.data.price;
-    var freight = this.data.freight;
-    var u_price = parseFloat(price) + parseFloat(freight);
-    var choose = this.data.choose;
-    var choose2 = this.data.choose2;
-    var water0 = this.data.water;
-    var floor = this.data.floor;
-    var numbers = this.data.numbers;
-    var water_item = { specs: water0[choose].name, floor: floor[choose2].name, img: '/image/shui.png', price: u_price, num: numbers, name: water0[choose].name, choose: choose, choose2: choose2 };
-    wx.setStorageSync('water_buy', water_item);
-    wx.navigateTo({
-      url: '../submitOrder/submitOrder?type=2'
-    })
+    var userPhone = wx.getStorageSync('userPhone');
+    if (!userPhone) {
+      wx.showModal({
+        title: '提示',
+        content: '请绑定手机号',
+        success: res => {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../mycenter/information/information'
+            })
+          } else if (res.cancel) {
+
+          }
+        }
+      })
+
+      return
+    } else{
+      var price = this.data.price;
+      var freight = this.data.freight;
+      var u_price = parseFloat(price);
+      var choose = this.data.choose;
+      var choose2 = this.data.choose2;
+      var water0 = this.data.water;
+      var floor = this.data.floor;
+      var numbers = this.data.numbers;
+      var water_item = { specs: water0[choose].name, floor: floor[choose2].name, img: app.globalData.baseUrl + water0[choose].photo_x, price: u_price, num: numbers, name: water0[choose].name, choose: choose, choose2: choose2, shopId: water0[choose].shopId, goods_id: water0[choose].id, freight: freight};
+      wx.setStorageSync('water_buy', water_item);
+      wx.navigateTo({
+        url: `../submitOrder/submitOrder?type=2&&total=${this.data.datas.price_yh*1*this.data.numbers}`
+      })
+    }
   },
   // 加入购物车
   addShopCart() {
     var price = this.data.price;
     var freight = this.data.freight;
-    var u_price = parseFloat(price) + parseFloat(freight);
+    var u_price = parseFloat(price);
     var choose = this.data.choose;
     var choose2 = this.data.choose2;
     var water0 = this.data.water;
     var floor = this.data.floor;
     var numbers = this.data.numbers;
-    var water_item = { specs: water0[choose].name, floor: floor[choose2].name, img: '/image/shui.png', price: u_price, num: numbers, name: water0[choose].name, choose: choose, choose2: choose2 };
+    var goods_id = water0[choose].id;
+    var water_item = { specs: water0[choose].name, floor: floor[choose2].name, img: app.globalData.baseUrl + water0[choose].photo_x, price: u_price, num: numbers, name: water0[choose].name, choose: choose, choose2: choose2, shopId: water0[choose].shopId, goods_id: goods_id, freight: freight};
 
     var water = wx.getStorageSync('water_cart');
     var control = true;
     if (water) {
       var len = water.length;
       for (var i = 0; i < len; i++) {
-        if (choose == water[i].choose && choose2 == water[i].choose2) {
+        if (choose == water[i].choose && choose2 == water[i].choose2 && goods_id == water[i].goods_id) {
           water[i].num += numbers;
           control = false;
         }
@@ -189,6 +282,11 @@ Page({
     // var numbers = this.data.numbers;
     // total = total * numbers.toFixed(2);
     this.setData({
+      choose2: index,
+      freight: freight,
+      total: total
+    })
+    console.log({
       choose2: index,
       freight: freight,
       total: total
@@ -230,7 +328,7 @@ Page({
         duration: 1500
       })
     } else {
-      let numbersJian = this.data.numbers*1 - 1;
+      let numbersJian = this.data.numbers * 1 - 1;
       // var freight = this.data.freight;
       // var price = this.data.price;
       // var total = parseFloat(freight) + parseFloat(price);
@@ -243,7 +341,7 @@ Page({
   },
   //商品数量增加
   bindtapJia() {
-    var numbersJia = this.data.numbers*1 + 1;
+    var numbersJia = this.data.numbers * 1 + 1;
     // var freight = this.data.freight;
     // var price = this.data.price;
     // var total = parseFloat(freight) + parseFloat(price);

@@ -1,27 +1,30 @@
 <!--pages/mycenter/approve/approve.wxml-->
-<view class='section1'>
+<view class='section1' wx:if="{{!status}}">
   <view class='info1'>温馨提示！！</view>
-  <view class='info2'>请你选择以下两种身份进行认证，谢谢合作！</view>
+  <view class='info2'>请你选择以下两种身份之一进行认证，谢谢合作！</view>
   <navigator url='../teacher/teacher'>
     <image class='info3' src='/image/approve1.png'></image>
   </navigator>
   <navigator url='../real_name/real_name'>
-    <image bindtap='sender' class='info4' src='/image/approve2.png'></image>
+    <image class='info4' src='/image/approve2.png'></image>
   </navigator>
 </view>
-
-<view class='section2'>
+<!-- 派单员 -->
+<view bindtap="bindSender" class='section2' wx:if="{{status && datas.type == 1}}">
+  <view class="approve-zhuang" wx:if="{{isSender != -1}}">当前认证状态：<text>{{status == 0 ? '审核中' : (status == 1 ? '已通过' : (status == -1 ? reason : '未激活'))}}</text></view>
+  <view class="approve-zhuang" wx:if="{{isSender == -1}}">当前认证状态：<text>您已被管理员封禁，请联系管理员解封</text></view>
   <image class='info5' src='/image/approve2.png'></image>
-  <view class='info6'>你好，用户名称</view>
+  <view class='info6'>你好，{{datas.trueName}}</view>
   <view class='info7'>
-    身份证号：15789656754
+    身份证号：{{datas.IdCode}}
   </view>
 </view>
-
-<view class='section2'>
+<!-- 教师 -->
+<navigator url='../teacher/teacher' class='section2' wx:if="{{status && datas.type == 2}}">
+  <view class="approve-zhuang">当前认证状态：<text>{{status == 0 ? '审核中' : (status == 1 ? '已通过' : (status == -1 ? reason : '未激活'))}}</text></view>
   <image class='info5' src='/image/approve1.png'></image>
-  <view class='info6'>你好，用户名称</view>
+  <view class='info6'>你好，{{datas.trueName}}</view>
   <view class='info7'>
-    手机号码：15789656754
+    教师工号：{{datas.IdCode}}
   </view>
-</view>
+</navigator>

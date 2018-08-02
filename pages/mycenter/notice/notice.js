@@ -5,7 +5,24 @@ Page({
   data: {
     datas: [], //列表内容
   },
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/start/start?scene=' + app.globalData.userId
+    }
+  },
   onLoad: function(options) {
+    var schoolId = wx.getStorageSync('schoolId');
+    console.log(schoolId)
+    //如果学校id不存在跳转到引导页
+    if (!schoolId) {
+      console.log('1111111111')
+      var way = '../mycenter/notice/notice';
+      wx.reLaunch({
+        url: '../../start/start?way=' + way
+      })
+    }
     //公示公告接口
     wx.showLoading({
       title: '加载中',

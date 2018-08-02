@@ -1,4 +1,6 @@
 <!--pages/submitOrder/submitOrder.wxml-->
+
+  <form bindsubmit="submitOrders" report-submit="true">
 <view class="sub">
   <!-- 地址 -->
   <view class="sub-address">
@@ -7,16 +9,15 @@
 			<view>添加收货地址</view>
 			<image src="/image/index-06.png"></image>
 		</view> 
-    <!-- 有地址时 -->
+    <!-- 有地址时 --> 
     <view bindtap='choose_address' wx:if="{{address}}" class="sub-address-block">
-      <view>
+      <view> 
         <image src="/image/address-02.png"></image>
       </view>
-      <view> 
+      <view>  
         <view>姓名：{{address.userName}}</view>
         <view>手机号：{{address.userPhone}}</view>
         <view>收货地址：{{address.schoolName}}{{address.buildName}}{{address.floorNum}}楼 {{address.address}}
-          <text>【默认】</text>
         </view>
       </view> 
       <view>
@@ -75,7 +76,7 @@
         <view>
           <view>{{item.name}}</view>
           <view>
-            <text>规格：{{item.specs}}</text>
+            <!-- <text>规格：{{item.specs}}</text> -->
             <text>楼层：{{item.floor}}</text>
           </view>
           <view class='botm clear'>
@@ -116,52 +117,46 @@
   <!-- 快递费用 -->
   <view class="sub-kuaidi">
     <view>快递费用</view>
-    <view>￥2.00</view>
+    <view wx:if="{{isTeacher!=1}}" class='user'>￥{{freight}}</view>
+    <view wx:if="{{isTeacher==1}}" class='teacher'>教师免单</view>
   </view>
+  <view class="sub-kuaidi" wx:if="{{fristOrder == 1}}"><view class='fl_l' style="font-size: 26rpx;color: #FA610E;">新用户减免首单运费(送水服务只减免一桶水的运费)</view><view class='fl_r' style="font-size: 26rpx;color: #f00;">-￥{{firstCut}}</view></view>
   <!-- 优惠券 -->
-  <view class="sub-youhui">
+  <view wx:if="{{vou&&vou.length>0&&isTeacher!=1&&firstCut==0}}" class="sub-youhui" bindtap='vouShow'>
     <view>使用优惠券</view>
-    <view>优惠券名称
+    <view>{{choose_vou}}
       <image src="/image/index-06.png"></image>
     </view>
   </view>
   <!-- 备注 -->
-  <view class="sub-text">
+  <view class="sub-text" wx:if="{{vou_show == true ? false : true}}">
     <view>商品备注
       <text>(选填)</text>
     </view>
-    <textarea wx:if="{{mask.opacity == 0}}" placeholder="请输入您的备注信息" placeholder-style="font-size:28rpx;color:#999;"></textarea>
+    <textarea wx:if="{{!vou_show}}" name="textarea" cursor-spacing="150" wx:if="{{mask.opacity == 0}}" bindinput='textarea' placeholder="请输入您的备注信息" placeholder-style="font-size:28rpx;color:#999;"></textarea>
   </view>
-  <!-- 保险费 -->
-  <!-- <view class="sub-bao">
-    <view>保险费
-      <text bindtap="bindtapMasks">什么是保险费？</text>
-    </view>
-    <view>
-      <view>￥0.1</view>
-      <view>
-        <switch style="transform : scale(0.8);" checked bindchange="switch1Change" />
-      </view>
-    </view>
-  </view> -->
+
   <!-- 底部栏 -->
-  <view class="sub-bottom">
-    <view>合计：
-      <text>￥320.00</text>
+    <view class="sub-bottom">
+      <view>合计：
+        <text>￥{{total}}</text>
+      </view>
+      <button class='btn' formType="submit">提交订单</button>
     </view>
-    <view bindtap='submitOrders'>提交订单</view>
-  </view>
 </view>
-<!-- 弹窗 -->
-<!-- <view class="mask" style="opacity: {{mask.opacity}}; display: {{mask.display}};">
-  <view class="masks" bindtap="bindtapClose"></view>
-  <view class="mask-shop" style="transform: {{returnDeposit.translateY}}; opacity: {{returnDeposit.opacity}};">
-    <view class="masks-neir">
-    	<view>保险费</view>
-    	<view>保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费</view>
+  </form>
+
+<!--优惠券弹框  -->
+  <view wx:if="{{vou_show}}" bindtap='shut' class='mask '></view>
+  <view wx:if="{{vou_show}}" class='vou_box'>
+    <view class='vou_title'>店铺优惠</view>
+    <view class='vou_wrap2' wx:for="{{vou}}" wx:key="item2">
+      <view class='fl_l'>省{{item.amount}}元：{{item.title}}</view>
+      <image bindtap='choose' data-index='{{index+1}}' class='choose fl_r' mode='aspectFit' src='{{choose==index+1?"/image/choose_true.png":"/image/choose_false.png"}}'></image>
     </view>
-    <view class="close" bindtap="bindtapClose">
-      <image src="/image/close.png" style="width: 120rpx;height: 120rpx;margin-top: 30rpx;"></image>
+    <view class='vou_wrap3'>
+      <view class='fl_l'>不使用优惠券</view>
+      <image bindtap='choose' data-index='0' class='choose fl_r' mode='aspectFit' src='{{choose==0?"/image/choose_true.png":"/image/choose_false.png"}}'></image>
     </view>
-  </view>
-</view> -->
+    <view class='finish' bindtap='shut'>确定</view>
+  </view> 

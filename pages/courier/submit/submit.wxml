@@ -1,4 +1,6 @@
 <!--pages/courier/submit/submit.wxml-->
+<import src="../../../wxParse/wxParse.wxml" />
+  <form bindsubmit="submitOrders" report-submit="true">
 <view class="sub">
   <!-- 地址 -->
   <view class="sub-address">
@@ -7,83 +9,23 @@
 			<view>添加收货地址</view>
 			<image src="/image/index-06.png"></image>
 		</view> 
-    <!-- 有地址时 -->
-    <view bindtap='choose_address' wx:if="{{address}}" class="sub-address-block">
+    <!-- 有地址时 --> 
+    <view  wx:if="{{address}}" class="sub-address-block">
       <view>
         <image src="/image/address-02.png"></image>
       </view>
       <view>
         <view>姓名：{{address.name}}</view>
         <view>手机号：{{address.tel}}</view>
-        <view>收货地址：{{address.address}}
-          <text>【默认】</text>
+        <view>收货地址：{{schoolName}}{{address.builde}}{{address.floor}}楼 {{address.address}}
         </view>
       </view> 
       <view>
-        <image src="/image/index-06.png"></image>
       </view> 
     </view>
     <!-- 底部条 -->
     <view class="sub-address-image">
       <image src="/image/address-bottom.png"></image>
-    </view>
-  </view>
-
-  <!-- 商品 -->
-  <view wx:if="{{shop_goods.length>0}}" class="sub-shop">
-    <!-- 标题 -->
-    <view class="sub-shop-title">
-      <image src="/image/chaoshi.png"></image>
-      <view>超市商品</view>
-    </view>
-    <!-- 商品 -->
-    <view class="sub-shop-nei">
-      <!-- 第一条 -->
-      <view class="sub-nei-one" wx:for="{{shop_goods}}" wx:key="shop">
-        <view>
-          <image src="{{item.img}}"></image>
-        </view>
-        <view>
-          <view>{{item.name}}</view>
-          <view>
-            <text>{{item.info}}</text>
-            <!-- <text>口味：原味</text> -->
-          </view>
-          <view class='botm clear'>
-            <view class='botm_l fl_l'>￥{{item.price}}</view>
-            <view class='botm_r fl_l'>数量：{{item.num}}</view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <!-- 商品 -->
-  <view wx:if="{{water.length>0}}" class="sub-shop">
-    <!-- 标题 -->
-    <view class="sub-shop-title">
-      <image src="/image/songshui.png"></image>
-      <view>桶装水</view>
-    </view>
-    <!-- 商品 -->
-    <view class="sub-shop-nei">
-      <!-- 第一条 -->
-      <view class="sub-nei-one" wx:for="{{water}}" wx:key="shop">
-        <view>
-          <image src="{{item.img}}"></image>
-        </view>
-        <view>
-          <view>{{item.name}}</view>
-          <view>
-            <text>规格：{{item.specs}}</text>
-            <text>楼层：{{item.floor}}</text>
-          </view>
-          <view class='botm clear'>
-            <view class='botm_l fl_l'>￥{{item.price}}</view>
-            <view class='botm_r fl_l'>数量：{{item.num}}</view>
-          </view>
-        </view>
-      </view>
     </view>
   </view>
 
@@ -95,20 +37,20 @@
     </view>
     <!-- 商品 -->
     <view class="sub-shop-nei">
-      <!-- 第一条 -->
+      <!-- 第一条 --> 
       <view class="sub-nei-one">
         <view>
           <image src="/image/kuaidi-01.png"></image>
         </view>
         <view>
-          <view>申通快递 北大学门100米</view>
+          <view>{{take_info.courier}} {{take_info.address}}</view>
           <view>
-            <text>包裹信息：柴冬冬</text>
-            <text>13585655252</text>
+            <text>包裹信息：{{take_info.name}}</text>
+            <text>{{take_info.tel}}</text>
           </view>
           <view class='botm clear'>
             <view class='botm_r fl_l'>包裹取件码：</view>
-            <view class='botm_l fl_l'>4585255</view>
+            <view class='botm_l fl_l'>{{take_info.code}}</view>
           </view>
         </view>
       </view>
@@ -119,12 +61,14 @@
   <!-- 快递费用 -->
   <view class="sub-kuaidi">
     <view>快递费用</view>
-    <view>￥2.00</view>
+    <view wx:if="{{isTeacher!=1}}" class='user'>￥{{total}}</view>
+    <view wx:if="{{isTeacher==1}}" class='teacher'>教师免单</view>
   </view>
+  <view class="sub-kuaidi" wx:if="{{fristOrder == 1}}"><view class='fl_l' style="font-size: 26rpx;color: #FA610E;">新用户减免首单运费(送水服务只减免一桶水的运费)</view> <view class='fl_r' style="font-size: 26rpx;color: #f00;">-￥{{firstCut}}</view></view>
   <!-- 优惠券 -->
-  <view class="sub-youhui">
+  <view wx:if="{{vou&&vou.length>0&&isTeacher!=1&&firstCut==0}}" class="sub-youhui" bindtap='vouShow'>
     <view>使用优惠券</view>
-    <view>优惠券名称
+    <view>{{choose_vou}}
       <image src="/image/index-06.png"></image>
     </view>
   </view>
@@ -133,7 +77,7 @@
     <view>快递下单备注
       <text>(选填)</text>
     </view>
-    <textarea wx:if="{{mask.opacity == 0}}" placeholder="请输入您的备注信息" placeholder-style="font-size:28rpx;color:#999;"></textarea>
+    <textarea wx:if="{{!vou_show}}" cursor-spacing="150" disabled="true" value='{{textarea}}' bindinput='textarea' placeholder="请输入您的备注信息" placeholder-style="font-size:28rpx;color:#999;"></textarea>
   </view>
   <!-- 保险费 -->
   <view class="sub-bao">
@@ -141,30 +85,46 @@
       <text bindtap="bindtapMasks">什么是保险费？</text>
     </view>
     <view>
-      <view>￥0.1</view>
+      <view>￥{{oinsurancePrice}}</view>
       <view>
-        <switch style="transform : scale(0.8);" checked bindchange="switch1Change" />
+        <switch style="transform : scale(0.8);" bindchange="switchChange" />
       </view>
     </view>
   </view>
   <!-- 底部栏 -->
   <view class="sub-bottom">
     <view>合计：
-      <text>￥320.00</text>
+      <text>￥{{money}}</text>
     </view>
-    <view>提交订单</view>
+    <button class='btn' formType="submit">提交订单</button>
   </view>
 </view>
+</form>
 <!-- 弹窗 -->
 <view class="mask" style="opacity: {{mask.opacity}}; display: {{mask.display}};">
   <view class="masks" bindtap="bindtapClose"></view>
   <view class="mask-shop" style="transform: {{returnDeposit.translateY}}; opacity: {{returnDeposit.opacity}};">
     <view class="masks-neir">
-    	<view>保险费</view>
-    	<view>保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费保险费</view>
+    	<view>{{baoxian.articleTitle}}</view>
+    	<view><template is="wxParse" data="{{wxParseData:article.nodes}}" /></view>
     </view>
     <view class="close" bindtap="bindtapClose">
       <image src="/image/close.png" style="width: 120rpx;height: 120rpx;margin-top: 30rpx;"></image>
     </view>
   </view>
 </view>
+
+<!--优惠券弹框  -->
+  <view wx:if="{{vou_show}}" bindtap='shut' class='mask '></view>
+  <view wx:if="{{vou_show}}" class='vou_box'>
+    <view class='vou_title'>店铺优惠</view>
+    <view class='vou_wrap2' wx:for="{{vou}}" wx:key="item2">
+      <view class='fl_l'>省{{item.amount}}元：{{item.title}}</view>
+      <image bindtap='choose' data-index='{{index+1}}' class='choose fl_r' mode='aspectFit' src='{{choose==index+1?"/image/choose_true.png":"/image/choose_false.png"}}'></image>
+    </view>
+    <view class='vou_wrap3'>
+      <view class='fl_l'>不使用优惠券</view>
+      <image bindtap='choose' data-index='0' class='choose fl_r' mode='aspectFit' src='{{choose==0?"/image/choose_true.png":"/image/choose_false.png"}}'></image>
+    </view>
+    <view class='finish' bindtap='shut'>确认</view>
+  </view> 

@@ -1,0 +1,36 @@
+<!--pages/mycenter/orderDetails/orderDetails.wxml-->
+<view class="order">
+  <!-- 第一个订单 -->
+  <view class="order-shop-one">
+    <!-- 商品 -->
+    <view class="order-shoplist" >
+      <!-- 第一件商品 -->
+      <view class="order-shoplist-one" wx:for="{{goodsList}}" wx:key="{{index}}" >
+        <!-- 左图片 -->
+        <view>
+          <image src="{{baseUrl}}{{item.goodsThumbs}}"></image>
+        </view>
+        <!-- 右内容 -->
+        <view class="order-shoplist-right">
+          <view>{{item.goodsName}}</view>
+          <view>
+            <text>规格：默认</text>
+            <!-- <text>口味：{{item.goodsShopKou}}</text> -->
+            <text>数量：{{item.goodsNums}}</text>
+          </view>
+          <view>
+            <text>￥{{item.goodsPrice}}</text>
+          </view>
+        </view>
+        <view class='evalute' wx:if="{{item.isAppraise == 0}}" data-index='{{index}}' bindtap='evalute'>
+          <image class='evaluteImg fl_l' src='/image/evalute.png'></image>
+          <view class='evaluteTxt fl_l'>评价晒单</view>
+        </view>
+        <view class='evalute1' wx:if="{{item.isAppraise == 1}}">
+          <image class='evaluteImg1 fl_l' src='/image/evalute1.png'></image>
+          <view class='evaluteTxt1 fl_l'>已评价</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

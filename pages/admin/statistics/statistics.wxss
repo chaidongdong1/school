@@ -69,6 +69,16 @@
   width: 100%;
   margin-bottom: 10rpx;
   background: #fff;
+  position: relative;
+}
+.zhezhao{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background: rgba(0,0,0,.2);
 }
 .list_t{
   padding: 15rpx 20rpx;
@@ -77,11 +87,11 @@
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
-  margin-right: 35rpx;
 }
 .list_tr{
   width: 420rpx;
   height: 120rpx;
+  padding-left: 35rpx;
 }
 .list_tr1{
   width: 420rpx;
@@ -89,7 +99,7 @@
   font-size: 30rpx;
   line-height: 42rpx;
   height: 42rpx;
-  margin-top: 5rpx;
+  margin-top: 15rpx;
   overflow: hidden;
 }
 .yellow{
@@ -142,6 +152,17 @@
   font-size: 30rpx;
   color: #fff;
   background: #3CA3FD;
+  border-radius: 10rpx;
+}
+.arrow_butt1{
+  width: 120rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  color: #666;
+  background: #fff;
   border-radius: 10rpx;
 }
 .list_b{
@@ -238,4 +259,21 @@
   background: #3CA3FD;
   font-size: 32rpx;
   color: #fff;
+}
+.mask-button1{
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #fc9d49;
+  font-size: 32rpx;
+  color: #fff;
+}
+.stas-quanbu{
+  width: 100%;
+  height: auto;
+  padding: 30rpx 0;
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
 }

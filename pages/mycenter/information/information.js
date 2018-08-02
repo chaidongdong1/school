@@ -1,16 +1,63 @@
 // pages/information/information.js
 const app = getApp();
+var timer, userId, cons;
 Page({
 
   data: {
-    // array: ['请选择校区', '金水区', '龙子湖校区', '华南城校区'],
-    // index: 0,
     showModal: false, //判断授权弹窗是否显示
     name: '', //真实姓名
-    // number: '', //手机号
+    tel: '', //手机号
     code: '', //验证码
+    oldTel: '', //获取验证码时的手机号
+    time: '获取验证码',
+    click: true, //是否可点击
+    schoolName: '' //校区名字
+  },
+  // 分享
+  onShareAppMessage: function(res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/start/start?scene=' + userId
+    }
   },
   onLoad: function(options) {
+    cons = options.cons;
+    var schoolName = wx.getStorageSync('schoolName');
+    var schoolId = wx.getStorageSync('schoolId');
+    userId = wx.getStorageSync('userId');
+    console.log(schoolId)
+    //如果学校id不存在跳转到引导页
+    if (!schoolId) {
+      console.log('1111111111');
+      var way = '../mycenter/information/information';
+      wx.reLaunch({
+        url: '../../start/start?way=' + way
+      });
+    }
+    this.setData({
+      schoolName: schoolName
+    });
+    wx.showLoading({
+      title: '加载中',
+    });
+    wx.request({
+      method: 'POST',
+      url: `${app.globalData.api}user/user_info`,
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+        userId: userId
+      },
+      success: res => {
+        console.log(res);
+        wx.hideLoading();
+        if (res.data.data.phone) {
+          this.setData({
+            tel: res.data.data.phone
+          });
+          wx.setStorageSync('userPhone', res.data.data.phone);
+        }
+      }
+    });
     //授权弹窗一开始不显示，等于true时才显示
     wx.getSetting({
       success: (res) => {
@@ -38,9 +85,9 @@ Page({
   // },
   //输入手机号
   bindtapNumber(e) {
-    let number = e.detail.value;
+    let tel = e.detail.value;
     this.setData({
-      number: number
+      tel: tel
     });
   },
   //输入验证码
@@ -50,52 +97,174 @@ Page({
       code: code
     });
   },
-  //提交信息
-  bindButton() {
-    if (!this.data.number) {
+  // 获取验证码
+  getCode() {
+    var timing = 90;
+    // 验证手机号码
+    var tel = this.data.tel;
+    var userPhone = wx.getStorageSync('userPhone');
+    console.log(userPhone)
+    if (userPhone == tel) {
+      wx.showToast({
+        title: '请更换手机号',
+        image: '../../../image/warning.png',
+        duration: 1500
+      });
+      return;
+    }
+    if (!tel) {
       wx.showToast({
         title: '请填写手机号',
         image: '../../../image/warning.png',
         duration: 1500
       });
-    } else if (!this.data.code) {
+      return;
+    }
+    var verify = /^1\d{10}$/;
+    if (!verify.test(tel)) {
+      wx.showToast({
+        title: '请输入正确的电话号码',
+        image: '../../../image/warning.png',
+        duration: 1500
+      })
+      return;
+    }
+    wx.showToast({
+      title: '验证码正在发送中！',
+      icon: 'none',
+      duration: 1500
+    })
+    clearInterval(timer);
+    this.setData({
+      click: false
+    });
+    timer = setInterval(() => {
+      this.setData({
+        time: `重新发送${timing}s`
+      });
+      if (timing == 1) {
+        clearInterval(timer);
+        this.setData({
+          time: '获取验证码',
+          click: true
+        });
+      }
+      timing--;
+    }, 1000);
+    this.setData({
+      oldTel: tel
+    });
+    wx.request({
+      url: app.globalData.api + 'user/get_yzm',
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        mobile: tel
+      },
+      success: res => {
+        console.log(res)
+      },
+      fail: function() {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000,
+          icon: 'none'
+        });
+      }
+    })
+  },
+  //提交信息
+  bindButton() {
+    var tel = this.data.tel;
+    if (!tel) {
+      wx.showToast({
+        title: '请填写手机号',
+        image: '../../../image/warning.png',
+        duration: 1500
+      });
+      return;
+    }
+    var verify = /^1\d{10}$/;
+    if (!verify.test(tel)) {
+      wx.showToast({
+        title: '请输入正确的电话号码',
+        image: '../../../image/warning.png',
+        duration: 1500
+      })
+      return;
+    }
+    // var oldTel = this.data.oldTel;
+    // if (oldTel != tel) {
+    //   wx.showToast({
+    //     title: '手机号码与验证码不匹配',
+    //     image: '../../../image/warning.png',
+    //     duration: 1500
+    //   })
+    //   return;
+    // }
+    if (!this.data.code) {
       wx.showToast({
         title: '请填写验证码',
         image: '../../../image/warning.png',
         duration: 1500
       });
-    } else {
-      wx.showLoading({
-        title: '加载中',
-      });
-      wx.request({
-        method: 'POST',
-        url: `${app.globalData.api}user/mobile`,
-        header: { 'content-type': 'application/x-www-form-urlencoded' },
-        data: {
-          mobile: this.data.number,
-          userId: app.globalData.userId,
-          passcode: this.data.code,
-          // trueName: this.data.name
-        },
-        success: res => {
-          console.log(res);
-          if (res.msg == 1) {
-            wx.showToast({
-              title: '信息完善成功',
-              icon: 'success',
-              duration: 1500
-            });
-          } else {
-            wx.showToast({
-              title: '验证码填写错误',
-              image: '../../../image/warning.png',
-              duration: 1500
-            });
-          }
-        }
-      });
+      return;
     }
+    wx.showLoading({
+      title: '加载中',
+    });
+    wx.request({
+      method: 'POST',
+      url: `${app.globalData.api}user/mobile`,
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+        mobile: this.data.tel,
+        userId: userId,
+        passcode: this.data.code,
+        // trueName: this.data.name
+      },
+      success: res => {
+        console.log(res);
+        wx.hideLoading();
+        if (res.data.status == 1) {
+          wx.showToast({
+            title: '信息完善成功',
+            icon: 'success',
+            duration: 1500
+          });
+          wx.setStorageSync('userPhone', this.data.tel);
+          setTimeout(() => {
+            if (cons) {
+              wx.switchTab({
+                url: '../../mycenter/mycenter'
+              })
+            } else {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          });
+        } else {
+          wx.showToast({
+            title: '验证码填写错误',
+            image: '../../../image/warning.png',
+            duration: 1500
+          });
+        }
+      },
+      fail: function() {
+        wx.hideLoading();
+        wx.showToast({
+          title: '网络异常！',
+          image: '../../../image/warning.png',
+          duration: 1500
+        });
+      }
+    });
+
   },
   //点击选择校区
   // bindPickerChange(e) {
@@ -116,42 +285,14 @@ Page({
     this.setData({
       showModal: false
     });
+    var that = this;
     wx.getUserInfo({
       success: function(res) {
         console.log(res)
         console.log("=======================")
         var userInfo = res.userInfo;
-        var nickName = userInfo.nickName;
-        var avatarUrl = userInfo.avatarUrl;
-        var gender = userInfo.gender; //性别 0：未知、1：男、2：女 
-        var province = userInfo.province;
-        var city = userInfo.city;
-        var country = userInfo.country;
-        var signature = res.signature;
-        var encryptData = res.encryptData;
-        //向后台传用户信息
-        wx.request({
-          method: 'POST',
-          url: `${app.globalData.api}user/modify_info`,
-          header: { 'content-type': 'application/x-www-form-urlencoded' },
-          data: {
-            id: app.globalData.userId,
-            nickName: nickName,
-            gender: gender,
-            avatarUrl: avatarUrl,
-            city: city
-          },
-          success: res => {
-            console.log(res);
-            console.log({
-              userId: app.globalData.userId,
-              nickName: nickName,
-              gender: gender,
-              avatarUrl: avatarUrl,
-              city: city
-            })
-          }
-        });
+        userInfo.userId = userId;
+        that.uploadInfo(userInfo);
       },
     });
   },

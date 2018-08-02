@@ -1,6 +1,6 @@
 <view class='section1 clear yellow'>
   <image class='fl_l order_img' src='/image/order.png'></image>
-  <view class='fl_l order_txt'>派单员订单数量（{{lists[0].listsNumber}}）</view>
+  <view class='fl_l order_txt'>订单数量（{{listSuo}}）</view>
   <view class='fl_r order_date arrow'>
     <picker mode="date" style="width: 100%;font-size: 30rpx;color: #333;" bindchange="bindDateChange">
       <view class="picker">{{date}}</view>
@@ -13,25 +13,146 @@
     <view class='val'>{{item.listsNumber}}</view>
   </view>
 </view>
-<view class='list1' wx:for="{{datas}}" wx:key="{{index}}">
+<!-- 待受理订单 -->
+<view class='list1' wx:for="{{datas}}" wx:key="{{index}}" wx:if="{{choose == 0}}" >
   <view class='list_item'>
-    <view class='list_t clear'>
-      <image class='list_tl fl_l' src='{{item.statsHead}}'></image>
+    <view class='list_t clear' bindtap="bindXiang" data-orderid="{{item.orderId}}">
+      <image class='list_tl fl_l' src='{{item.userPhoto}}'></image>
       <view class='list_tr fl_l'>
         <view class='list_tr1'>
-          <view class='fl_l'>{{item.statsName}}接了</view>
-          <view class='yellow fl_l'>{{item.statsStats == 0 ? '超市订单' : (item.statsStats == 1 ? '送水订单' : (item.statsStats == 2 ? '快递订单' : '餐饮订单'))}}</view>
+          <view class="list-name">{{item.publishName}}</view>
+          <view class="list-fabu">发布了</view>
+          <view class='yellow'>{{item.orderType == 1 ? '超市订单' : (item.orderType == 2 ? '送水订单' : (item.orderType == 0 ? '快递订单' : '餐饮订单'))}}</view>
         </view>
         <view class='list_tr2'>
-          <view class='num fl_l'>订单编号：{{item.statsPhone}}</view>
-          <!-- <view class='send_user fl_l'>接单人：张三</view> -->
+          <view class='num fl_l'>订单编号：
+            <text>{{item.orderNo}}</text>
+          </view>
         </view>
       </view>
       <view class='arrow_wrap arrow fl_l'></view>
     </view>
     <view class='list_b clear'>
-      <view class='date fl_l'>{{item.statsDate}}</view>
-      <view class='status fl_r'>{{item.statsType == 0 ? '待受理' : (item.statsType == 1 ? '配送中' : '已完成')}}</view>
+      <view class='date fl_l'>下单时间：{{item.createTime}}</view>
+      <!-- <view class='status fl_r'>共5件商品</view> -->
     </view>
   </view>
 </view>
+<!-- 配送中订单 -->
+<view class='list1' wx:for="{{datas}}" wx:key="{{index}}" wx:if="{{choose == 1}}" >
+  <view class='list_item'>
+    <view class='list_t clear' bindtap="bindXiang" data-orderid="{{item.orderId}}">
+      <image class='list_tl fl_l' src='{{item.senderImg}}'></image>
+      <view class='list_tr fl_l'>
+        <view class='list_tr1'>
+          <view class="list-fabu1">派单员
+            <text>接单了</text>
+          </view>
+          <view class="list-name1">{{item.publishName}}</view>
+          <view class='yellow'>的{{item.statsStats == 1 ? '超市订单' : (item.statsStats == 2 ? '送水订单' : (item.statsStats == 0 ? '快递订单' : '餐饮订单'))}}</view>
+        </view>
+        <view class='list_tr2'>
+          <view class='num fl_l'>派单员手机号：
+            <text>{{item.phone}}</text>
+          </view>
+        </view>
+      </view>
+      <view class='arrow_wrap arrow fl_l'></view>
+    </view>
+    <view class='list_b clear'>
+      <view class="date">订单编号：
+        <text>{{item.orderNo}}</text>
+      </view>
+      <view class='date fl_l'>下单时间：
+        <text>{{item.createTime}}</text>
+      </view>
+      <view class='date fl_r'>接单时间：
+        <text>{{item.getTime}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 已完成订单 -->
+<view class='list1' wx:for="{{datas}}" wx:key="{{index}}" wx:if="{{choose == 2}}" >
+  <view class='list_item'>
+    <view class='list_t clear' bindtap="bindXiang" data-orderid="{{item.orderId}}">
+      <image class='list_tl fl_l' src='{{item.senderImg}}'></image>
+      <view class='list_tr fl_l'>
+        <view class='list_tr1'>
+          <view class="list-fabu1">派单员
+            <text>已完成</text>
+          </view>
+          <view class="list-name1">{{item.publishName}}</view>
+          <view class='yellow'>{{item.statsStats == 1 ? '超市订单' : (item.statsStats == 2 ? '送水订单' : (item.statsStats == 0 ? '快递订单' : '餐饮订单'))}}</view>
+        </view>
+        <view class='list_tr2'>
+          <view class='num fl_l'>订单编号：
+            <text>{{item.orderNo}}</text>
+          </view>
+        </view>
+      </view>
+      <view class='arrow_wrap arrow fl_l'></view>
+    </view>
+    <view class='list_b clear'>
+      <view class='date fl_l'>完成时间：{{item.completeTime}}</view>
+      <view class='status fl_r'>交易已完成</view>
+    </view>
+  </view>
+</view>
+<!-- 异常订单 -->
+<view class='list1' wx:for="{{datas}}" wx:key="{{index}}" wx:if="{{choose == 3}}" >
+  <view class='list_item'>
+    <view class='list_t clear' bindtap="bindXiang" data-orderid="{{item.orderId}}">
+      <image class='list_tl fl_l' src='{{item.senderImg}}'></image>
+      <view class='list_tr fl_l'>
+        <view class='list_tr1'>
+          <view class="list-fabu1">派单员
+            <text>接单了</text>
+          </view>
+          <view class="list-name1">{{item.publishName}}</view>
+          <view class='yellow'>的{{item.statsStats == 1 ? '超市订单' : (item.statsStats == 2 ? '送水订单' : (item.statsStats == 0 ? '快递订单' : '餐饮订单'))}}</view>
+        </view>
+        <view class='list_tr2'>
+          <view class='num fl_l'>派单员手机号：
+            <text>{{item.phone}}</text>
+          </view>
+        </view>
+      </view>
+      <view class='arrow_wrap arrow fl_l'></view>
+    </view>
+    <view class='list_b clear list-b-border'>
+      <view class="date">订单编号：
+        <text>{{item.orderNo}}</text>
+      </view>
+      <view class='date fl_l'>订单人：
+        <text>{{item.publishName}}</text>
+      </view>
+      <view class='date fl_r'>下单时间：
+        <text>{{item.createTime}}</text>
+      </view>
+      <view class='date fl_l'>接单时间：
+        <text>{{item.getTime}}</text>
+      </view>
+      <view class='date fl_r'>申请时间：
+        <text>{{item.errorTime}}</text>
+      </view>
+    </view>
+    <!-- 异常信息申报 -->
+    <view class="list-yi">
+      <view>
+        <image src="../../../image/warn.png"></image>
+      </view>
+      <view>异常申报信息：
+        <text>{{item.taskRemark}}</text>
+      </view>
+    </view>
+    <!-- 按钮 -->
+    <view class="list-anniu">
+      <button class="anniu-01" bindtap="bindOver" data-taskid="{{item.taskId}}">已解决</button>
+      <button class="anniu-02" bindtap="bindChong" data-taskid="{{item.taskId}}">重新发单</button>
+    </view>
+  </view>
+</view>
+<!-- 已加载全部 -->
+<view class="order-quan" wx:if="{{totalPage == currPage && datas.length != 0}}">已加载全部</view>
+<view class="order-quan" wx:if="{{!datas || datas.length == 0}}">暂无数据</view>

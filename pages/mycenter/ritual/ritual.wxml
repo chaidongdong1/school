@@ -1,5 +1,10 @@
-<!-- <loading wx:if="{{showLoading}}">加载中</loading> -->
-<!-- <view class="orderDetails" wx:for="{{vou}}" wx:key="key">
+<loading wx:if="{{showLoading}}">加载中</loading>
+<view class="rit">
+  <image src="../../../image/warn2.png"></image>
+  <view>本页面所有优惠券只减免运费</view>
+</view>
+<view class="orderDetails" wx:for="{{vou}}" wx:key="key">
+  <!-- <view class="order-hb" wx:if="{{item.isGeting == 1}}"></view> -->
   <view class="orderListDetails">
     <view class="productInfo">
       <text class="x">¥</text>
@@ -7,18 +12,18 @@
     </view>
     <view class="pr">
       <view class="n">{{item.title}}</view>
-      <view class="b">满{{item.full_money}}可用（{{item.desc}}）</view>
+      <!-- <view class="b">满{{item.full_money}}可用</view> -->
+      <!-- <view class="b">满{{item.full_money}}可用（{{item.desc}}）</view> -->
     </view>
     <view class="hh" bindtap="getvou" data-vid="{{item.id}}">
-      <view class="hb" wx:if="{{item.point>0}}">积分兑换</view>
-      <view class="hb" wx:else>领取</view>
+      <!-- <view class="hb hb2" wx:if="{{item.point>0}}">积分兑换</view> -->
+      <view class="hb-h" wx:if="{{item.isGeting == 1}}">已领取</view>
+      <view class="hb" wx:if="{{item.isGeting == 0}}">领取</view>
     </view>
+    <view class="c">有效期：{{item.start_time}}-{{item.end_time}}</view>
   </view>
-  <view class="c">
-    有效期：{{item.start_time}}-{{item.end_time}}</view>
-</view> -->
-
-<view class="orderDetails">
+</view>
+<!-- <view class="orderDetails">
   <view class="orderListDetails"> 
     <view class="productInfo">
       <text class="x">¥</text>
@@ -34,4 +39,4 @@
   </view>
   <view class="c">
     有效期：2017-11-11-2018-11-11</view>
-</view>
+</view> -->

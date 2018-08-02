@@ -7,10 +7,10 @@
   <view class="address-item">
     <view>联系电话：</view>
     <input type="number" bindinput='get_tel' value='{{tel}}' name="" placeholder="请输入收货人电话" placeholder-style="color:#b2b2b2;font-szie:30rpx;" />
-  </view>
+  </view> 
   <view class="address-item1">
     <view>所在校区：</view>
-    <view class="picker">{{campus}}</view>
+    <view class="picker">{{schoolName}}</view>
     <view>
     </view>
   </view>

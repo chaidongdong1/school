@@ -9,7 +9,7 @@
         <view data-index='{{index}}' bindtap='g_active_all' class='{{g_check_all ? "cart-top-active":""}}'>
           <image src="{{del ? '/image/cart_del.png' : '/image/cat-01.png'}}"></image>
         </view>
-        <view>超市商品</view>
+        <view>超市商品</view> 
         <view>
           <image src="../../image/index-06.png"></image>
         </view> 
@@ -25,7 +25,7 @@
           <image src="{{del ? '/image/cart_del.png' : '/image/cat-01.png'}}"></image>
         </view>
         <view>
-          <image src="../../image/shopdetails.jpg"></image>
+          <image src="{{item.img}}"></image>
         </view>
         <view>
           <view>{{item.name}}</view>
@@ -93,11 +93,11 @@
   
   <!-- 底部 -->
   <!--结算  -->
-  <view wx:if="{{control==0}}" class="cart-bottom">
+  <view wx:if="{{control==0&&show}}" class="cart-bottom">
     <!-- 全选 -->
-    <view>
+    <view bindtap='choose_all'>
       <!--  class="cart-top-active" 为选中状态 -->
-      <view>
+      <view class="{{w_check_all&&g_check_all?'cart-top-active':''}}">
         <image src="../../image/cat-01.png"></image>
       </view>
       <view>全选</view>
@@ -112,12 +112,12 @@
   </view>
 </view>
 <!--删除  -->
-<view wx:if="{{control==1}}" class="cart-bottom">
+<view wx:if="{{control==1&&show}}" class="cart-bottom">
     <!-- 全选 -->
-    <view>
-      <!--  class="cart-top-active" 为选中状态 -->
-      <view>
-        <image src="../../image/cat-01.png"></image>
+    <view bindtap='choose_all'>
+      <!--   为选中状态 -->
+      <view class="{{w_check_all&&g_check_all?'cart-top-active':''}}">
+        <image src="../../image/cart_del.png"></image>
       </view>
       <view>全选</view>
     </view>

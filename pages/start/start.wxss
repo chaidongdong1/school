@@ -11,28 +11,30 @@ image{
   line-height: 100rpx;
   height: 100rpx;
   text-align: center;
-  margin: 30rpx 0 50rpx;
+  margin: 10rpx 0 50rpx;
   letter-spacing: 3rpx;
 }
 .section2{
   width: 750rpx;
   height: 540rpx;
-  margin-bottom: 90rpx;
+  margin-bottom: 80rpx;
 }
 .section3{
   width: 420rpx;
-  height: 90rpx;
+  height: 80rpx;
   padding: 0 40rpx 0 30rpx;
-  background: #fff;
+  /* background: #fff; */
   margin: 0 auto;
   border-radius: 10rpx;
+  border: 1rpx solid #fff;
+  color: #fff;
 }
 .wrap{
   width: 400rpx;
 }
 .arrow::after{
-  border-top: 4rpx solid #666;
-  border-right: 4rpx solid #666;
+  border-top: 4rpx solid #fff;
+  border-right: 4rpx solid #fff;
 }
 .section3_img{
   width: 42rpx;
@@ -41,10 +43,10 @@ image{
 }
 .school_picker{
   font-size: 30rpx;
-  height: 90rpx;
-  line-height: 90rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   margin-left: 20rpx;
-  width: 290rpx;
+  width: 320rpx;
 }
 .section4{
   margin: 20rpx 0 20rpx;
@@ -61,4 +63,17 @@ image{
   color: #fff;
   line-height: 30rpx;
   text-align: center;
+}
+
+.btn{
+  width: 210rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #fff;
+  font-size: 30rpx;
+  color: #309efd;
+  border-radius: 10rpx;
+  text-align: center;
+  margin: 40rpx auto;
+  letter-spacing: 2rpx;
 }

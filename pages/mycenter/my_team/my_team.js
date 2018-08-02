@@ -5,6 +5,13 @@ Page({
   data: {
     datas: [], //内容
   },
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/start/start?scene=' + app.globalData.userId
+    }
+  },
   onLoad: function(options) {
     wx.showLoading({
       title: '加载中',
@@ -21,6 +28,7 @@ Page({
           userId: app.globalData.userId
         });
         wx.hideLoading();
+        wx.stopPullDownRefresh();
         console.log(res);
         this.setData({
           datas: res.data.data
@@ -28,5 +36,9 @@ Page({
         console.log(this.data.datas);
       }
     });
+  },
+  //下拉刷新
+  onPullDownRefresh(){
+    this.onLoad();
   },
 })

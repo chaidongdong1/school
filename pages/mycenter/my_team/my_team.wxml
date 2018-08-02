@@ -13,7 +13,7 @@
   <scroll-view class='scroll' scroll-y enable-back-to-top="true">
     <view class='cont_item clear' wx:for="{{datas}}" wx:key="{{index}}">
       <view class='item_l fl_l e ellipsis'>{{item.userName}}</view>
-      <view class='item_r fl_l e ellipsis'>{{item.subscribeTime}}</view>
+      <view class='item_r item_r2 fl_l e ellipsis'>{{item.subscribeTime}}</view>
     </view>
   </scroll-view>
 </view>

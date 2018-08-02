@@ -1,66 +1,38 @@
 // pages/mycenter/about/about.js
+const app = getApp();
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    datas: '', //整体内容
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/start/start?scene=' + app.globalData.userId
+    }
   },
+  onLoad: function(options) {
+    wx.request({
+      method: 'POST',
+      url: `${app.globalData.api}common/sysConfig`,
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+      },
+      success: res => {
+        console.log(res);
+        this.setData({
+          datas: res.data.data[0]
+        });
+      }
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  //拨打电话
+  bindTel() {
+    wx.makePhoneCall({
+      phoneNumber: this.data.datas.tel.fieldValue
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })

@@ -16,7 +16,7 @@ Page({
       translateY: 'translateY(1500px)',
       opacity: 1
     },
-    datas: '', //商品详情
+    datas: '', //商品详情 
     guiGeNumber: 0, //弹窗里商品规格下标
     KouweiNumber: 0, //弹窗里口味下标
     numbers: 1, //商品数量
@@ -24,10 +24,37 @@ Page({
     imgUrls: [], //轮播图
     baseUrl: app.globalData.baseUrl, //图片路径
     type: '', //判断是否是购物车还是购买
+    goodsid:''  //商品id
   },
-  onLoad: function(options) {
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/catering/shopDetails/shopDetails?scene=' + this.data.userId + '&goodsid=' + this.data.goodsid
+    }
+  },
+  onLoad: function (options) {
     console.log(options);
     goodsid = options.goodsid;
+    var schoolId = wx.getStorageSync('schoolId');
+    //如果学校id不存在跳转到引导页
+    // if (!schoolId && !options.scene) {
+    //   wx.reLaunch({
+    //     url: '../../start/start?way=../catering/shopDetails/shopDetails?goodsid=' + this.data.goodsid
+    //   })
+    // }
+    //如果学校id不存在跳转到引导页
+    if (!schoolId) {
+      wx.reLaunch({
+        url: '../../start/start?scene=' + options.scene + '&way=../catering/shopDetails/shopDetails?goodsid=' + this.data.goodsid
+      })
+    }
+    var userId = wx.getStorageSync('userId');
+    this.setData({
+      schoolId:schoolId,
+      userId: userId,
+      goodsid: goodsid
+    })
     wx.showLoading({
       title: '加载中',
     })
@@ -37,7 +64,7 @@ Page({
       url: `${app.globalData.api}goods/goodsInfo`,
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       data: {
-        schoolId: 1,
+        schoolId: schoolId,
         goodsId: goodsid
       },
       success: res => {
@@ -90,7 +117,7 @@ Page({
     var goodsname = datas.name;
     var price = datas.price_yh;
     console.log(goodsid)
-    var cart_item = { goods_id: goodsid, name: goodsname, img: goodsimg, price: price, num: numbers, info: '规格：500ml' };
+    var cart_item = { goods_id: goodsid, name: goodsname, img: goodsimg, price: price, num: numbers, info: '规格：默认' };
     var shop_cart = wx.getStorageSync('shop_cart');
     var test = true;
     if (shop_cart) {
@@ -103,7 +130,7 @@ Page({
           }
         }
       }
-      if (test) {
+      if (test) { 
         shop_cart.push(cart_item);
       }
     } else {
@@ -117,17 +144,38 @@ Page({
   },
   // 立即购买
   buy_now() {
-    var numbers = this.data.numbers;
-    var datas = this.data.datas;
-    var goodsimg = datas.goodsimg;
-    var goodsname = datas.goodsname;
-    var price = datas.price;
-    console.log(goodsid)
-    var cart_item = { goods_id: goodsid, name: goodsname, img: goodsimg, price: price, num: numbers, info: '规格：500ml' };
-    wx.setStorageSync('shop_buy', cart_item);
-    wx.navigateTo({
-      url: '../../submitOrder/submitOrder?type=1',
-    })
+    var userPhone = wx.getStorageSync('userPhone');
+    if (!userPhone) {
+      wx.showModal({
+        title: '提示',
+        content: '请绑定手机号',
+        success: res => {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../../mycenter/information/information'
+            })
+          } else if (res.cancel) {
+
+          }
+        }
+      })
+
+      return
+    }else{
+      var numbers = this.data.numbers;
+      var datas = this.data.datas;
+      var goodsimg = app.globalData.baseUrl + datas.photo_x;
+      var goodsname = datas.name;
+      var price_yh = datas.price_yh;
+      console.log(datas)
+      console.log(goodsid)
+      var cart_item = { goods_id: goodsid, name: goodsname, img: goodsimg, price: price_yh, num: numbers, info: '规格：默认' };
+      wx.setStorageSync('shop_buy', cart_item);
+      wx.navigateTo({
+        url: `../../submitOrder/submitOrder?type=1&&total=${this.data.datas.price_yh * 1 * this.data.numbers * 1}`
+      })
+    }
+    
   },
   //点击显示商品详情
   shopDetail() {

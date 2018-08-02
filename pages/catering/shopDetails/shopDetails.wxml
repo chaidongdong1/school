@@ -23,6 +23,7 @@
       </view>
       <!-- 分享 -->
       <view class="shop-t-fenxiang">
+        <button class="water-button" open-type="share"></button>
         <image src="/image/shopdetails-01.png"></image>
         <view>分享</view>
       </view>
@@ -34,9 +35,8 @@
     <view>选择商品参数、数量</view>
     <image src="/image/index-06.png"></image>
   </view>
-  <navigator class="shop-canshu" url="../evaluateList/evaluateList">
-    <view>评价
-      <text>({{datas.goodsping}})</text>
+  <navigator class="shop-canshu" url="../../evaluateList/evaluateList?shopId=1&goodsId={{goodsid}}">
+    <view>商品评价
     </view>
     <image src="/image/index-06.png"></image>
   </navigator>
@@ -69,6 +69,7 @@
     <view class="shop-b-kefu">
       <image src="/image/shopdetails-02.png"></image>
       <view>客服</view>
+      <button class="my-button" open-type="contact"></button>
     </view>
     <view bindtap='go_cart' class="shop-b-kefu">
       <image src="/image/shopdetails-03.png"></image>
@@ -84,8 +85,8 @@
   <view class="mask-shop" style="transform: {{returnDeposit.translateY}}; opacity: {{returnDeposit.opacity}};">
     <view class="mask-tp">
       <image src="{{baseUrl}}{{datas.photo_x}}"></image>
-      <view>￥{{datas.price_yh}}</view>
-      <view>存货：{{datas.num}}件</view>
+      <view><text>单价：</text>￥{{datas.price_yh}}</view>
+      <view>库存：{{datas.num}}件</view>
       <image bindtap="bindtapClose" src="/image/shopdetails-05.png"></image>
     </view>
     <!-- 规格和口味 -->

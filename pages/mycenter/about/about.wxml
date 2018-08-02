@@ -1,27 +1,58 @@
 <!--pages/mycenter/about/about.wxml-->
 <view class="about">
-	<view>学校平台</view>
+	<view>{{datas.title.fieldValue}}</view>
 	<view class="about-bottom">
 		<view>
-			<view>电话：</view>
+			<view>{{datas.name.fieldName}}：</view>
 			<view>
-				<view>0371-055601</view>
+				<view>{{datas.name.fieldValue}}</view>
+				<image src="/image/index-06.png"></image>
+			</view>
+		</view>
+		<view bindtap="bindTel">
+			<view>{{datas.tel.fieldName}}：</view>
+			<view>
+				<view>{{datas.tel.fieldValue}}</view>
 				<image src="/image/index-06.png"></image>
 			</view>
 		</view>
 		<view>
-			<view>邮箱：</view>
+			<view>{{datas.service_wx.fieldName}}：</view>
 			<view>
-				<view>1322054110@qq.com</view>
+				<view>{{datas.service_wx.fieldValue}}</view>
 				<image src="/image/index-06.png"></image>
 			</view>
 		</view>
 		<view>
-			<view>地址：</view>
+			<view>{{datas.email.fieldName}}：</view>
 			<view>
-				<view>河南省郑州市金水区农业路</view>
+				<view>{{datas.email.fieldValue}}</view>
 				<image src="/image/index-06.png"></image>
 			</view>
 		</view>
+		<view>
+			<view>{{datas.serverStartTime.fieldName}}：</view>
+			<view>
+				<view>{{datas.serverStartTime.fieldValue}}</view>
+				<image src="/image/index-06.png"></image>
+			</view>
+		</view>
+		<view>
+			<view>{{datas.serverEndTime.fieldName}}：</view>
+			<view>
+				<view>{{datas.serverEndTime.fieldValue}}</view>
+				<image src="/image/index-06.png"></image>
+			</view>
+		</view>
+		<view>
+			<view>{{datas.copyright.fieldName}}：</view>
+			<view>
+				<view>{{datas.copyright.fieldValue}}</view>
+				<image src="/image/index-06.png"></image>
+			</view>
+		</view>
+	</view>
+	<view class="about-jian">
+		<view><text>{{datas.describe.fieldName}}：</text>{{datas.describe.fieldValue}}</view>
 	</view>
 </view>

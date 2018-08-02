@@ -1,134 +1,208 @@
 // pages/meal/index/index.js
-var list = [{
-  id:1,
-  shopuniquekey: 'xx21255',
-  shopName: '店铺名称1',
-  shopAddress: '店铺地址1',
-  sales: 12,   
-  price: 8.00,
-  score: 6,
-  thumbnail: '/image/index-shop1.jpg',
-  shopDesc: '一乐拉面  牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面'
-}, {
-  id: 2,
-  shopuniquekey: 'xx21255',
-  shopName: '店铺名称2',
-  shopAddress: '店铺地址2',
-  sales: 120,   
-  price: 9.00,
-  score: 10,
-  thumbnail: '/image/index-shop1.jpg',
-  shopDesc: '一乐拉面  牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面'
-  }, {
-    id: 3,
-  shopuniquekey: 'xx21255',
-  shopName: '店铺名称3',
-  shopAddress: '店铺地址3',
-  sales: 150,   
-  price: 7.00,
-  score: 15,
-  thumbnail: '/image/index-shop1.jpg',
-  shopDesc: '一乐拉面  牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面'
-}, {
-    shopuniquekey: 'xx21255',
-    id: 4,
-  shopName: '店铺名称4',
-  shopAddress: '店铺地址4',
-  sales: 60,   
-  price: 18.00,
-  score: 6,
-  thumbnail: '/image/index-shop1.jpg',
-  shopDesc: '一乐拉面  牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面'
-}, {
-  shopuniquekey: 'xx21255',
-  shopName: '店铺名称5',
-  shopAddress: '店铺地址5',
-  sales: 150,   
-  price: 10.00,
-  score: 3,
-  id: 5,
-  thumbnail: '/image/index-shop1.jpg',
-  shopDesc: '一乐拉面  牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面'
-}, {
-  shopuniquekey: 'xx21255',
-  shopName: '店铺名称6',
-  shopAddress: '店铺地址6',
-  sales: 10,   
-  price: 16.00,
-  score: 5,
-  id: 6,
-  thumbnail: '/image/index-shop1.jpg',
-  shopDesc: '一乐拉面  牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面'
-}, {
-  shopuniquekey: 'xx21255',
-  shopName: '店铺名称7',
-  shopAddress: '店铺地址7',
-  sales: 20,   
-  price: 8.00,
-  score: 9,
-  id: 7,
-  thumbnail: '/image/index-shop1.jpg',
-  shopDesc: '一乐拉面  牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面 牛肉拉面'
-}]
 var app = getApp();
 var timer;
 Page({
   data: {
-    showLoading:true,
+    img_url: app.globalData.baseUrl,
+    showLoading1: true,
+    showLoading2: true,
+    showLoading3: true,
     currentTab: 0,
     refundpage: 0,
     lists: [],
     all_orderList0: [],
     all_orderList1: [],
-    all_orderList2: [],
     all_orderList3: [],
     all_orderList4: [],
     orderList0: [],
     orderList1: [],
-    orderList2: [],
     orderList3: [],
     orderList4: [],
-    showLoading: true,
     isHideLoadMore: [true, true, true, true, true],
     control: [true, true, true, true, true],
     loadingval: ['正在加载', '正在加载', '正在加载', '正在加载', '正在加载'],
-    page: [0, 0, 0, 0, 0]
+    page: [0, 0, 0, 0, 0],
+    hot: [],
+    imgUrls: [], //轮播图
+    schoolName: '' //学校名字
+    
   },
-  onLoad: function (options) {
-    this.loadShopList();
-  }, 
- go_shop:function (e) {
+  onShow() {
+    var schoolName = wx.getStorageSync('schoolName');
+    this.setData({
+      schoolName: schoolName
+    })
+  },
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/meal/index/index?scene=' + this.data.userId
+    }
+  },
+  onLoad: function(options) {
+    var schoolId = wx.getStorageSync('schoolId');
+    //如果学校id不存在跳转到引导页
+    if (!schoolId && !options.scene) {
+      console.log('1111')
+      var way = '../meal/index/index';
+      wx.reLaunch({
+        url:`../../start/start?way=${way}`
+      })
+    }
+    //如果学校id不存在跳转到引导页
+    if (!schoolId && options.scene) {
+      console.log('222222')
+      wx.reLaunch({
+        url: '../start/start?scene=' + options.scene + '&way=../meal/index/index'
+      })
+    }
+    var userId = wx.getStorageSync('userId');
+    this.setData({
+      schoolId: schoolId,
+      userId: userId
+    })
+    console.log(app.globalData.api)
+    var that = this;
+    //轮播图
+    wx.request({
+      method: 'POST',
+      url: `${app.globalData.api}common/ads`,
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+        adType: 2,
+        schoolId: schoolId
+      },
+      success: res => {
+        console.log(res);
+        let imgurl = res.data.data.map(item => item.photo);
+        console.log(imgurl);
+        this.setData({
+          imgUrls: imgurl
+        })
+      },
+      complete(){
+        that.setData({
+          showLoading1: false
+        })
+      }
+    });
+    wx.request({
+      url: app.globalData.api + 'shop/shopList',
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        schoolId: schoolId
+      },
+      success(data) {
+        var status = data.data.status;
+        if (status == 1) {
+          var root = data.data.data.root;
+          that.loadShopList(root);
+        } else {
+          wx.showToast({
+            title: data.data.msg,
+            duration: 2000,
+            icon: 'none'
+          });
+        }
+
+      },
+      fail: function() {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000,
+          icon: 'none'
+        });
+      },
+      complete() {
+        that.setData({
+          showLoading2: false
+        })
+      }
+    })
+    wx.request({
+      url: app.globalData.api + 'shop/shopList',
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        schoolId: schoolId,
+        recom: 1
+      },
+      success(data) {
+        var status = data.data.status;
+        if (status == 1) {
+          var root = data.data.data.root;
+          if (root.length > 4) {
+            var hot = root.splice(0, 4);
+          } else {
+            var hot = root;
+          }
+          that.setData({
+            hot: hot
+          })
+          //console.log(hot)
+        } else {
+          wx.showToast({
+            title: data.data.msg,
+            duration: 2000,
+            icon: 'none'
+          });
+        }
+
+      },
+      fail: function() {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000,
+          icon: 'none'
+        });
+      },
+      complete() {
+        that.setData({
+          showLoading3: false
+        })
+      }
+    })
+  },
+  go_shop: function(e) {
     var shop_id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../shop/shop?shop_id=' + shop_id
     })
   },
   // 上拉加载
- onReachBottom: function () {
-   var isHideLoadMore = this.data.isHideLoadMore;
-   var currentTab = this.data.currentTab;
-   isHideLoadMore[currentTab] = false;
-   this.setData({
-     isHideLoadMore: isHideLoadMore
-   });
-   var control = this.data.control[currentTab];
-   if (control) {
-     if (timer) {
-       clearTimeout(timer);
-     }
-     timer = setTimeout(() => {
-       isHideLoadMore = this.data.isHideLoadMore;
-       isHideLoadMore[currentTab] = true;
-       this.setData({
-         isHideLoadMore: isHideLoadMore,
-       })
-       this.loade();
-     }, 2000)
-   }
- },
-  
+  onReachBottom: function() {
+    var isHideLoadMore = this.data.isHideLoadMore;
+    var currentTab = this.data.currentTab;
+    isHideLoadMore[currentTab] = false;
+    this.setData({
+      isHideLoadMore: isHideLoadMore
+    });
+    var control = this.data.control[currentTab];
+    if (control) {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(() => {
+        isHideLoadMore = this.data.isHideLoadMore;
+        isHideLoadMore[currentTab] = true;
+        this.setData({
+          isHideLoadMore: isHideLoadMore,
+        })
+        this.loade();
+      }, 2000)
+    }
+  },
+
   // 请求所有美食美客的店铺  暂时每页四条数据
-  loadShopList: function () {
+  loadShopList: function(list) {
     var that = this;
     // list 原数组
     that.setData({
@@ -137,7 +211,7 @@ Page({
     var all_orderList0 = that.data.all_orderList0;
     var new_List0 = all_orderList0.splice(0, 4);
     console.log(new_List0)
-    
+
 
     // 销量排序
     var array = list;
@@ -153,36 +227,20 @@ Page({
       }
     }
     that.setData({
-      all_orderList1:array
+      all_orderList1: array
     })
     var all_orderList1 = that.data.all_orderList1;
     var new_List1 = all_orderList1.splice(0, 4);
 
-    // 距离排序
-    var array2 = list.slice(0);
-    for (var unfix = array2.length - 1; unfix > 0; unfix--) {
-      /*给进度做个记录，比到未确定位置*/
-      for (var i = 0; i < unfix; i++) {
-        if (array2[i].score > array2[i + 1].score) {
-          var temp = array2[i];
-          array2.splice(i, 1, array2[i + 1]);
-          array2.splice(i + 1, 1, temp);
-        }
-      }
-    }
-    that.setData({
-      all_orderList2: array2
-    })
-    var all_orderList2 = that.data.all_orderList2;
-    var new_List2 = all_orderList2.splice(0, 4);
-    
+
+
 
     // 价格排序 从低到高
     var array3 = list.slice(0);
     for (var unfix = array3.length - 1; unfix > 0; unfix--) {
       /*给进度做个记录，比到未确定位置*/
       for (var i = 0; i < unfix; i++) {
-        if (array3[i].price > array3[i + 1].price) {
+        if (array3[i].grade > array3[i + 1].grade) {
           var temp = array3[i];
           array3.splice(i, 1, array3[i + 1]);
           array3.splice(i + 1, 1, temp);
@@ -204,54 +262,21 @@ Page({
       orderList0: new_List0,
       all_orderList1: all_orderList1,
       orderList1: new_List1,
-      all_orderList2: all_orderList2,
-      orderList2: new_List2,
       all_orderList3: all_orderList3,
       orderList3: new_List3,
       all_orderList4: all_orderList4,
       orderList4: new_List4,
-      showLoading: false
     })
-    //that.loade();
-    //if(len0)
-    // wx.request({
-    //   url: app.data.ceshiUrl + '/Api/Order/index',
-    //   method: 'post',
-    //   data: {},
-    //   header: {
-    //     'Content-Type': 'application/x-www-form-urlencoded'
-    //   },
-    //   success: function (res) {
-    //     //--init data     
-    //     console.log(res)
-    //     this.setData({
-    //       lists: list
-    //     })
-    //   },
-    //   fail: function () {
-    //     // fail
-    //     wx.showToast({
-    //       title: '网络异常！',
-    //       duration: 2000,
-    //       icon: 'none'
-    //     });
-    //   },
-    //   complete: function () {
-    //     that.setData({
-    //       showLoading: false
-    //     })
-    //   }
-    // });
   },
   // 美食美客数据加载
-  loade:function(){
+  loade: function() {
     var that = this;
     var currentTab = that.data.currentTab;
     console.log(currentTab)
     var isHideLoadMore = that.data.isHideLoadMore;
     var control = that.data.control;
     var loadingval = that.data.loadingval;
-    if (currentTab ==0){
+    if (currentTab == 0) {
       var all_orderList0 = that.data.all_orderList0;
       var new_List0 = all_orderList0.splice(0, 4);
       var len0 = new_List0.length;
@@ -265,7 +290,7 @@ Page({
           loadingval: loadingval
         })
       } else {
-        if (len0 <4) {
+        if (len0 < 4) {
           isHideLoadMore[currentTab] = false;
           control[currentTab] = false;
           loadingval[currentTab] = '亲，我们是有底线的';
@@ -313,38 +338,6 @@ Page({
         that.setData({
           orderList1: orderList1,
           all_orderList1: all_orderList1
-        })
-      }
-    } else if (currentTab == 2) {
-      var all_orderList2 = that.data.all_orderList2;
-      var new_List2 = all_orderList2.splice(0, 4);
-      var len2 = new_List2.length;
-      if (len2 == 0) {
-        isHideLoadMore[currentTab] = false;
-        control[currentTab] = false;
-        loadingval[currentTab] = '亲，我们是有底线的';
-        that.setData({
-          isHideLoadMore: isHideLoadMore,
-          control: control,
-          loadingval: loadingval
-        })
-      } else {
-        if (len2 < 4) {
-          isHideLoadMore[currentTab] = false;
-          control[currentTab] = false;
-          loadingval[currentTab] = '亲，我们是有底线的';
-          that.setData({
-            isHideLoadMore: isHideLoadMore,
-            control: control,
-            loadingval: loadingval
-          })
-        }
-        var orderList2 = that.data.orderList2;
-        orderList2 = orderList2.concat(new_List2);
-        console.log(new_List2)
-        that.setData({
-          orderList2: orderList2,
-          all_orderList2: all_orderList2
         })
       }
     } else if (currentTab == 3) {
@@ -412,17 +405,14 @@ Page({
         })
       }
     }
-    that.setData({
-      showLoading:false
-    })
   },
   // tab 切换
-  swichNav: function (e) {
+  swichNav: function(e) {
     var that = this;
     var currentTab = that.data.currentTab;
     var current = e.currentTarget.dataset.current;
     var control = this.data.control[currentTab];
-    if (currentTab == 3 && current==3){
+    if (currentTab == 3 && current == 3) {
       that.setData({
         currentTab: 4
       });

@@ -1,4 +1,5 @@
 /* pages/courier/submit/submit.wxss */
+@import '../../../wxParse/wxParse.wxss';
 .sub{
 	width: 100%;
 	height: auto;
@@ -163,9 +164,13 @@
 	font-size: 30rpx;
 	color: #333;
 }
-.sub-kuaidi>view:last-child{
+.sub-kuaidi .user{
 	font-size: 36rpx;
 	color: #f00;
+}
+.sub-kuaidi .teacher{
+  font-size: 28rpx;
+	color: #666;
 }
 .sub-youhui{
 	width: 96%;
@@ -263,13 +268,16 @@
 	font-size: 42rpx;
 	color: #f00;
 }
-.sub-bottom>view:last-child{
+.btn{
 	width: 240rpx;
 	height: 100%;
 	background: #fa610e;
 	font-size: 34rpx;
 	color: #fff;
 	text-align: center;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
 }
 /*弹窗*/
 .mask{
@@ -327,3 +335,61 @@
   bottom: -200rpx;
   text-align: center;
 }
+/* 优惠券弹框 */
+.mask{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 750rpx;
+  height: 100%;
+  z-index: 110;
+  background:rgba(0,0,0,.6);
+  opacity: 0.3;
+}
+.vou_box{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 750rpx;
+  z-index: 120;
+  background: #fff;
+}
+.vou_box .vou_title{
+  padding: 0 25rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 32rpx;
+}
+
+.vou_wrap2{
+  height: 100rpx;
+  margin: 0 25rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+.choose{
+  width: 46rpx;
+  height: 46rpx;
+  padding: 27rpx 0;
+  padding-left: 20rpx;
+}
+.vou_wrap3{
+  height: 100rpx;
+  margin: 0 25rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: #333;
+  border-top: 1rpx solid #e1bd70;
+}
+.finish{
+  width: 700rpx;
+  margin: 100rpx 25rpx 0;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fd8006;
+  border-top: 1rpx solid #dadada;
+}
+/*优惠券弹框结束  */

@@ -8,8 +8,8 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.1.0",
-	"appid": "wx116c9a07e3bba493",
+	"libVersion": "2.2.0",
+	"appid": "wxc243c8bf3522ade2",
 	"projectname": "school",
 	"isGameTourist": false,
 	"condition": {

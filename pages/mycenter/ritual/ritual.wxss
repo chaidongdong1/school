@@ -1,14 +1,42 @@
 page {
   background: white;
 }
-
+.rit{
+  width: 100%;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  border-bottom: 20rpx solid #f0f0f0;
+  display: flex;
+  justify-content:center;
+}
+.rit>image{
+  width: 28rpx;
+  height: 28rpx;
+  margin-top: 14rpx;
+}
+.rit>view{
+  font-size: 24rpx;
+  color: #666;
+  padding-left: 10rpx;
+}
 .orderDetails {
   border-bottom: 20rpx solid #f3f3f3;
   background: #fff;
   overflow: hidden;
   height: 244rpx;
+  position: relative;
 }
-
+.order-hb{
+  position: absolute;
+  top: 8%;
+  left: 3%;
+  width: 94%;
+  height: 84%;
+  z-index: 9999;
+  background: rgba(0,0,0,.1);
+  border-radius: 20rpx;
+}
 .orderListTitle {
   height: 100rpx;
   line-height: 100rpx;
@@ -48,6 +76,7 @@ page {
   height: 200rpx;
   border:4rpx solid #309efd;
   border-radius: 20rpx;
+  position: relative;
 }
 
 .orderListDetails .productImg {
@@ -69,22 +98,26 @@ page {
 }
 
 .pr {
+  position: relative;
   flex: 2.6;
   padding: 0 10rpx;
   line-height: 44rpx;
+  margin: auto 0;
 }
 
 .n {
-  margin-top: 47rpx;
+  margin-top: 7rpx;
+  max-height: 80rpx;
   font-size: 30rpx;
   display: inline-block;
   line-height: 40rpx;
   font-weight: 900;
   overflow: hidden;
+  width: 100%;
 }
 
 .b {
-  margin-top: 8rpx;
+  margin: 8rpx 0 32rpx;
   font-size: 27rpx;
   display: inline-block;
   line-height: 30rpx;
@@ -115,18 +148,30 @@ page {
 .hb {
   width: 80%;
   margin-top: 38rpx;
-  font-size: 40rpx;
+  font-size: 34rpx;
   padding: 18rpx;
   border-radius: 4rpx;
 }
+.hb-h {
+  width: 80%;
+  margin-top: 38rpx;
+  font-size: 34rpx;
+  padding: 18rpx;
+  border-radius: 4rpx;
+  color: #999;
+}
+.hb2 {
+  margin-top: 0;
+}
 
 .c {
-  font-size: 21rpx;
-  position: relative;
-  top: -73rpx;
-  left: 237rpx;
+  font-size: 24rpx;
+  position: absolute;
+  bottom: 23rpx;
+  left: 195rpx;
   width: 400rpx;
   color: #ccc;
+  line-height: 32rpx;
 }
 
 .classname {

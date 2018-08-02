@@ -4,12 +4,19 @@
   background: #fff;
 }
 .prompt{
-  font-size: 26rpx;
-  color: #989898;
+  width: 94%;
   height: 75rpx;
   line-height: 75rpx;
-  padding-left: 30rpx;
+  padding: 0 3%;
   background-color: #efeff4;
+  display:flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  color: #989898;
+}
+.prompt>text{
+  font-size: 26rpx;
+  color: #989898;
 }
 .info_item1{
   margin-left: 30rpx;

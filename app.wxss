@@ -10,8 +10,9 @@
   box-sizing: border-box;
 } 
 page{
-	background-color: #efeff4;
+	/* background-color: #efeff4; */
 	color: #666;
+  background-color: #f4f4f4;
 }
 
 .clear{

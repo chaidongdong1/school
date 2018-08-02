@@ -1,14 +1,16 @@
 <!--pages/mycenter/mycenter.wxml-->
-<view class="my">
+<view class="my"> 
   <!-- 个人信息 -->
   <view class="my-top">
-    <view>
-      <image src="/image/user_img.png"></image>
+    <view class='header_l'>
+      <button class='getUI' bindgetuserinfo="getUI" open-type="getUserInfo">
+        <image src="{{userInfo?userInfo.avatarUrl : '/image/default.jpg'}}" ></image>
+      </button> 
     </view>
     <view>
-      <view>别离开</view>
-      <view>手机号：13298343196</view>
-      <view>我的校区：龙子湖校区</view>
+      <view>{{userInfo.nickName}}</view> 
+      <view>手机号：{{userPhone?userPhone:'xxx-xxx'}}</view>
+      <view>我的校区：{{schoolName}}</view>
     </view>
     <navigator url="../mycenter/information/information">
       <image src="/image/bi.png"></image>
@@ -36,12 +38,12 @@
       <text>分享二维码</text>
       <image src="/image/login8.png"></image>
     </view>
-    <view wx:if="{{graber}}" bindtap="grab">
+    <view wx:if="{{isSender==1}}" bindtap="grab">
       <image src="/image/grab_in.png"></image>
       <text>任务大厅</text>
       <image src="/image/login8.png"></image>
     </view>
-  	<view wx:if="{{admin}}" bindtap='admin'>
+  	<view wx:if="{{isManager==1}}" bindtap='admin'>
   		<image src="/image/me-11.png"></image>
   		<text>管理入口</text>
   		<image src="/image/login8.png"></image>
@@ -83,6 +85,7 @@
   		<image src="/image/me-12.png"></image>
   		<text>联系我们</text>
   		<image src="/image/login8.png"></image>
+      <button class="my-button" open-type="contact"></button>
   	</view>
   </view>
 </view>

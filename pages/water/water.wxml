@@ -2,11 +2,11 @@
 <import src="../../wxParse/wxParse.wxml" />
 <view class="shop">
   <!-- top -->
-  <view class="top">
+  <view class="top" wx:if="{{schoolName}}">
     <view>
       <image src="../../image/position.png"></image>
       <view>我的校区：
-        <text>龙子湖校区</text>
+        <text>{{schoolName}}</text>
       </view>
     </view>
     <navigator url="../mycenter/information/information">
@@ -29,10 +29,12 @@
     <view>{{datas.name}}</view>
     <view class="shop-t-jiage">
       <view>
-        单价：<text>￥{{datas.price_yh}}</text>
+        单价：
+        <text>￥{{datas.price_yh}}</text>
       </view>
       <!-- 分享 -->
       <view class="shop-t-fenxiang">
+        <button class="water-button" open-type="share"></button>
         <image src="../../image/shopdetails-01.png"></image>
         <view>分享</view>
       </view>
@@ -43,9 +45,8 @@
     <view>选择商品参数、数量</view>
     <image src="../../image/index-06.png"></image>
   </view>
-  <navigator class="shop-canshu" url="">
-    <view>评价
-      <text>(300)</text>
+  <navigator class="shop-canshu" url="../evaluateList/evaluateList?shopId={{shopId}}&goodsId={{id}}">
+    <view>商品评价
     </view>
     <image src="../../image/index-06.png"></image>
   </navigator>
@@ -64,8 +65,8 @@
         <view class="shop-guige">商品名称：
           <text>可口可乐</text>
         </view>
-        <view class="shop-guige">商品编号：1520023200</view>
-        <view class="shop-guige">商品分类：饮品类</view>
+        <view class="shop-guige">商品编号：<text>1520023200</text></view>
+        <view class="shop-guige">商品分类：<text>饮品类</text></view>
         <view class="shop-guige1">商品售后：
           <text>商品售后商品售后商品售后商品售后</text>
         </view>
@@ -77,6 +78,7 @@
     <view class="shop-b-kefu">
       <image src="../../image/shopdetails-02.png"></image>
       <view>客服</view>
+      <button class="my-button" open-type="contact"></button>
     </view>
     <view bindtap='go_cart' class="shop-b-kefu">
       <image src="../../image/shopdetails-03.png"></image>
@@ -92,7 +94,9 @@
   <view class="mask-shop" style="transform: {{returnDeposit.translateY}}; opacity: {{returnDeposit.opacity}};">
     <view class="mask-tp">
       <image src="{{baseUrl}}{{datas.photo_x}}"></image>
-      <view>单价：<text>￥{{total}}</text></view>
+      <view>单价：
+        <text>￥{{datas.price_yh}}</text>
+      </view>
       <image bindtap="bindtapClose" src="../../image/shopdetails-05.png"></image>
     </view>
     <view class='list_wrap'>

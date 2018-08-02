@@ -1,13 +1,13 @@
 <!--pages/evaluateList/evaluateList.wxml-->
 <view class="list">
   <!-- 头部 -->
-  <view class="list-top">
+  <!--   <view class="list-top">
     <view class="list-top-active">全部
       <view>48</view>
     </view>
     <view>有图
       <view>26</view>
-    </view>
+    </view> 
     <view>好评
       <view>40</view>
     </view>
@@ -17,72 +17,43 @@
     <view>差评
       <view>2</view>
     </view>
-  </view>
+  </view> -->
   <!-- 评价 -->
-  <view class="list-eavl">
+  <view class="list-eavl" wx:if="{{list.length>0}}">
     <!-- 第一条评价 -->
-    <view class="list-e-one">
+    <view class="list-e-one" wx:for="{{list}}" wx:key="item">
       <!-- 评价头部 -->
       <view>
-        <image src="/image/user_img.png"></image>
+        <image src="{{item.userPhoto}}"></image>
         <view class="name">
-          <view>别离开</view>
+          <view>{{item.userName}}</view>
           <view>
             <view>
-              <image src="/image/xing-xuan.png"></image>
-              <image src="/image/xing-xuan.png"></image>
-              <image src="/image/xing-xuan.png"></image>
-              <image src="/image/xing-xuan.png"></image>
-              <image src="/image/xing-wei.png"></image>
+              <image src="{{item.goodsScore*1 > 0 ?'/image/xing-xuan.png' : '/image/xing-wei.png'}}"></image>
+              <image src="{{item.goodsScore*1 > 1 ?'/image/xing-xuan.png' : '/image/xing-wei.png'}}"></image>
+              <image src="{{item.goodsScore*1 > 2 ?'/image/xing-xuan.png' : '/image/xing-wei.png'}}"></image>
+              <image src="{{item.goodsScore*1 > 3 ?'/image/xing-xuan.png' : '/image/xing-wei.png'}}"></image>
+              <image src="{{item.goodsScore*1 > 4 ?'/image/xing-xuan.png' : '/image/xing-wei.png'}}"></image>
             </view>
-            <view>2018-06-30 12:05:24</view>
+            <view>{{item.createTime}}</view>
           </view>
         </view>
       </view>
       <!-- 评价内容 -->
       <view class="list-e-nei">
-        <view>吖商家孤岛惊魂申达股份会计师对方环能科技大V放牛班新局面新城V你师父打卡机老虎机等方面大V会计学，和国防生的</view>
+        <view>{{item.content}}</view>
         <view>
-          <image src="/image/pingjia-01.png"></image>
-          <image src="/image/pingjia-01.png"></image>
-        </view>
-        <view>购买日期：2018-06-28</view>
-      </view>
-    </view>
-    <!-- 第一条评价 -->
-    <view class="list-e-one">
-      <!-- 评价头部 -->
-      <view>
-        <image src="/image/user_img.png"></image>
-        <view class="name">
-          <view>别离开</view>
-          <view>
-            <view>
-              <image src="/image/xing-xuan.png"></image>
-              <image src="/image/xing-xuan.png"></image>
-              <image src="/image/xing-xuan.png"></image>
-              <image src="/image/xing-xuan.png"></image>
-              <image src="/image/xing-wei.png"></image>
-            </view>
-            <view>2018-06-30 12:05:24</view>
+          <view class='img_wrap' wx:for="{{item.appraisesAnnex}}" wx:for-item="img" wx:key="img">
+            <image mode='aspectFit' src="{{baseUrl+img}}"></image>
           </view>
         </view>
-      </view>
-      <!-- 评价内容 -->
-      <view class="list-e-nei">
-        <view>吖商家孤岛惊魂申达股份会计师对方环能科技大V放牛班新局面新城V你师父打卡机老虎机等方面大V会计学，和国防生的</view>
-        <view>
-          <image src="/image/pingjia-01.png"></image>
-          <image src="/image/pingjia-01.png"></image>
-        </view>
-        <view>购买日期：2018-06-28</view>
       </view>
     </view>
   </view>
   <!-- 已加载全部 -->
-  <view class="order-quanbu">已加载全部</view>
+  <view class="order-quanbu" wx:if="{{(!list || list.length != 0) && totalPage == currPage}}">已加载全部</view>
   <!-- 没有数据时 -->
-  <view class="order-wu">
+  <view wx:if="{{!list|list.length<1}}" class="order-wu">
     <view>
       <image src="/image/dingdan-kong.png"></image>
     </view>

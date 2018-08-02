@@ -5,6 +5,13 @@ Page({
   data: {
     datas: {}, //内容
   },
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/start/start?scene=' + app.globalData.userId
+    }
+  },
   onLoad: function(options) {
     console.log(options);
     //公告信息接口

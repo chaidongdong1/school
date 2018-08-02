@@ -1,203 +1,254 @@
-let datas = {
-  lists: [{
-    listsName: "全部",
-    listsNumber: "6666",
-  }, {
-    listsName: "配送中",
-    listsNumber: "66",
-  }, {
-    listsName: "已完成",
-    listsNumber: "600",
-  }],
-  stats: [{
-    statsId: "121",
-    statsType: "0", //订单状态
-    statsName: "别离开1",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-09 12:05:30",
-    statsStas: "0", //超市订单
-  }, {
-    statsId: "122",
-    statsType: "1",
-    statsName: "别离开2",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-10 12:05:30",
-    statsStas: "3", //超市订单
-  }, {
-    statsId: "123",
-    statsType: "0",
-    statsName: "别离开3",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-08 12:05:30",
-    statsStas: "2", //超市订单
-  }, {
-    statsId: "124",
-    statsType: "0",
-    statsName: "别离开4",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-10 12:05:30",
-    statsStas: "1", //超市订单
-  }, {
-    statsId: "125",
-    statsType: "0",
-    statsName: "别离开5",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-08 12:05:30",
-    statsStas: "3", //超市订单
-  }, {
-    statsId: "126",
-    statsType: "1",
-    statsName: "别离开6",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-09 12:05:30",
-    statsStas: "2", //超市订单
-  }, {
-    statsId: "127",
-    statsType: "1",
-    statsName: "别离开7",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-09 12:05:30",
-    statsStas: "1", //超市订单
-  }, {
-    statsId: "121",
-    statsType: "1",
-    statsName: "别离开8",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-09 12:05:30",
-    statsStas: "0", //超市订单
-  }, {
-    statsId: "128",
-    statsType: "1",
-    statsName: "别离开9",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-09 12:05:30",
-    statsStas: "3", //超市订单
-
-  }, {
-    statsId: "129",
-    statsType: "0",
-    statsName: "别离开10",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-10 12:05:30",
-    statsStas: "2", //超市订单
-  }, {
-    statsId: "130",
-    statsType: "0",
-    statsName: "别离开11",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-08 12:05:30",
-    statsStas: "1", //超市订单
-  }, {
-    statsId: "121",
-    statsType: "1",
-    statsName: "别离开12",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-09 12:05:30",
-    statsStas: "0", //超市订单
-
-  }, {
-    statsId: "131",
-    statsType: "1",
-    statsName: "别离开13",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-09 12:05:30",
-    statsStas: "3", //超市订单
-  }, {
-    statsId: "132",
-    statsType: "1",
-    statsName: "别离开14",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-08 12:05:30",
-    statsStas: "2", //超市订单
-  }, {
-    statsId: "133",
-    statsType: "1",
-    statsName: "别离开15",
-    statsHead: "../../../image/user_img.png",
-    statsPhone: "1654134413", //订单编号
-    statsDate: "2018-07-10 12:05:30",
-    statsStas: "1", //超市订单
-
-  }, ],
-};
+const app = getApp();
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     choose: 0, //导航下标
     date: '请选择时间', //时间选择器
     lists: [], //导航
     datas: [], //内容
+    listSuo: '', //所有订单数量
+    mark: ['waiting', 'dealing', 'over', 'unusual'], //向后台传的数据
+    totalPage: '', //总页数
+    currPage: 1, //当前页数
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/start/start?scene=' + app.globalData.userId
+    }
+  },
   onLoad: function(options) {
-    //导航列表
-    this.setData({
-      lists: datas.lists
-    });
-    //页面内容渲染
-    this.setData({
-      datas: datas.stats
-    });
+    this.getListNum();
+    this.getListsDan();
   },
-
   onShow: function() {
 
   },
+  //获取订单数量和导航名称
+  getListNum() {
+    wx.showLoading({
+      title: '加载中',
+    });
+    wx.request({
+      method: 'POST',
+      url: `${app.globalData.api}admin/orderNum`,
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+        managerId: app.globalData.userId
+      },
+      success: res => {
+        wx.hideLoading();
+        console.log(res);
+        this.setData({
+          lists: [{
+            listsName: "待受理",
+            listsNumber: !res.data.data.waiting ? '0' : res.data.data.waiting,
+            }, {
+            listsName: "配送中",
+            listsNumber: !res.data.data.dealing ? '0' : res.data.data.dealing,
+            }, {
+            listsName: "已完成",
+            listsNumber: !res.data.data.over ? '0' : res.data.data.over,
+            }, {
+            listsName: "异常订单",
+            listsNumber: !res.data.data.unusual ? '0' : res.data.data.unusual,
+          }],
+          listSuo: res.data.data.waiting * 1 + res.data.data.dealing * 1 + res.data.data.over * 1 + res.data.data.unusual * 1,
+        });
+      }
+    });
+  },
+  //点击已解决
+  bindOver(e) {
+    console.log(e);
+    let taskId = e.currentTarget.dataset.taskid;
+    wx.showModal({
+      title: '温馨提示',
+      content: '您是否已解决该订单？',
+      success: res => {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '加载中',
+          });
+          wx.request({
+            method: 'POST',
+            url: `${app.globalData.api}admin/dealProblem`,
+            header: { 'content-type': 'application/x-www-form-urlencoded' },
+            data: {
+              managerId: app.globalData.userId,
+              taskId: taskId,
+            },
+            success: res => {
+              wx.hideLoading();
+              console.log(res);
 
+              if (res.data.status == 1) {
+                wx.showToast({
+                  title: '操作成功',
+                  icon: 'success',
+                  duration: 1500
+                });
+                setTimeout(() => {
+                  this.setData({
+                    date: '请选择时间', //时间选择器
+                    lists: [], //导航
+                    datas: [], //内容
+                    listSuo: '', //所有订单数量
+                    totalPage: '', //总页数
+                    currPage: 1, //当前页数
+                  });
+                  this.getListNum();
+                  this.getListsDan();
+                }, 500);
+              } else {
+                wx.showToast({
+                  title: '操作失败',
+                  image: '../../../image/warning.png',
+                  duration: 1500
+                });
+              }
+            }
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    });
+  },
+  //重新发单
+  bindChong(e) {
+    console.log(e);
+    let taskId = e.currentTarget.dataset.taskid;
+    wx.showModal({
+      title: '温馨提示',
+      content: '您是否需要对该订单重新发送？',
+      success: res => {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '加载中',
+          });
+          wx.request({
+            method: 'POST',
+            url: `${app.globalData.api}admin/refreshTask`,
+            header: { 'content-type': 'application/x-www-form-urlencoded' },
+            data: {
+              managerId: app.globalData.userId,
+              taskId: taskId,
+            },
+            success: res => {
+              wx.hideLoading();
+              console.log(res);
 
+              if (res.data.status == 1) {
+                wx.showToast({
+                  title: '操作成功',
+                  icon: 'success',
+                  duration: 1500
+                });
+                setTimeout(() => {
+                  this.setData({
+                    date: '请选择时间', //时间选择器
+                    lists: [], //导航
+                    datas: [], //内容
+                    listSuo: '', //所有订单数量
+                    totalPage: '', //总页数
+                    currPage: 1, //当前页数
+                  });
+                  this.getListNum();
+                  this.getListsDan();
+                }, 500);
+              } else {
+                wx.showToast({
+                  title: '操作失败',
+                  image: '../../../image/warning.png',
+                  duration: 1500
+                });
+              }
+            }
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    });
+  },
+  //获取订单列表
+  getListsDan() {
+    wx.showLoading({
+      title: '加载中',
+    });
+    wx.request({
+      method: 'POST',
+      url: `${app.globalData.api}admin/querySchoolOrders`,
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+        managerId: app.globalData.userId,
+        mark: this.data.mark[this.data.choose],
+        page: this.data.currPage
+      },
+      success: res => {
+        wx.hideLoading();
+        console.log(res);
+        let root = res.data.data.root.map(item => {
+          item.createTime = item.createTime.slice(0, 16);
+          if (item.getTime) {
+            item.getTime = item.getTime.slice(0, 16);
+          }
+          if (item.completeTime) {
+            item.completeTime = item.completeTime.slice(0, 16);
+          }
+          if (item.errorTime) {
+            item.errorTime = item.errorTime.slice(0, 16);
+          }
+          return item;
+        });
+        console.log(root);
+        //页面内容渲染
+        this.setData({
+          datas: this.data.datas.concat(root),
+          totalPage: res.data.data.totalPage,
+          currPage: res.data.data.currPage,
+        });
+      }
+    });
+  },
+  //点击导航
   tab_choose: function(e) {
     var index = e.currentTarget.dataset.index;
     this.setData({
-      choose: index
+      choose: index,
+      totalPage: '', //总页数
+      currPage: 1, //当前页数
+      datas: [], //内容
+      date: '请选择时间',
     });
-    this.clear();
+    this.getListsDan();
+    // this.clear();
   },
-  clear() {
-    if (this.data.choose == 1) {
-      this.setData({
-        date: '请选择时间',
-        datas: datas.stats.filter(item => item.statsType == 0)
-      });
-    } else if (this.data.choose == 2) {
-      this.setData({
-        date: '请选择时间',
-        datas: datas.stats.filter(item => item.statsType == 1)
-      });
-    } else if (this.data.choose == 3) {
-      this.setData({
-        date: '请选择时间',
-        datas: datas.stats.filter(item => item.statsType == 2)
-      });
-    } else {
-      this.setData({
-        date: '请选择时间',
-        datas: datas.stats
-      });
-    }
-  },
+  //判断当前在第几个页面
+  // clear() {
+  //   if (this.data.choose == 1) {
+  //     this.setData({
+  //       date: '请选择时间',
+  //     });
+  //   } else if (this.data.choose == 2) {
+  //     this.setData({
+  //       date: '请选择时间',
+  //     });
+  //   } else if (this.data.choose == 3) {
+  //     this.setData({
+  //       date: '请选择时间',
+  //     });
+  //   } else {
+  //     this.setData({
+  //       date: '请选择时间',
+  //     });
+  //   }
+  // },
   //时间选择器
-  bindDateChange: function (e) {
-    this.clear();
+  bindDateChange: function(e) {
+    // this.clear();
     //获取当前日期
     var now = new Date(); //js获取时间
     var year = now.getFullYear(); //得到年份
@@ -217,19 +268,78 @@ Page({
     console.log(this.data.date);
     console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
-      date: e.detail.value
+      choose: this.data.choose,
+      date: e.detail.value,
+      totalPage: '', //总页数
+      currPage: 1, //当前页数
+      datas: [], //内容
     });
     wx.showLoading({
       title: '加载中',
     });
-    this.setData({
-      datas: this.data.datas.filter(item => item.statsDate.slice(0,10) == this.data.date)
+    //通过时间筛选接口
+    wx.request({
+      method: 'POST',
+      url: `${app.globalData.api}admin/querySchoolOrders`,
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+        managerId: app.globalData.userId,
+        mark: this.data.mark[this.data.choose],
+        page: this.data.currPage,
+        time: this.data.date,
+      },
+      success: res => {
+        console.log(res);
+        console.log({
+          managerId: app.globalData.userId,
+          mark: this.data.mark[this.data.choose],
+          page: this.data.currPage,
+          time: this.data.date,
+        })
+        let root = res.data.data.root.map(item => {
+          item.createTime = item.createTime.slice(0, 16);
+          if (item.getTime) {
+            item.getTime = item.getTime.slice(0, 16);
+          }
+          if (item.completeTime) {
+            item.completeTime = item.completeTime.slice(0, 16);
+          }
+          if (item.errorTime) {
+            item.errorTime = item.errorTime.slice(0, 16);
+          }
+          return item;
+        });
+        console.log(root);
+        //页面内容渲染
+        this.setData({
+          datas: this.data.datas.concat(root),
+          totalPage: res.data.data.totalPage,
+          currPage: res.data.data.currPage,
+        });
+      }
     });
     setTimeout(function() {
       wx.hideLoading();
     }, 500);
   },
-  onShareAppMessage: function() {
-
-  }
-})
+  //跳转详情
+  bindXiang(e) {
+    console.log(e)
+    let orderId = e.currentTarget.dataset.orderid;
+    wx.navigateTo({
+      url: `../../admin/admin_orderDetails/admin_orderDetails?shop=${orderId}`
+    });
+  },
+  //上拉加载
+  onReachBottom: function() {
+    if (this.data.currPage < this.data.totalPage) {
+      this.setData({
+        currPage: this.data.currPage * 1 + 1
+      });
+      console.log(this.data.currPage);
+      this.getListsDan();
+    } else {
+      console.log("已经是最后一页");
+    }
+  },
+});

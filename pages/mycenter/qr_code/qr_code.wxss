@@ -23,6 +23,18 @@
   left: 0;
   top:0;
 }
+.imgPhone{
+  width: 180rpx;
+  height: 180rpx;
+  overflow: hidden;
+  border-radius: 50%;
+  position: absolute;
+  margin: 0 auto;
+  top:297rpx;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
 .cont_t_img{
   display: inline-block;
   width: 34rpx;

@@ -1,4 +1,5 @@
 // pages/login/login.js
+var app = getApp();
 Page({
   data: {
     indexs: 0,   //登陆、注册的值
@@ -7,6 +8,13 @@ Page({
   },
   onLoad: function(options) {
     
+  },
+  // 分享
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.programName,
+      path: 'pages/start/start?scene=' + app.globalData.userId
+    }
   },
   //请选择校区
   bindPickerChange(e) {

@@ -1,16 +1,21 @@
 <!--pages/teacher/teacher.wxml-->
-<view class="teacher">请填写您的正确信息</view>
-<view class="reset">
-	<view>
-		<view>真实姓名</view>
-		<input type="text" name="" placeholder="请填写真实姓名" placeholder-style="font-size:30rpx;color:#999;" bindinput="bindName" />
-	</view>
-	<view style="border:0;">
-		<view>教师工号</view>
-		<input type="number" name="" placeholder="请输入您的工号" placeholder-style="font-size:30rpx;color:#999;" bindinput="bindNumber" />
-	</view>
-</view>
-<!-- 按钮 -->
-<view class="reset-button">
-  <button bindtap="bindtapButton">提交审核</button>
-</view>
+<form report-submit="true" bindsubmit="formSubmit">
+  <view class="teacher">
+    <text>请正确填写你的信息</text>
+    <text>当前状态：{{status == 0 ? '审核中' : (status == 1 ? '已通过' : (status == -1 ? '未通过' : '未激活'))}}</text>
+  </view>
+  <view class="reset">
+    <view>
+      <view>真实姓名</view>
+      <input type="text" value="{{teacherName}}" name="" placeholder="请填写真实姓名" placeholder-style="font-size:30rpx;color:#999;" bindinput="bindName" />
+    </view>
+    <view style="border:0;">
+      <view>教师工号</view>
+      <input type="number" value="{{teacherNumber}}" name="" placeholder="请输入您的工号" placeholder-style="font-size:30rpx;color:#999;" bindinput="bindNumber" />
+    </view>
+  </view>
+  <!-- 按钮 -->
+  <view class="reset-button">
+    <button formType="submit" bindtap="bindtapButton">提交审核</button>
+  </view>
+</form>

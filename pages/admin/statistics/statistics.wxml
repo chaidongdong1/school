@@ -15,26 +15,29 @@
 </view>
 <view class='list1' wx:for="{{datas}}" wx:key="{{index}}">
   <view class='list_item'>
+    <view class="zhezhao" wx:if="{{item.isSender == -1}}" bindtap="{{item.isSender != 0 ? 'bindtapMasks' : ''}}" data-isSender="{{item.isSender}}" data-userid="{{item.userId}}" data-username="{{item.userName}}" data-phone="{{item.phone}}" data-userPhoto="{{item.userPhoto}}"></view>
     <view class='list_t clear'>
-      <image bindtap="bindtapMasks" class='list_tl fl_l' src='{{item.statsHead}}'></image>
-      <view class='list_tr fl_l' bindtap="bindtapMasks">
+      <image bindtap="{{item.isSender != 0 ? 'bindtapMasks' : ''}}" data-isSender="{{item.isSender}}" data-userid="{{item.userId}}" data-username="{{item.userName}}" data-phone="{{item.phone}}" data-userPhoto="{{item.userPhoto}}" class='list_tl fl_l' src='{{item.userPhoto}}'></image>
+      <view class='list_tr fl_l' bindtap="{{item.isSender != 0 ? 'bindtapMasks' : ''}}" data-isSender="{{item.isSender}}" data-userid="{{item.userId}}" data-username="{{item.userName}}" data-phone="{{item.phone}}" data-userPhoto="{{item.userPhoto}}">
         <view class='list_tr1'>
-          <view class='fl_l'>{{item.statsName}}</view>
+          <view class='fl_l'>{{item.isSender == 1 ? item.trueName : item.userName}}</view>
         </view>
         <view class='list_tr3'>
-          <view class='num fl_l'>手机号码：{{item.statsPhone}}</view>
+          <view class='num fl_l'>手机号码：{{item.phone}}</view>
         </view>
-        <view class='list_tr2'>
-          <view class='num fl_l'>申请时间：{{item.statsDate}}</view>
-        </view>
+        <!-- <view class='list_tr2'>
+          <view class='num fl_l'>申请时间：{{item.subscribeTime}}</view>
+        </view> -->
       </view>
       <view class='arrow_wrap fl_l'>
-        <view class="{{item.statsType != 2 ? 'arrow_view1' : 'arrow_view'}}">{{item.statsType == 0 ? '' : (item.statsType == 1 ? '教师' : '派单员')}}</view>
-        <view wx:if="{{item.statsType == 2}}" class="arrow_butt">封禁</view>
+        <view class="{{item.isSender == 0 ? 'arrow_view1' : 'arrow_view'}}">{{(item.isSender == 0 && item.isTeacher == 0) ? '' : (item.isSender == 0 ? '教师' : '派单员')}}</view>
+        <view wx:if="{{item.isSender != 0}}" bindtap="bindFeng" data-userid="{{item.userId}}" data-isSender="{{item.isSender}}" class="{{item.isSender == 1 ? 'arrow_butt' : 'arrow_butt1'}}">{{item.isSender == 1 ? '封禁' : '已封禁'}}</view>
       </view>
     </view>
   </view>
 </view>
+<view class="stas-quanbu" wx:if="{{totalPage*1 == currPage*1 && datas.length != 0}}">已加载全部</view>
+<view class="stas-quanbu" wx:if="{{!datas || datas.length == 0}}">暂无数据</view>
 <!-- 弹窗 -->
 <view class="mask" style="opacity: {{mask.opacity}}; display: {{mask.display}};">
   <view class="masks" bindtap="bindtapClose"></view>
@@ -46,17 +49,27 @@
       </view>
       <!-- 头像 -->
       <view>
-        <image src="../../../image/user_img.png"></image>
+        <image src="{{tanXinxi.userphoto}}"></image>
       </view>
       <!-- 个人信息 -->
       <view>
-        <view>真实姓名：<text>柴冬冬</text></view>
-        <view>用户昵称：<text>别离开</text></view>
-        <view>手 机 号 ：<text>13298343196</text></view>
-        <view>身份证号：<text>410923199710126666</text></view>
-        <view>申请时间：<text>2018-07-15 12:30:25</text></view>
+        <view>真实姓名：
+          <text>{{paiXinxi.trueName}}</text>
+        </view>
+        <view>用户昵称：
+          <text>{{tanXinxi.username}}</text>
+        </view>
+        <view>手 机 号 ：
+          <text>{{tanXinxi.phone}}</text>
+        </view>
+        <view>身份证号：
+          <text>{{paiXinxi.IdCode}}</text>
+        </view>
+        <view>认证时间：
+          <text>{{paiXinxi.createTime}}</text>
+        </view>
       </view>
     </view>
-    <view class="mask-button">立即封禁</view>
+    <view class="{{tanXinxi.issender == 1 ? 'mask-button' : 'mask-button1'}}" bindtap="bindFeng" data-userid="{{tanXinxi.userid}}" data-isSender="{{tanXinxi.issender}}">{{tanXinxi.issender == 1 ? '立即封禁' : '立即解封'}}</view>
   </view>
 </view>

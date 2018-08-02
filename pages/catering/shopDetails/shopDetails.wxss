@@ -20,6 +20,15 @@
 	margin: 15rpx 0;
 	padding: 15rpx 2%;
 }
+.water-button{
+  width: 80rpx;
+  height: 100rpx;
+  position: absolute;
+  bottom: 30rpx;
+  right: 0;
+  z-index: 9999;
+  opacity: 0;
+}
 .shop-title>view:first-child{
 	width: 100%;
 	max-height: 90rpx;
@@ -56,6 +65,7 @@
 .shop-t-fenxiang{
 	width: 80rpx;
 	height: auto;
+	position: relative;
 }
 .shop-t-fenxiang>image{
 	width: 40rpx;
@@ -172,12 +182,24 @@
 	box-shadow: 0 0 10rpx #eee;
 	border-top: 1px solid #eee;
 }
-.shop-bottom .shop-b-kefu{
+.shop-bottom>.shop-b-kefu{
 	width: 16%;
 	height: 100%;
 	text-align: center;
 	border-right: 1px solid #eee;
 	box-sizing: border-box;
+	position: relative;
+}
+.my-button{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	background: rgba(0,0,0,0);
+	border: 0;
+  opacity: 0;
 }
 .shop-b-kefu>image{
 	width: 40rpx;
@@ -248,9 +270,12 @@
   background: #fff;
 }
 .mask-tp>view:nth-child(2){
-	font-size: 42rpx;
+	font-size: 38rpx;
 	color:#f00;
-	margin-left: -50rpx;
+}
+.mask-tp>view:nth-child(2)>text{
+	font-size: 28rpx;
+	color: #666;
 }
 .mask-tp>view:nth-child(3){
 	font-size: 28rpx;

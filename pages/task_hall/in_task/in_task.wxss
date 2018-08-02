@@ -8,7 +8,7 @@
   display: block;
   width: 112rpx;
   height: 112rpx;
-  border: 4rpx solid #fff;
+  /* border: 4rpx solid #fff; */
   margin: 0 15rpx;
   border-radius: 50%;
 }
@@ -112,6 +112,7 @@
   width: 50rpx;
   height: 50rpx;
   margin: 15rpx;
+  border-radius: 50%;
 }
 .user_name{
   font-size: 24rpx;
@@ -224,4 +225,50 @@
 .grab_btn1,.grab_btn2{
   display: inline-block;
   vertical-align: middle;
+}
+/*点击用户头像获取权限  */
+.header_l .getUI{
+  background-color: #309efd;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+}
+.header_l image{
+  display: block;
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+}
+/*数据为空  */
+.noOrder{
+  overflow: hidden;
+	width: 100%;
+  margin-bottom: -200rpx;
+	background: #fff;
+}
+.noOrder>view:first-child{
+	width: 325rpx;
+	height: 330rpx;
+	padding: 220rpx 0 50rpx 0;
+	margin: 0 auto;
+}
+.noOrder>view:first-child>image{
+	width: 100%;
+	height: 100%;
+}
+.noOrder>view:nth-child(2){
+	text-align:center;
+	font-size: 32rpx;
+	color: #333;
+	margin: 20rpx 0;
+}
+.noOrder>view:last-child{
+	font-size: 30rpx;
+	color: #666;
+	text-align: center;
+}
+.bg{ 
+  background: #fff;
+  height: 100vh;
 }

@@ -117,11 +117,18 @@
   display: flex;
   flex-wrap: wrap;
 }
-
-.list-e-nei>view:nth-child(2)>image {
+.img_wrap{
   width: 210rpx;
   height: 210rpx;
-  margin: 15rpx 30rpx 10rpx 0;
+  margin: 15rpx 20rpx 10rpx 0;
+  display: flex;
+  border: 1rpx solid #f4f4f4;
+}
+.img_wrap>image {
+  max-width: 210rpx;
+  max-height: 210rpx;
+  width: 210rpx;
+  margin: auto;
 }
 
 .list-e-nei>view:last-child {

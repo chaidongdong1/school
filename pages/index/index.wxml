@@ -4,13 +4,14 @@
   <image src="../../image/index-01.png"></image>
   <view>搜索</view>
 </navigator> -->
+<loading wx:if="{{showLoading}}">加载中</loading>
 <view class="indexss">
   <!-- top -->
-  <view class="top">
+  <view class="top" wx:if="{{schoolName}}">
     <view>
       <image src="../../image/position.png"></image>
       <view>我的校区：
-        <text>龙子湖校区</text>
+        <text>{{schoolName}}</text>
       </view>
     </view>
     <navigator url="../mycenter/information/information">
@@ -60,8 +61,9 @@
       <text>餐饮外卖</text>
     </navigator>
     <!-- 居中 -->
-    <view bindtap='task_hall' class="index-center">
-      <image src="../../image/indexs-05.png"></image>
+    <view bindtap="{{isSender == 1 ? 'task_hall' : ''}}" class="index-center">
+      <image src="{{isSender == 1 ? '../../image/indexs-05.png' : baseUrl + logo}}"></image>
     </view>
   </view>
+  <!-- <view class="number">9999</view> -->
 </view>

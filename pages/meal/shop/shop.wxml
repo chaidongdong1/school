@@ -1,33 +1,80 @@
 <!--pages/meal/shop/shop.wxml-->
+<loading wx:if="{{showLoading}}">加载中</loading>
 <image class='top_img' src='/image/bg.png'></image>
 <view class='header'>
   <view class='header_l fl_l'>
-    <image class='shop_img' src='/image/index-shop1.jpg'></image>
-  </view>
+    <image class='shop_img' src='{{imgUrl+logo}}'></image>
+  </view> 
   <view class='header_r fl_l'>
-    <view class='header_r1'>山西刀削面</view>
-    <view class='header_r2'>营业时间：10:00-13:00    15:00-19:00</view>
-    <view class='header_r3 ellipsis'>地址：北大雪城西餐厅15号窗口</view>
+    <view class='header_r1'>{{shopName}}</view>
+    <!-- <view class='header_r2'>营业时间：10:00-13:00    15:00-19:00</view> -->
+    <view class='header_r3 ellipsis'>地址：{{shopAddress}}</view>
   </view>
 </view>  
 <view class='cont'>
   <view class='tab'>
-    <view class='tab_item active bo_r'>菜品</view>
-    <view class='tab_item'>评价</view>
+    <view bindtap='active2' data-index='0' class='tab_item {{show2==0 ? "active":""}} bo_r'>菜品</view>
+    <view bindtap='active2' data-index='1'  class='tab_item {{show2==1 ? "active":""}}'>评价</view>
   </view> 
-  <!--菜品  --> 
-  <view class='dishes_wrap clear'>
-    <view class='classify' style='height:{{height}}px'>
-      <view data-index='{{index}}' wx:for="{{goods_list}}" wx:key="name" bindtap='active'  class='classify_item {{show==index ? "active2":""}}'>{{item.name}}</view>
+  <view class='evalute' wx:if="{{show2==1}}">
+    <view class="list">
+      <!-- 评价 -->
+      <view class="list-eavl" wx:if="{{list.length>0}}">
+        <!-- 第一条评价 -->
+        <view class="list-e-one" wx:for="{{list}}" wx:key="item">
+          <!-- 评价头部 -->
+          <view>
+            <image src="{{item.userPhoto}}"></image>
+            <view class="name">
+              <view>{{item.userName}}</view>
+              <view>
+                <view>
+                  <image src="/image/xing-xuan.png"></image>
+                  <image src="/image/xing-xuan.png"></image>
+                  <image src="/image/xing-xuan.png"></image>
+                  <image src="/image/xing-xuan.png"></image>
+                  <image src="/image/xing-wei.png"></image>
+                </view>
+                <view>{{item.createTime}}</view>
+              </view>
+            </view>
+          </view>
+          <!-- 评价内容 -->
+          <view class="list-e-nei">
+            <view>{{item.content}}</view>
+            <view>
+              <view class='img_wrap' wx:for="{{item.appraisesAnnex}}" wx:for-item="img" wx:key="img">
+                <image mode='aspectFit' src="{{imgUrl+img}}"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 已加载全部 -->
+      <view class="order-quanbu" wx:if="{{(!list || list.length != 0) && totalPage == currPage}}">已加载全部</view>
+      <!-- 没有数据时 -->
+      <view wx:if="{{!list|list.length<1}}" class="order-wu">
+        <view>
+          <image src="/image/dingdan-kong.png"></image>
+        </view>
+        <view>暂无记录</view>
+        <view>暂无商品评价记录！~</view>
+      </view>
     </view>
-    <view wx:if="{{show==index}}"  wx:for="{{goods_list}}" wx:key="name2"  class='dishes fl_l' style='height:{{height}}px'>
-      <view wx:for="{{item.arr}}" wx:for-item="goods" wx:key="name3" class='goods clear'>
-        <image class='goods_l fl_l' src='{{goods.img}}'></image>
+  </view>
+  <!--菜品  --> 
+  <view class='dishes_wrap clear' wx:if="{{show2==0}}">
+    <view class='classify' style='height:{{height}}px'>
+      <view data-index='{{index}}' wx:for="{{goodslist}}" wx:key="name" bindtap='active'  class='classify_item {{show==index ? "active2":""}}'>{{item.catName}}</view>
+    </view>
+    <view wx:if="{{show==index}}"  wx:for="{{goodslist}}" wx:key="name2"  class='dishes fl_l' style='height:{{height}}px'>
+      <view wx:for="{{item.list}}" wx:for-item="goods" wx:key="name3" class='goods clear'>
+        <image class='goods_l fl_l' src='{{imgUrl+goods.photo_x}}'></image>
         <view class='goods_c fl_l'>
           <view class='goods_name ellipsis'>{{goods.name}}</view>
-          <view class='goods_sales'>{{goods.detail}}</view>
+          <view class='goods_sales ellipsis'>{{goods.intro}}</view>
           <view class='goods_price'>
-            <view class='price fl_l'>¥{{goods.price}}</view>
+            <view class='price fl_l'>¥{{goods.price_yh}}</view>
             <view class='unit fl_l'>元</view>
             <view class='change_num fl_r'>
               <view bindtap='add' data-index='{{index}}' class='add fl_r'>+</view>
@@ -40,6 +87,7 @@
       
     </view>
   </view>
+
 </view>
 
 <view class='botm'>

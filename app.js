@@ -1,21 +1,11 @@
 //app.js
 const updateManager = wx.getUpdateManager();
 App({
-  data: {
-    url: '',
-    img_url: ''
-  },
   onLaunch: function() {
     this.updata();
 
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-
     var that = this;
-    //登陆获取userId
+    //登陆获取userId  
     wx.login({
       success: function(res) {
         console.log(res);
@@ -29,8 +19,28 @@ App({
             },
             success: res => {
               console.log(res);
-              that.globalData.userId = res.data.data.userId;
+              var userId = res.data.data.userId;
+              that.globalData.userId = userId;
+              var config = res.data.data.config;
+              console.log(config)
+              console.log(config[0])
+              var userData = res.data.data.userData;
+              var logo = config[0].logo.fieldValue;
+              wx.setStorageSync('logo', logo);
+              var time = [config[0].serverStartTime.fieldValue, config[0].serverEndTime.fieldValue];
+              wx.setStorageSync('storeInfo', config);
+              wx.setStorageSync('time', time);
+              wx.setStorageSync('userId', userId);
+              wx.setStorageSync('isManager', userData.isManager);
+              wx.setStorageSync('isSender', userData.isSender);
+              wx.setStorageSync('isTeacher', userData.isTeacher);
+              wx.setStorageSync('userPhone', userData.phone);
               console.log(that.globalData.userId);
+              var schoolId = userData.schoolId;
+              var schoolName = userData.schoolName;
+              wx.setStorageSync('schoolName', schoolName);
+              wx.setStorageSync('schoolId', schoolId);
+              
             }
           });
         } else {
@@ -88,7 +98,43 @@ App({
   globalData: {
     userId:'',    //用户userId
     userInfo: null, //用户信息
+    programName:'易达达',
     api: 'https://xqps.honghuseo.cn/api/', //接口地址
-    baseUrl: 'https://xqps.honghuseo.cn/data/' //图片路径地址
+    baseUrl: 'https://xqps.honghuseo.cn/data/', //图片路径地址
+    baseUrlData: 'https://xqps.honghuseo.cn/' //图片路径地址
+  }, 
+
+  // 比较并 上传用户信息
+  uploadInfo(userInfo){
+    console.log(userInfo)
+    var userInfo2 = wx.getStorageSync('userInfo');  
+    var upload = false;
+    // 判断
+    if (!userInfo2){
+      console.log(userInfo2)
+      wx.setStorageSync('userInfo', userInfo);
+      upload = true;
+    } else {
+      var userInfoString = JSON.stringify(userInfo);
+      var userInfoString2 = JSON.stringify(userInfo2);
+      console.log(userInfoString2)
+      console.log(userInfoString == userInfoString2)
+      if (userInfoString != userInfoString2){
+        upload = true;
+      }
+    }
+    console.log(upload)
+    //向后台传用户信息
+    if (upload){
+      wx.request({
+        method: 'POST',
+        url: `${this.globalData.api}user/modify_info`,
+        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        data: userInfo,
+        success: res => {
+          console.log(res);
+        }
+      });
+    }
   }
 })

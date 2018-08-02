@@ -1,29 +1,28 @@
 /* pages/mycenter/approve/approve.wxss */
-.section1{
+
+.section1 {
+  height: 100vh;
   background: #fff;
-  padding: 180rpx 0 200rpx;
+  overflow: hidden;
 }
-.info1{
+
+.info1 {
   font-size: 30rpx;
   color: #f00;
   text-align: center;
   line-height: 60rpx;
+  padding-top: 200rpx;
 }
-.info2{
+
+.info2 {
   color: #999;
   font-size: 24rpx;
   text-align: center;
   line-height: 58rpx;
   margin-bottom: 78rpx;
 }
-.info3{
-  width: 216rpx;
-  height: 216rpx;
-  margin: 0 auto 54rpx;
-  display: block;
-  border-radius: 50%;
-}
-.info4{
+
+.info3 {
   width: 216rpx;
   height: 216rpx;
   margin: 0 auto 54rpx;
@@ -31,25 +30,49 @@
   border-radius: 50%;
 }
 
-.section2{
-  padding-top: 135rpx;
-  background: #fff;
+.info4 {
+  width: 216rpx;
+  height: 216rpx;
+  margin: 0 auto 54rpx;
+  display: block;
+  border-radius: 50%;
 }
-.info5{
+
+.section2 {
+  height: 100vh;
+  padding-top: 150rpx;
+  background: #fff;
+  overflow: hidden;
+}
+.approve-zhuang{
+  width: 100%;
+  height: auto;
+  margin-bottom: 150rpx;
+  font-size: 28rpx;
+  color: #666;
+  text-align: center;
+}
+.approve-zhuang>text{
+  font-size: 34rpx;
+  color: #f00;
+}
+.info5 {
   width: 216rpx;
   height: 216rpx;
   margin: 0 auto 25rpx;
   display: block;
   border-radius: 50%;
 }
-.info6{
+
+.info6 {
   font-size: 32rpx;
   color: #333;
   line-height: 70rpx;
   margin-bottom: 20rpx;
   text-align: center;
 }
-.info7{
+
+.info7 {
   color: #666;
   font-size: 30rpx;
   text-align: center;

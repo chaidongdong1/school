@@ -18,16 +18,16 @@
   </view> -->
   <view class="intor-yong">
     <view>手机号码：</view>
-    <input type="number" name="" placeholder="请输入手机号" placeholder-style="font-size:30rpx;color:#666;" bindinput="bindtapNumber" />
+    <input type="number" name="" value="{{tel}}" placeholder="请输入手机号" placeholder-style="font-size:30rpx;color:#666;" bindinput="bindtapNumber" />
   </view>
   <view class="intor-yan">
     <view>验 证 码 ：</view>
     <input type="number" name="" placeholder="请输入验证码" placeholder-style="font-size:30rpx;color:#666;" bindinput="bindtapCode" />
-    <view>获取验证码</view>
+    <view bindtap='{{click?"getCode":""}}'>{{time}}</view>
   </view>
   <view class="intor-yong">
     <view>绑定校区：</view>
-    <text>龙子湖校区</text>
+    <text>{{schoolName}}</text>
   </view>
   <!-- <view class="infor-bang">
     <view>绑定校区：</view>

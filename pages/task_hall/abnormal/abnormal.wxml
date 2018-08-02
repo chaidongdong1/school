@@ -1,0 +1,139 @@
+<!--pages/task_hall/abnormal/abnormal.wxml-->
+<!--pages/mycenter/orderRefund/orderRefund.wxml-->
+<!-- 第一个订单 -->
+<loading wx:if="{{showLoading}}">加载中</loading>
+<view class="order-shop-one" wx:if="{{orderType==1}}">
+  <!-- 超市商品 -->
+  <view class="order-s-chao">
+    <view>
+      <image src="/image/chaoshi.png"></image>
+      <text>超市订单</text>
+      <image src="/image/index-06.png"></image>
+    </view>
+  </view>
+  <!-- 商品 -->
+  <view class="order-shoplist">
+
+    <!-- 第一件商品 -->
+    <view class="order-shoplist-one" wx:for="{{goodsList}}" wx:key="item">
+      <!-- 左图片 -->
+      <view>
+        <image src="{{imgUrl+item.goodsThumbs}}"></image>
+      </view>
+      <!-- 右内容 -->
+      <view class="item_c">
+        <view class='item_ct'>{{item.goodsName}}</view>
+        <view class='item_cc'>价格：<text class='red'>¥{{item.goodsPrice}}</text>  </view> 
+        <view class='item_cb'>数量：<text class='red'>{{item.goodsNums}}</text></view>
+      </view>
+    </view>
+    
+  </view>
+</view>
+
+<view class="order-shop-one" wx:if="{{orderType==0}}">
+  <!-- 快递 -->
+  <view class="order-s-chao">
+    <view>
+      <image src="/image/kuaidi.png"></image>
+      <text>快递订单</text>
+      <image src="/image/index-06.png"></image>
+    </view>
+  </view>
+  <!-- 商品 -->
+  <view class="order-shoplist">
+
+    <!-- 第一件商品 -->
+    <view class="order-shoplist-one">
+      <!-- 左图片 -->
+      <view>
+        <image src="/image/kuaidi-01.png"></image>
+      </view>
+      <!-- 右内容 -->
+      <view class="item_c">
+        <view class='item_ct'>{{shopName}} {{shopAddress}}</view>
+      <view class='item_cc'>包裹信息：{{packageName}} {{packagePhone}}</view>
+      <view class='item_cb'>包裹取件码：<text class='red'>{{packageCode}}</text></view>
+      </view>
+    </view>
+    
+  </view>
+</view>
+
+<view class="order-shop-one" wx:if="{{orderType==2}}">
+  <!-- 饮用水 -->
+  <view class="order-s-chao">
+    <view>
+      <image src="/image/chaoshi.png"></image>
+      <text>桶装水订单</text>
+      <image src="/image/index-06.png"></image>
+    </view>
+  </view>
+  <!-- 商品 -->
+  <view class="order-shoplist">
+
+    <!-- 第一件商品 -->
+    <view class="order-shoplist-one" wx:for="{{goodsList}}" wx:key="item">
+      <!-- 左图片 -->
+      <view>
+        <image src="{{imgUrl+item.goodsThumbs}}"></image>
+      </view>
+      <!-- 右内容 -->
+      <view class="item_c">
+        <view class='item_ct'>{{item.goodsName}}</view>
+      <view class='item_cc'>价格：<text class='red'>¥{{item.goodsPrice}}</text> </view>
+      <view class='item_cb'>数量：<text class='red'>{{item.goodsNums}}</text></view>
+      </view>
+    </view>
+    
+  </view>
+</view>
+
+<view class="order-shop-one" wx:if="{{orderType==3}}">
+  <!-- 餐饮订单 -->
+  <view class="order-s-chao">
+    <view>
+      <image src="/image/chaoshi.png"></image>
+      <text>餐饮订单</text>
+      <image src="/image/index-06.png"></image>
+    </view>
+  </view>
+  <!-- 商品 -->
+  <view class="order-shoplist">
+
+    <!-- 第一件商品 -->
+    <view class="order-shoplist-one" wx:for="{{goodsList}}" wx:key="item">
+      <!-- 左图片 -->
+      <view>
+        <image src="{{imgUrl+item.goodsThumbs}}"></image>
+      </view>
+      <!-- 右内容 -->
+      <view class="item_c">
+        <view class='item_ct'>{{item.goodsName}}</view>
+      <view class='item_cc'>价格：<text class='red'>¥{{item.goodsPrice}}</text> </view>
+      <view class='item_cb'>数量：<text class='red'>{{item.goodsNums}}</text></view>
+      </view>
+    </view>
+    
+  </view>
+</view>
+
+<!-- 订单信息 -->                
+<view class="order-xiang">
+  <view>订单编号：
+    <text>{{orderNo}}</text>
+  </view>
+  <view>下单时间：
+    <text>{{createTime}}</text>
+  </view>
+</view>
+<!-- 问题描述 -->
+<view class="order-miao">
+	<view>问题描述<text>(必填)</text></view>
+	<textarea bindinput='remark' placeholder="请输入您发现的异常，谢谢合作"></textarea>
+</view>
+<!-- 按钮 -->
+<view class="order-anniu">
+	<button bindtap='submit'>异常申报</button>
+</view>
+ 

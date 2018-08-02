@@ -1,31 +1,48 @@
 <!--pages/courier/perfect/perfect.wxml-->
-<navigator url='../courAddress/courAddress' class='wrap arrow'>
-  <view class='old_address'>
-    <image class='add_img fl_l' src='/image/kuaidi2.png'></image>
-    <view class='add_info fl_l'>常用快递</view>
-  </view>
-</navigator>  
+<!--提示  --> 
+<loading wx:if="{{showLoading}}">加载中</loading>
+<view class='prompt'>
+  提示：请将信息填写完整（多件包裹请将取件码用逗号隔开）
+</view>
 <view class='wrap'>
+  <view class='wrap2' bindtap='show'>
+    <image class='courieImg' src='/image/courier.png'></image>
+    <view class='courieTxt'>常用快递</view>
+  </view>
   <view class='item clear'>
    <view class='item_l'>快 递 类 型：</view>
-   <input type='text' bindinput='change1' class='item_r' placeholder='请输入快递类型'></input>
+   <input type='text' bindinput='get_courier' class='item_r item1' value='{{courier}}' placeholder='请选择或输入快递类型' placeholder-style="font-size:26rpx;"></input>
   </view>
   <view class='item clear'>
    <view class='item_l'>快 递 位 置：</view>
-   <input type='text' bindinput='change2' class='item_r' placeholder='请输入快递位置'></input>
+   <input type='text' bindinput='get_address' class='item_r item1' value='{{address}}' placeholder='请选择或输入快递位置' placeholder-style="font-size:26rpx;"></input>
   </view>
   <view class='item clear'>
    <view class='item_l'>包裹收货人：</view>
-   <input type='text' bindinput='get_name' class='item_r' placeholder='请输入包裹收货人姓名'></input>
+   <input type='text' bindinput='get_name' value='{{name}}' class='item_r' placeholder='请输入包裹收货人姓名' placeholder-style="font-size:26rpx;"></input>
   </view>
   <view class='item clear'>
    <view class='item_l'>包裹手机号：</view>
-   <input type='number' bindinput='get_tel' class='item_r' placeholder='请输入包裹收货人电话'></input>
-  </view>
-  <view class='item clear bb_0'>
+   <input type='number' bindinput='get_tel' value='{{tel}}' class='item_r' placeholder='请输入包裹收货人电话' placeholder-style="font-size:26rpx;"></input>
+  </view> 
+  <view class='item clear'>
    <view class='item_l'>包裹取件码：</view>
-   <input type='text' bindinput='get_code' class='item_r' placeholder='请输入取件码，无请输入000000'></input>
+   <input type='text' bindinput='get_code' value='{{code}}' class='item_r' placeholder='请输入取件码，无请输入000000' placeholder-style="font-size:26rpx;"></input>
   </view>
 </view>
-
+ 
 <view class='btn' bindtap='submit'>完善信息</view>
+
+<!--地址选择弹框  -->
+<view wx:if="{{show}}" class='boxWrap'></view>
+<view wx:if="{{show}}" class='box'>
+  <view class='old_address'>
+    <image class='add_img' src='/image/kuaidi2.png'></image>
+    <view class='add_info'>常用快递</view>
+  </view>
+  <view class='cont clear'>
+    <view wx:for="{{defaultAddress}}" wx:key="da" bindtap='choose' data-index='{{index}}' class='item fl_l {{choose==index?"active":""}}'>{{item.deliverName}}</view>
+  </view>
+  <view class='chooseEnd' bindtap='chooseEnd'>确认选择</view>
+  <image class='shut' bindtap='shut' src="/image/close.png"></image>
+</view>
